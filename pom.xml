@@ -14,8 +14,6 @@
 	<name>appgeslaw</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
-		<hibernate.version>5.6.0.Final</hibernate.version>
-        <spring.version>5.3.13.RELEASE</spring.version>
 		<java.version>17</java.version>
 	</properties>
 	
@@ -67,11 +65,7 @@
 			<artifactId>flyway-core</artifactId>
 			<version>10.10.0</version> <!-- Utiliza la versión más reciente -->
 		</dependency>
-		<dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>${hibernate.version}</version>
-        </dependency>
+		
 
 
 	</dependencies>
