@@ -3,7 +3,6 @@ package com.geslaw.appgeslaw.model;
 import java.util.Date;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.Data;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -78,9 +77,6 @@ public class Users {
      */
     private String nss;
 
-    private String telefono;
-
-    private String domicilio;
 
     private String cp;
 
