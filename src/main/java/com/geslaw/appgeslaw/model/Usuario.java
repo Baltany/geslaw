@@ -23,7 +23,10 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    
+    /*
+     * Formulario en que el usuario pueda añadir sus dos 
+     * apellido automáticamente
+     */
     private String apellidos;
 
     private String dni;
@@ -37,9 +40,11 @@ public class Usuario {
     
     /*
      * Cada usuario puede tener DEPENDIENDO del usuario una única sede o varias
+     * Usuario puede tener varias sedes,desde ahi 
+     * accedemos mediante una consulta a usuarios_sede.tiposede == "sede"
      */
     @ManyToMany
-    private List<TipoSede> tipoSede;
+    private List<Sede> sede;
     
 
 
