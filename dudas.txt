@@ -1,0 +1,11 @@
+
+1. Explicacion del Sede Laboral(Clase entidad)
+
+2.Un usuario puede tener varios contratos o es una relacion OneToOne
+
+3. TipoCentro tabla Sedes
+
+4.SubContrata está vacía
+
+5. Que tipo de relacion es un territorio con obligado cumplimiento
+relacion uno a muchos?

@@ -7,13 +7,16 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
-
+@Data
 @Entity
 @NoArgsConstructor
 public class Sede {
@@ -57,4 +60,28 @@ public class Sede {
      */
     @ManyToOne
     Usuario usuario; 
+
+
+    /*
+     * Una empresa tiene varias sedes
+     */
+    @ManyToOne
+    private Empresa empresa;
+
+    @OneToOne
+    @JoinColumn(name = "sede_id")
+    private Factura factura;
+
+    /*
+     * TipoCentro
+     */
+
+    private Boolean habilitar;
+
+    /*
+     * idTerritorio
+     */
+    @OneToOne
+    @JoinColumn(name = "sede_id")
+    private Territorio territorio;
 }

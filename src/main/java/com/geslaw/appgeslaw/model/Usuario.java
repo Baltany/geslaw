@@ -11,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -49,6 +50,14 @@ public class Usuario {
     @OneToMany
     @JoinColumn(name = "usuario_id")
     private List<Sede> sede;
+
+    @OneToOne
+    @JoinColumn(name = "usuario_id")
+    private Contrato contratos;
+
+    @OneToMany
+    @JoinColumn(name = "usuario_id")
+    private List<Factura> facturas;
     
 
 
