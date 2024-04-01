@@ -35,7 +35,7 @@ public class ControllerPrincipal {
     }
     
     @GetMapping("/register")
-    public String showSignup() {
+    public String showRegister() {
         return "register";
     }
 
