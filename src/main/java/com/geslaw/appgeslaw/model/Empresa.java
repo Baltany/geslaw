@@ -24,14 +24,7 @@ public class Empresa {
     private String nombre;
 
 
-    /*
-     * Una empresa puede tener varios contratos
-     */
-    @OneToMany
-    @JoinColumn(name = "empresa_id")
-    private List<Contrato> contratos;
-
-
+    
     /*Una empresa tiene VARIAS sedes */
     @OneToMany
     @JoinColumn(name = "empresa_id")

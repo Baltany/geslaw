@@ -53,9 +53,6 @@ public class Usuario {
     @JoinColumn(name = "usuario_id")
     private List<Sede> sede;
 
-    @OneToOne
-    @JoinColumn(name = "usuario_id")
-    private Contrato contratos;
 
     @OneToOne
     @JoinColumn(name = "usuario_id")
