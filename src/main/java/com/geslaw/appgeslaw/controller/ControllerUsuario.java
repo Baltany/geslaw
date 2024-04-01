@@ -23,6 +23,8 @@ import com.geslaw.appgeslaw.repo.RepoUsuario;
 @Controller
 @RequestMapping("/usuarios")
 public class ControllerUsuario {
+
+    /*Falta login,registro y manejo de excepciones*/
     @Autowired private RepoUsuario repoUsuario;
 
     @Autowired private RepoTipoUsuario repoTipoUsuario;

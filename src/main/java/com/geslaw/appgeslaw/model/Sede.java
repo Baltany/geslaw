@@ -75,9 +75,6 @@ public class Sede {
     @JoinColumn(name = "sede_factura_id")
     private Factura factura;
 
-    /*
-     * TipoCentro
-     */
 
     private Boolean habilitar;
 
