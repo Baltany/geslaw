@@ -8,6 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -49,4 +50,11 @@ public class Sede {
      * el nombre nombre del centro
      */
     private List<TipoSede> tipoSede;
+
+
+    /*
+     * Recoge el id del usuario
+     */
+    @ManyToOne
+    Usuario usuario; 
 }

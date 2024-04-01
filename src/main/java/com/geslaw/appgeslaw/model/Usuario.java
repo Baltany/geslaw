@@ -8,7 +8,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -35,7 +37,8 @@ public class Usuario {
 
     private String password;
 
-    @ManyToMany
+    @OneToMany
+    @JoinColumn(name = "usuario_id")
     private List<TipoUsuario> tipoUsuario;
     
     /*
@@ -43,7 +46,8 @@ public class Usuario {
      * Usuario puede tener varias sedes,desde ahi 
      * accedemos mediante una consulta a usuarios_sede.tiposede == "sede"
      */
-    @ManyToMany
+    @OneToMany
+    @JoinColumn(name = "usuario_id")
     private List<Sede> sede;
     
 
