@@ -40,5 +40,8 @@ public class Empresa {
 
     @OneToMany
     @JoinColumn(name = "empresa_id")
-    private List<Seguro> seguros;
+    /*
+     * Ejemplo:Seguros....
+     */
+    private List<ObligadoCumplimiento> obligadoCumplimientos;
 }

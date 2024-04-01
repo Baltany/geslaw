@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -25,10 +26,16 @@ public class ObligadoCumplimiento {
     private String fechaValidez;
 
 
-    /*
-     * Que tipo de relacion es
-     */
+    @OneToOne
     private Territorio territorio;
+
+    
+    @OneToOne
+    private Sede sede;
+
+    
+    @OneToOne
+    private Usuario usuario;
 
 
     private String fichero;

@@ -46,6 +46,8 @@ public class Usuario {
      * Cada usuario puede tener DEPENDIENDO del usuario una única sede o varias
      * Usuario puede tener varias sedes,desde ahi 
      * accedemos mediante una consulta a usuarios_sede.tiposede == "sede"
+     * 
+     * Se relaciona cada usuario con la sede correspondiente
      */
     @OneToMany
     @JoinColumn(name = "usuario_id")
@@ -55,15 +57,13 @@ public class Usuario {
     @JoinColumn(name = "usuario_id")
     private Contrato contratos;
 
+    @OneToOne
+    @JoinColumn(name = "usuario_id")
+    private ObligadoCumplimiento obligadoCumplimiento;
+
     @OneToMany
     @JoinColumn(name = "usuario_id")
     private List<Factura> facturas;
-    
-
-
-
-
-
 
 
 

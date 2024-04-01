@@ -54,6 +54,8 @@ public class Sede {
      */
     private List<TipoSede> tipoSede;
 
+    private String tipoCentro;
+
 
     /*
      * Recoge el id del usuario
