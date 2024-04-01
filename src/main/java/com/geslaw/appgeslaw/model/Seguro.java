@@ -25,9 +25,9 @@ public class Seguro {
     private String fechaVencimiento;
 
     /*
-     * Relacion Seguro-Empresa/Sede/Usuario
-     *  
+     * Relacion Seguro-Sede/Usuario
      */
+
 
     @ManyToOne
     private Empresa empresa;

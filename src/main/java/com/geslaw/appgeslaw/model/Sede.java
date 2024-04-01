@@ -50,7 +50,7 @@ public class Sede {
 
     /*
      * tipoSede:id y nombre;
-     * el nombre nombre del centro
+     * el nombre del centro
      */
     private List<TipoSede> tipoSede;
 

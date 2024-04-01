@@ -1,11 +1,19 @@
 
-1. Explicacion del Sede Laboral(Clase entidad)
+1. Explicacion del Sede Laboral(Clase entidad),la necesito?
 
 2.Un usuario puede tener varios contratos o es una relacion OneToOne
 
 3. TipoCentro tabla Sedes
 
-4.SubContrata está vacía
+4.SubContrata está vacía,la necesito?
 
 5. Que tipo de relacion es un territorio con obligado cumplimiento
 relacion uno a muchos?
+
+6. Un Usuario puede tener varios seguros?
+
+7.Una sede tiene varios seguros?
+
+8.ObligadoCumplimiento que tipo de relacion tiene con Territorio?
+
+
