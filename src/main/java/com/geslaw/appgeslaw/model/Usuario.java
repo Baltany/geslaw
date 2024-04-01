@@ -38,8 +38,7 @@ public class Usuario {
 
     private String password;
 
-    @OneToMany
-    @JoinColumn(name = "usuario_id")
+    @ManyToMany
     private List<TipoUsuario> tipoUsuario;
     
     /*
@@ -50,16 +49,16 @@ public class Usuario {
      * Se relaciona cada usuario con la sede correspondiente
      */
     @OneToMany
-    @JoinColumn(name = "usuario_id")
+    @JoinColumn(name = "usuario_sede_id")
     private List<Sede> sede;
 
 
     @OneToOne
-    @JoinColumn(name = "usuario_id")
+    @JoinColumn(name = "usuario_obligado_cumplimiento_id")
     private ObligadoCumplimiento obligadoCumplimiento;
 
     @OneToMany
-    @JoinColumn(name = "usuario_id")
+    @JoinColumn(name = "usuario_facturas_id")
     private List<Factura> facturas;
 
 

@@ -28,6 +28,6 @@ public class Territorio {
 
     
     @OneToOne
-    @JoinColumn(name = "territorio_id")
+    @JoinColumn(name = "territorio_obligado_cumplimiento_id")
     private ObligadoCumplimiento obligadoCumplimiento;
 }

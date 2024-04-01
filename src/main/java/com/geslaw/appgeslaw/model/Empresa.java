@@ -27,12 +27,12 @@ public class Empresa {
     
     /*Una empresa tiene VARIAS sedes */
     @OneToMany
-    @JoinColumn(name = "empresa_id")
+    @JoinColumn(name = "empresa_sedes_id")
     private List<Sede> sedes;
     
 
     @OneToMany
-    @JoinColumn(name = "empresa_id")
+    @JoinColumn(name = "empresa_obligado_cumplimiento_id")
     /*
      * Ejemplo:Seguros....
      */

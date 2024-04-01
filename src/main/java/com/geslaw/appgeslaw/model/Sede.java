@@ -52,6 +52,7 @@ public class Sede {
      * tipoSede:id y nombre;
      * el nombre del centro
      */
+    @ManyToMany
     private List<TipoSede> tipoSede;
 
     private String tipoCentro;
@@ -61,7 +62,7 @@ public class Sede {
      * Recoge el id del usuario
      */
     @ManyToOne
-    Usuario usuario; 
+    private Usuario usuario; 
 
 
     /*
@@ -71,7 +72,7 @@ public class Sede {
     private Empresa empresa;
 
     @OneToOne
-    @JoinColumn(name = "sede_id")
+    @JoinColumn(name = "sede_factura_id")
     private Factura factura;
 
     /*
@@ -84,6 +85,6 @@ public class Sede {
      * idTerritorio
      */
     @OneToOne
-    @JoinColumn(name = "sede_id")
+    @JoinColumn(name = "sede_territorio_id")
     private Territorio territorio;
 }
