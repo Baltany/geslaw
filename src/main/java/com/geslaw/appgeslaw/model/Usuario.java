@@ -30,6 +30,11 @@ public class Usuario {
      * Formulario en que el usuario pueda añadir sus dos 
      * apellido automáticamente
      */
+
+    private String username;
+
+    private String nombre;
+
     private String apellidos;
 
     private String dni;
