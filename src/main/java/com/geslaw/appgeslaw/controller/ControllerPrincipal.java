@@ -29,6 +29,11 @@ public class ControllerPrincipal {
         return "index";
     }
 
+    @GetMapping("/home")
+    public String showHome() {
+        return "home";
+    }
+
     // @GetMapping("/login")
     // public String showLogin() {
     //     return "login";
