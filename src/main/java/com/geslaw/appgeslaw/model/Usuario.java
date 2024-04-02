@@ -43,6 +43,10 @@ public class Usuario {
 
     private String password;
 
+    private boolean habilitar;
+
+
+
     @ManyToMany
     private List<TipoUsuario> tipoUsuario;
     

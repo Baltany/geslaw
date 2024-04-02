@@ -8,7 +8,6 @@ public class AppgeslawApplication {
 
 	public static void main(String[] args) {
 
-
 		SpringApplication.run(AppgeslawApplication.class, args);
 	}
 

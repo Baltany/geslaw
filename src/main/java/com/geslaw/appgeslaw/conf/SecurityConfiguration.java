@@ -14,6 +14,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 
+
+
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration {
@@ -22,19 +25,45 @@ public class SecurityConfiguration {
     private DataSource dataSource;
 
 
-    /*Tengo que cambiar la consulta */
+    //Deshabilitando el login...
     @Autowired
-    public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.jdbcAuthentication()
-            .dataSource(dataSource)
-            .usersByUsernameQuery("SELECT username, password FROM usuario WHERE username = ?")
-            .authoritiesByUsernameQuery("SELECT u.username, tu.nombre AS authority " +
-                                        "FROM usuario u " +
-                                        "JOIN usuario_tipo_usuario utu ON u.id = utu.usuario_id " +
-                                        "JOIN tipo_usuario tu ON utu.tipo_usuario_id = tu.id " +
-                                        "WHERE u.username = ?");
+    protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests()
+    .requestMatchers("/public/**").permitAll() // Configura las URL públicas
+    .anyRequest().authenticated(); // Todas las demás URL requieren autenticación
+ // Deshabilitar CSRF para simplicidad
     }
+
+    /*No funciona */
+//     @Autowired
+// public void configure(AuthenticationManagerBuilder auth) throws Exception {
+//     auth.jdbcAuthentication()
+//         .dataSource(dataSource)
+//         .usersByUsernameQuery("SELECT username, password, habilitar "
+//                             + "FROM usuario "
+//                             + "WHERE username = ?")
+//         .authoritiesByUsernameQuery("SELECT usuario.username, tipo_usuario.nombre "
+//                             + "FROM usuario_tipo_usuario, usuario, tipo_usuario "
+//                             + "WHERE usuario.id = usuario_tipo_usuario.usuario_id and "
+//                             + "usuario_tipo_usuario.tipo_usuario_id = tipo_usuario.id and usuario.username = ?");
+// }
+
+
     
+
+
+    // @Autowired
+    // public void configure(AuthenticationManagerBuilder auth) throws Exception{
+    //     auth.jdbcAuthentication()
+    //     .dataSource(dataSource)
+    //     .usersByUsernameQuery("select username, password "
+    //     + "from usuario "
+    //     + "where username = ?")
+    //     // .authoritiesByUsernameQuery("SELECT username, password FROM usuario WHERE username = ?");
+
+
+
+    // }
 
     @Bean
     public PasswordEncoder encoder(){

@@ -29,10 +29,10 @@ public class ControllerPrincipal {
         return "index";
     }
 
-    @GetMapping("/login")
-    public String showLogin() {
-        return "login";
-    }
+    // @GetMapping("/login")
+    // public String showLogin() {
+    //     return "login";
+    // }
     
     @GetMapping("/register")
     public String showRegister() {

@@ -52,7 +52,7 @@ public class ControllerUsuario {
         model.addAttribute("usuario", new Usuario());
         model.addAttribute("tipoUsuario", repoTipoUsuario.findAll());
         model.addAttribute("sede", repoSede.findAll());
-        model.addAttribute("obligadoCumplimiento", repoObligadoCumplimiento.findAll());
+        model.addAttribute("obligadocumplimiento", repoObligadoCumplimiento.findAll());
         model.addAttribute("factura", repoFactura.findAll());
         return "users/add";
     }
@@ -94,7 +94,7 @@ public class ControllerUsuario {
             modelo.addAttribute("usuario", oUsuario.get());
             modelo.addAttribute("tipoUsuario", repoTipoUsuario.findAll());
             modelo.addAttribute("sede", repoSede.findAll());
-            modelo.addAttribute("obligadoCumplimiento", repoObligadoCumplimiento.findAll());
+            modelo.addAttribute("obligadocumplimiento", repoObligadoCumplimiento.findAll());
             modelo.addAttribute("factura", repoFactura.findAll());
             return "usuarios/edit";
         } else {
