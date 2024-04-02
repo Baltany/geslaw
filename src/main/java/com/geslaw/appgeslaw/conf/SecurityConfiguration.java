@@ -59,7 +59,7 @@ public class SecurityConfiguration {
                                 //retoques en clase,importante la proteccion de todas las rutas tal y como me ha dicho Juangu
                                 .requestMatchers("/usuarios/**", "/usuarios/*/**" , "/usuarios/*/*/**", "asignaturas/**" ,"asignaturas/*/**", "asignaturas/*/*/**" ,  "/ayuda/**", "/acerca/**")
                                 //.authenticated()
-                                .hasAuthority("gestor")
+                                .hasAuthority("director")
                         //        .anyRequest().permitAll()
                         // ).headers(headers -> headers
                         //         .frameOptions(frameOptions -> frameOptions
@@ -75,7 +75,7 @@ public class SecurityConfiguration {
                                 Customizer.withDefaults()
                         ).logout((logout) -> logout
                                 .invalidateHttpSession(true)
-                                .logoutSuccessUrl("/")
+                                .logoutSuccessUrl("/home")
                                 // .deleteCookies("JSESSIONID") // no es necesario, JSESSIONID se hace por defecto
                                 .permitAll()                                
                         ).csrf((protection) -> protection
