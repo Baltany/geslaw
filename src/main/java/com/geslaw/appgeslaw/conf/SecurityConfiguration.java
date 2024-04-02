@@ -24,20 +24,17 @@ public class SecurityConfiguration {
 
     /*Tengo que cambiar la consulta */
     @Autowired
-
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication()
-        .dataSource(dataSource)
-        .usersByUsernameQuery("select username, password, true "
-            + "from usuario "
-            + "where username = ?")
-        .authoritiesByUsernameQuery("select username, tipoUsuario.nombre as authority "
-            + "from usuario "
-            + "join usuario_tipo_usuario on usuario.id = usuario_tipo_usuario.usuario_id "
-            + "join tipo_usuario on usuario_tipo_usuario.tipo_usuario_id = tipo_usuario.id "
-            + "where username = ?");
-}
-
+            .dataSource(dataSource)
+            .usersByUsernameQuery("SELECT username, password FROM usuario WHERE username = ?")
+            .authoritiesByUsernameQuery("SELECT u.username, tu.nombre AS authority " +
+                                        "FROM usuario u " +
+                                        "JOIN usuario_tipo_usuario utu ON u.id = utu.usuario_id " +
+                                        "JOIN tipo_usuario tu ON utu.tipo_usuario_id = tu.id " +
+                                        "WHERE u.username = ?");
+    }
+    
 
     @Bean
     public PasswordEncoder encoder(){
