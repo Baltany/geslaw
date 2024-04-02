@@ -28,13 +28,13 @@ public class SecurityConfiguration {
         public void configure(AuthenticationManagerBuilder auth) throws Exception {
                 auth.jdbcAuthentication()
                                 .dataSource(dataSource)
-                                .usersByUsernameQuery("select username, password, enabled "
+                                .usersByUsernameQuery("select username, password, habilitar "
                                                 + "from usuario "
                                                 + "where username = ?")
-                                .authoritiesByUsernameQuery("select username, rol.nombre  "
-                                                + "from usuario_roles, usuario, rol "
-                                                + "where usuario.id=usuario_roles.usuario_id and "
-                                                + "usuario_roles.roles_id = rol.id and username = ?");
+                                .authoritiesByUsernameQuery("SELECT usuario.username, tipo_usuario.nombre  "
+                                                + "FROM usuario, usuario_tipo_usuario, tipo_usuario "
+                                                + "WHERE usuario.id = usuario_tipo_usuario.usuario_id AND "
+                                                + "usuario_tipo_usuario.tipo_usuario_id = tipo_usuario.id AND usuario.username = ?");
         }
 
         /*
