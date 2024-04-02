@@ -1,4 +1,6 @@
 package com.geslaw.appgeslaw.conf;
+
+
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,59 +13,77 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration {
-    @Autowired
-    private DataSource dataSource;
 
-    /*Tengo que cambiar la consulta */
-    @Autowired
+        @Autowired
+        private DataSource dataSource;
 
-    public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.jdbcAuthentication()
-        .dataSource(dataSource)
-        .usersByUsernameQuery("select username, password, true "
-            + "from usuario "
-            + "where username = ?")
-        .authoritiesByUsernameQuery("select username, tipo_usuario.nombre as authority "
-            + "from usuario "
-            + "join usuario_tipo_usuario on usuario.id = usuario_tipo_usuario.usuario_id "
-            + "join tipo_usuario on usuario_tipo_usuario.tipo_usuario_id = tipo_usuario.id "
-            + "where username = ?");
-}
+        // Podemos crear nuestra propia clase para autenticar a los usuarios
+        // o bien usar un AuthenticationManagerBuilder.
 
-            // .dataSource(dataSource)
-            // .usersByUsernameQuery("SELECT username, password FROM usuario WHERE username = ?")
-            // .authoritiesByUsernameQuery("SELECT u.username, tu.nombre AS authority " +
-            //                             "FROM usuario u " +
-            //                             "JOIN usuario_tipo_usuario utu ON u.id = utu.usuario_id " +
-            //                             "JOIN tipo_usuario tu ON utu.tipo_usuario_id = tu.id " +
-            //                             "WHERE u.username = ?");
-    //}
+        @Autowired
+        public void configure(AuthenticationManagerBuilder auth) throws Exception {
+                auth.jdbcAuthentication()
+                                .dataSource(dataSource)
+                                .usersByUsernameQuery("select username, password, enabled "
+                                                + "from usuario "
+                                                + "where username = ?")
+                                .authoritiesByUsernameQuery("select username, rol.nombre  "
+                                                + "from usuario_roles, usuario, rol "
+                                                + "where usuario.id=usuario_roles.usuario_id and "
+                                                + "usuario_roles.roles_id = rol.id and username = ?");
+        }
 
+        /*
+         * @Bean UserDetailsService userDetailsService(){
+         * return new MyCustomUserDetailsService();
+         * }
+         */
+        @Bean
+        public PasswordEncoder encoder() {
+                return new BCryptPasswordEncoder();
+        }
 
-    @Bean
-    public PasswordEncoder encoder(){
-        return new BCryptPasswordEncoder();
-    }
-    /*Hay que proteger todas las rutas a las que un usuario puede acceder */
-    @Bean
-    public SecurityFilterChain filter(HttpSecurity httpSecurity) throws Exception{
-        
-        return httpSecurity
-        .authorizeHttpRequests((request)-> request.requestMatchers("/webjars/**", "/img/**", "/js/**", "/register/**", "/ayuda/**", "/acerca/**", "aaaaa/**" , "/login", "/denegado")
-        .permitAll()
-        .requestMatchers("/usuarios/**", "/usuarios/*/**" , "/usuarios/*/*/**", "aaaaaa/**" ,"aaaaaa/*/**", "aaaaaa/*/*/**" ,  "/ayuda/**", "/acerca/**")
-        /*cambiar admin -> director */
-        .hasAuthority("admin"))
-        .exceptionHandling((exception)-> exception.accessDeniedPage("/denegado"))
-        .formLogin((formLogin)-> formLogin.permitAll())
-        .rememberMe(Customizer.withDefaults())
-        .logout((logout)-> logout.invalidateHttpSession(true)
-        .logoutSuccessUrl("/")
-        .permitAll())
-        .csrf((protection)->protection.disable())
-        .build();
-    }
+        @Bean
+        public SecurityFilterChain filter(HttpSecurity http) throws Exception {
+                
+                // Con Spring Security 6.2 y 7: usando Lambda DSL
+
+                return http
+                        .authorizeHttpRequests((requests) -> requests
+                                .requestMatchers("/webjars/**", "/img/**", "/js/**", "/register/**", "/ayuda/**", "/acerca/**", "asignaturas/**" , "/login", "/denegado")
+                                .permitAll() 
+                                //retoques en clase,importante la proteccion de todas las rutas tal y como me ha dicho Juangu
+                                .requestMatchers("/usuarios/**", "/usuarios/*/**" , "/usuarios/*/*/**", "asignaturas/**" ,"asignaturas/*/**", "asignaturas/*/*/**" ,  "/ayuda/**", "/acerca/**")
+                                //.authenticated()
+                                .hasAuthority("gestor")
+                        //        .anyRequest().permitAll()
+                        // ).headers(headers -> headers
+                        //         .frameOptions(frameOptions -> frameOptions
+                        //                 .sameOrigin())
+                        // ).sessionManagement((session) -> session
+                        //         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                        ).exceptionHandling((exception)-> exception.
+                                accessDeniedPage("/denegado") )
+                        .formLogin((formLogin) -> formLogin
+                                //.loginPage("/login")
+                                .permitAll()
+                        ).rememberMe(
+                                Customizer.withDefaults()
+                        ).logout((logout) -> logout
+                                .invalidateHttpSession(true)
+                                .logoutSuccessUrl("/")
+                                // .deleteCookies("JSESSIONID") // no es necesario, JSESSIONID se hace por defecto
+                                .permitAll()                                
+                        ).csrf((protection) -> protection
+                                .disable()
+                        // ).cors((protection)-> protection
+                        //          .disable()
+                        ).build();
+
+        }
+
 }
