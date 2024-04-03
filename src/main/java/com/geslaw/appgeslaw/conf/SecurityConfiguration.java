@@ -30,9 +30,11 @@ public class SecurityConfiguration {
                 "select username, password, habilitar from usuario where username = ?"
             )
             .authoritiesByUsernameQuery(
-                "SELECT usuario.username, tipo_usuario.nombre  FROM usuario, usuario_tipo_usuar" +
-                "io, tipo_usuario WHERE usuario.id = usuario_tipo_usuario.usuario_id AND usuari" +
-                "o_tipo_usuario.tipo_usuario_id = tipo_usuario.id AND usuario.username = ?"
+                "SELECT usuario.username, tipo_usuario.nombre " +
+                "FROM usuario, usuario_tipo_usuario, tipo_usuario "+
+                "WHERE usuario.id = usuario_tipo_usuario.usuario_id " +
+                "AND usuario_tipo_usuario.tipo_usuario_id = tipo_usuario.id "+
+                "AND usuario.username = ?"
             );
     }
 
