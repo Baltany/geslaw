@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <title>Ges-Law : Gestión usuarios</title>
+  <th:block th:replace="~{fragmentos/general.html :: headerfiles}"></th:block>
+</head>
+
+<body>
+  
+    <div th:replace="~{fragmentos/general.html :: navigation}"> </div>
+    <div class="container">
+    <h3>Lista de usuarios</h3>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <td>Nombre</td>
+          <td>Apellido</td>
+          <td>DNI</td>
+          <td>Email</td>
+          <td>Tipo</td>
+          <td>Sede</td>
+          <td>Facturas</td>
+          <td>Obligado Cumplimiento</td>
+          <td>Acciones</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="usuario: ${usuarios}">
+          <td th:text="${usuario.nombre}"></td>
+          <td th:text="${usuario.apellidos}"></td>
+          <td th:text="${usuario.dni}"></td>
+          <td th:text="${usuario.email}"></td>
+            <td>
+                <p>
+                    <!-- Recuerda usar:  + ', ' 
+                        si tiene mas de un rol
+                    -->
+
+                    <span th:each="tipo : ${usuario.tipoUsuario}" th:text="${tipo.nombre} 
+                    "></span>
+                </p>
+
+                </label>
+        </td>
+        <td>
+            <p>
+                <!-- Recuerda usar:  + ', ' 
+                    si tiene mas de un rol
+                -->
+                Sede:
+                <span th:each="tipo : ${usuario.sede.tipoSede}" th:text="${tipo.nombre}"></span>
+
+            </p>
+
+            </label>
+        </td>
+
+        <td th:text="${usuario.facturas}"></td>
+        <td th:text="${usuario.obligadoCumplimiento}"></td>
+
+          <td>
+              <a class="btn btn-success" th:href="|/usuarios/edit/${usuario.id}|">Editar</a>
+              <a class="btn btn-danger" th:href="|/usuarios/delete/${usuario.id}|">Borrar</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div th:replace="~{fragmentos/general.html :: footer}"></div>
+  </div>
+</body>
+
+</html>

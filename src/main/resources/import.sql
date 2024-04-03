@@ -8,7 +8,7 @@ INSERT INTO tipo_sede (nombre) VALUES ('Nombre del tipo de sede');
 INSERT INTO empresa (nombre) VALUES ('Nombre de la empresa');
 
 -- Insertar usuario/password:Secreto123
-INSERT INTO usuario (usuario_obligado_cumplimiento_id, apellidos, dni, email, nombre, password, username,habilitar) VALUES (NULL, 'Apellidos Usuario', 'DNI Usuario', 'email@usuario.com', 'Nombre Usuario', '$2a$10$PMDCjYqXJxGsVlnve1t9Jug2DkDDckvUDl8.vF4Dc6yg0FMjovsXO', 'username',1);
+INSERT INTO usuario (usuario_obligado_cumplimiento_id, apellidos, dni, email, nombre, password, username,habilitar) VALUES (NULL, 'Apellidos Usuario', 'DNI Usuario', 'email@usuario.com', 'Balbino', '$2a$10$PMDCjYqXJxGsVlnve1t9Jug2DkDDckvUDl8.vF4Dc6yg0FMjovsXO', 'username',1);
 
 -- Insertar territorio
 INSERT INTO territorio (sede_id, territorio_obligado_cumplimiento_id, nombre) VALUES (NULL, NULL, 'Nombre Territorio');
