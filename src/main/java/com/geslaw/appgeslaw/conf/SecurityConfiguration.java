@@ -30,12 +30,14 @@ public class SecurityConfiguration {
                 "select username, password, habilitar from usuario where username = ?"
             )
             .authoritiesByUsernameQuery(
-                "SELECT usuario.username, tipo_usuario.nombre " +
-                "FROM usuario, usuario_tipo_usuario, tipo_usuario "+
-                "WHERE usuario.id = usuario_tipo_usuario.usuario_id " +
-                "AND usuario_tipo_usuario.tipo_usuario_id = tipo_usuario.id "+
-                "AND usuario.username = ?"
+                "select usuario.username, tipo_usuario.nombre " +
+                "from usuario, usuario_tipo_usuario, tipo_usuario "+
+                "where usuario.id = usuario_tipo_usuario.usuario_id " +
+                "and usuario_tipo_usuario.tipo_usuario_id = tipo_usuario.id "+
+                "and usuario.username = ?"
             );
+
+
     }
 
     /*
@@ -54,7 +56,7 @@ public class SecurityConfiguration {
                 "/webjars/**",
                 "/img/**",
                 "/js/**",
-                "/register/**",
+                // "/register/**",
                 "/ayuda/**",
                 "/acerca/**",
                 "/login",
@@ -73,11 +75,15 @@ public class SecurityConfiguration {
                 (logout) -> logout.invalidateHttpSession(true)
                 // Redirecciona aquí después de cerrar sesión correctamente
                 .logoutSuccessUrl("/")
-                .deleteCookies("JSESSIONID")
+                // .deleteCookies("JSESSIONID") 
                 .permitAll()
             )
             .csrf((protection) -> protection.disable())
+            //).cors((protection)-> protection
+            //.disable())
+
             .build();
+
 
     }
 
