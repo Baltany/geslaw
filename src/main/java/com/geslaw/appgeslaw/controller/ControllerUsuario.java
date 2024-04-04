@@ -54,7 +54,7 @@ public class ControllerUsuario {
         model.addAttribute("sede", repoSede.findAll());
         model.addAttribute("obligadocumplimiento", repoObligadoCumplimiento.findAll());
         model.addAttribute("factura", repoFactura.findAll());
-        return "users/add";
+        return "usuarios/add";
     }
 
     @PostMapping("/add")

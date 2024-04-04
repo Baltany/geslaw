@@ -4,20 +4,14 @@
 <head>
   <title>Ges-Law : Gestión usuarios</title>
   <th:block th:replace="~{fragmentos/general.html :: headerfiles}"></th:block>
-  <script>
-    function confirmarBorrado(usuarioId) {
-      if (confirm("¿Estás seguro que quieres borrar?")) {
-        window.location.href = "/usuarios/delete/" + usuarioId;
-      }
-    }
-  </script>
-
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 
 <body>
-  
-    <div th:replace="~{fragmentos/general.html :: navigation}"> </div>
-    <div class="container">
+
+  <div th:replace="~{fragmentos/general.html :: navigation}"></div>
+  <div class="container">
     <h3>Lista de usuarios</h3>
     <table class="table table-striped">
       <thead>
@@ -27,9 +21,6 @@
           <td>DNI</td>
           <td>Email</td>
           <td>Tipo</td>
-          <!-- <td>Sede</td>
-          <td>Facturas</td>
-          <td>Obligado Cumplimiento</td> -->
           <td>Acciones</td>
         </tr>
       </thead>
@@ -39,40 +30,63 @@
           <td th:text="${usuario.apellidos}"></td>
           <td th:text="${usuario.dni}"></td>
           <td th:text="${usuario.email}"></td>
-            <td>
-                <p>
-                    <!-- Recuerda usar:  + ', ' 
-                        si tiene mas de un rol
-                    -->
-                    <span th:each="tipo : ${usuario.tipoUsuario}" th:text="${tipo.nombre} 
-                    "></span>
-                </p>
-
-                </label>
-        </td>
-        <!-- <td>
-            <p>Sede:
-                <span th:each="sede : ${usuario.sede}">
-                    <span th:each="tipo : ${sede.tipoSede}" th:text="${tipo.nombre} + ', '"></span>
-                </span>
-            </p>
-
-            </label>
-        </td>
-
-        <td th:text="${usuario.facturas}"></td>
-        <td th:text="${usuario.obligadoCumplimiento}"></td> -->
-
           <td>
-              <a class="btn btn-success" th:href="|/usuarios/edit/${usuario.id}|">Editar</a>
-              <button class="btn btn-danger" onclick="confirmarBorrado('${usuario.id}')">Borrar</button>
-            </td>
+            <p>
+              <span th:each="tipo : ${usuario.tipoUsuario}" th:text="${tipo.nombre}"></span>
+            </p>
+          </td>
+          <td>
+            <a class="btn btn-success" th:href="|/usuarios/edit/${usuario.id}|">Editar</a>
+            <button class="btn btn-danger" data-toggle="modal" data-target="#confirmDeleteModal" data-usuario-id="${usuario.id}" th:attr="data-usuario-id=${usuario.id}">Borrar</button>
+          </td>
         </tr>
       </tbody>
     </table>
 
+    <!-- Modal -->
+    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmar borrado</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            ¿Estás seguro que quieres borrar este usuario?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-danger" id="confirmDeleteButton">Borrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div th:replace="~{fragmentos/general.html :: footer}"></div>
   </div>
+
+  <!-- Bootstrap JS and jQuery -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      $('#confirmDeleteModal').on('show.bs.modal', function(event) {
+        const button = $(event.relatedTarget);
+        const usuarioId = parseInt(button.attr("data-usuario-id"));
+        const modal = $(this);
+        modal.find('#confirmDeleteButton').data("usuario-id", usuarioId);
+      });
+
+      $('#confirmDeleteButton').click(function(event) {
+        const usuarioId = $(this).attr("data-usuario-id");
+        window.location.href = "/usuarios/delete/" + usuarioId;
+      });
+    });
+  </script>
 </body>
 
 </html>
