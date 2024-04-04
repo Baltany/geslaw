@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ges-Law : Gestión Facturas</title>
+    <th:block th:replace="~{fragmentos/general.html :: headerfiles}"></th:block>
+</head>
+
+<body>
+
+    <div th:replace="~{fragmentos/general.html :: navigation}"> </div>
+
+    <div class="container">
+        <br>
+        <br>
+        <h3>Añadir Factura:</h3>
+
+        <form th:action="|/facturas/add|" th:object="${factura}" method="post">
+            <input hidden th:field="${factura.id}" />
+            <div class="border">
+                <div class="row g-3 m-2">
+                    <div class="col-md-6">
+                        <label class="form-label">Nombre del proveedor: </label>
+                        <input type="text" th:field="*{proveedor}" class="form-control" />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Sede: </label>
+                        <input type="text" th:field="*{sede}" class="form-control" />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Estado: </label>
+                        <input type="text" th:field="*{estado}" class="form-control" />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Observaciones: </label>
+                        <input type="text" th:field="*{observaciones}" class="form-control" />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Visto: </label>
+                        <input type="text" th:field="*{visto}" class="form-control" />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Fecha de validez: </label>
+                        <input type="text" th:field="*{fechaVa}" class="form-control" />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Concepto: </label>
+                        <input type="text" th:field="*{concepto}" class="form-control" />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Usuario: </label>
+                        <input type="text" th:field="*{usuario}" class="form-control" />
+                    </div>
+            </div>
+            <div class="border">
+                <div class="row g-3 m-2">
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-primary">Añadir</button>
+                        <a href="/facturas" class="btn btn-danger">Cancelar</a>
+                    </div>
+                </div>
+        </form>
+
+        <div th:replace="~{fragmentos/general.html :: footer}"></div>
+
+    </div>
+</body>
+
+</html>

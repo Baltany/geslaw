@@ -24,9 +24,10 @@ public class ControllerFactura {
     @Autowired
     private RepoFactura repoFactura;
 
+
     @GetMapping("")
     public String findAll(Model modelo){
-        modelo.addAttribute("factura", repoFactura.findAll());
+        modelo.addAttribute("facturas", repoFactura.findAll());
         return "facturas/facturas";
     }
 

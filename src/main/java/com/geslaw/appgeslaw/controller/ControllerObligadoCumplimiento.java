@@ -29,7 +29,7 @@ public class ControllerObligadoCumplimiento {
 
     @GetMapping("")
     public String findAll(Model modelo) {
-        modelo.addAttribute("obligadocumpliminetos", repoObligadoCumplimiento.findAll());
+        modelo.addAttribute("obligadocumplimientos", repoObligadoCumplimiento.findAll());
         return "obligadocumplimientos/obligadocumplimientos";
     }
     

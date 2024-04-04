@@ -32,27 +32,13 @@
           </tr>
         </thead>
         <tbody>
-          <tr th:each="obligadocumplimiento: ${obligadocumplimiento}">
-            <td th:text="${obligadocumplimiento.tipo}"></td>
-            <td th:text="${usuario.apellidos}"></td>
-            <td th:text="${usuario.dni}"></td>
-            <td th:text="${usuario.email}"></td>
+          <tr th:each="obligadocumplimiento: ${obligadocumplimientos}">
+            <td th:text="${obligadocumplimiento.id}"></td>
+            
+            
             <td>
-              <p>
-                  <!-- Recuerda usar:  + ', ' 
-                      si tiene mas de un rol
-                  -->
-                  <span th:each="tipo : ${usuario.tipoUsuario}" th:text="${tipo.nombre} 
-                  "></span>
-  
-  
-              </p>
-  
-              </label>
-            </td>
-            <td>
-              <a class="btn btn-success" th:href="|/usuarios/edit/${usuario.id}|">Editar</a>
-              <button class="btn btn-danger" data-toggle="modal" data-target="#confirmDeleteModal" data-usuario-id="${usuario.id}" th:attr="data-usuario-id=${usuario.id}">Borrar</button>
+              <a class="btn btn-success" th:href="|/obligadocumplimientos/edit/${obligadocumplimiento.id}|">Editar</a>
+              <!-- <button class="btn btn-danger" data-toggle="modal" data-target="#confirmDeleteModal" data-usuario-id="${usuario.id}" th:attr="data-usuario-id=${usuario.id}">Borrar</button> -->
             </td>
           </tr>
         </tbody>
