@@ -66,7 +66,7 @@ public class ControllerUsuario {
     @GetMapping("/delete/{id}")
     public String deleteUsuarioForm(
         Model modelo,
-        @PathVariable("id")@NonNull Long id
+        @PathVariable("id") @NonNull Long id
     ) {
         Optional<Usuario> oUsuario = repoUsuario.findById(id);
         if (oUsuario.isPresent()) 

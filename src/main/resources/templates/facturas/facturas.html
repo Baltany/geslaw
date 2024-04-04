@@ -2,27 +2,30 @@
 <html lang="es">
 
 <head>
-  <title>Ges-Law : Gestión usuarios</title>
+  <title>Ges-Law : Gestión facturas</title>
   <th:block th:replace="~{fragmentos/general.html :: headerfiles}"></th:block>
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 
 <body>
-
+    
   <div th:replace="~{fragmentos/general.html :: navigation}"></div>
   <div class="container">
     <br>
-    <h3>Lista de usuarios</h3>
+    <h3>Lista de facturas</h3>
     <table class="table table-striped">
       <thead>
         <tr>
-          <td>Nombre</td>
-          <td>Apellido</td>
-          <td>DNI</td>
-          <td>Email</td>
-          <td>Tipo</td>
-          <td>Acciones</td>
+            <td>Nombre</td>
+            <td>Proveedor</td>
+            <td>Sede</td>
+            <td>Estado</td>
+            <td>Observaciones</td>
+            <td>Visto</td>
+            <td>Concepto</td>
+            <td>Usuario</td>
+            <td>Acciones</td>
         </tr>
       </thead>
       <tbody>
@@ -33,16 +36,8 @@
           <td th:text="${usuario.email}"></td>
           <td>
             <p>
-                <!-- Recuerda usar:  + ', ' 
-                    si tiene mas de un rol
-                -->
-                <span th:each="tipo : ${usuario.tipoUsuario}" th:text="${tipo.nombre} 
-                "></span>
-
-
+              <span th:each="tipo : ${usuario.tipoUsuario}" th:text="${tipo.nombre}"></span>
             </p>
-
-            </label>
           </td>
           <td>
             <a class="btn btn-success" th:href="|/usuarios/edit/${usuario.id}|">Editar</a>
