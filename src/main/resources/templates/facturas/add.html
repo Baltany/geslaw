@@ -16,8 +16,8 @@
         <br>
         <h3>Añadir Factura:</h3>
 
-        <form th:action="|/facturas/add|" th:object="${factura}" method="post">
-            <input type="hidden" th:field="*{id}" />
+        <!-- <form th:action="|/facturas/add|" th:object="${factura}" method="post">
+            <input hidden th:field="${factura.id}" />
             <div class="border">
                 <div class="row g-3 m-2">
                     <div class="col-md-6">
@@ -70,7 +70,7 @@
                     </div>
                 </div>
             </div>
-        </form>
+        </form> -->
 
         <div th:replace="~{fragmentos/general.html :: footer}"></div>
 
