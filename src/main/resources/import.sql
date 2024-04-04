@@ -20,7 +20,7 @@ INSERT INTO sede (habilitar, empresa_id, empresa_sedes_id, sede_factura_id, sede
 INSERT INTO factura (estado, visto, sede_id, usuario_facturas_id, usuario_id, concepto, fecha_va, nombre, observaciones, proveedor) VALUES (NULL, NULL, NULL, NULL, NULL, 'Concepto Factura', 'Fecha Factura', 'Nombre Factura', 'Observaciones Factura', 'Proveedor Factura');
 
 -- Insertar obligado de cumplimiento
-INSERT INTO obligado_cumplimiento (aplica, borrar, favorable, empresa_id, empresa_obligado_cumplimiento_id, sede_id, territorio_id, usuario_id, fecha_validez, fichero, observaciones) VALUES (NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Fecha Validez', 'Fichero', 'Observaciones');
+INSERT INTO obligado_cumplimiento (aplica, borrar, favorable, empresa_id, empresa_obligado_cumplimiento_id, sede_id, territorio_id, usuario_id, fecha_validez, fichero, observaciones,tipo) VALUES (NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Fecha Validez', 'Fichero', 'Observaciones','Tipo de obligado');
 
 -- Insertar relación usuario-tipo_usuario
 INSERT INTO usuario_tipo_usuario (tipo_usuario_id, usuario_id) VALUES (1, 1);

@@ -24,6 +24,7 @@ public class ObligadoCumplimiento {
     /*
      * Tipo obligado cumplimiento
      */
+    private String tipo;
 
     private String fechaValidez;
 
