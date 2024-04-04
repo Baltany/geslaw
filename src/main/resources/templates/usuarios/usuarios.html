@@ -73,20 +73,22 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
   <script>
-    $(document).ready(function() {
-      $('#confirmDeleteModal').on('show.bs.modal', function(event) {
-        const button = $(event.relatedTarget);
-        const usuarioId = parseInt(button.attr("data-usuario-id"));
-        const modal = $(this);
-        modal.find('#confirmDeleteButton').data("usuario-id", usuarioId);
-      });
+    $(document).ready(function () {
+        $('#confirmDeleteModal').on('show.bs.modal', function (event) {
+            const button = $(event.relatedTarget);
+            const usuarioId = parseInt(button.attr("data-usuario-id"));
+            const modal = $(this);
+            modal
+                .find('#confirmDeleteButton')
+                .attr("data-usuario-id", usuarioId);
+        });
 
-      $('#confirmDeleteButton').click(function(event) {
-        const usuarioId = $(this).attr("data-usuario-id");
-        window.location.href = "/usuarios/delete/" + usuarioId;
-      });
+        $('#confirmDeleteButton').click(function (event) {
+            const usuarioId = $(this).attr("data-usuario-id");
+            window.location.href = "/usuarios/delete/" + usuarioId;
+        });
     });
-  </script>
+</script>
 </body>
 
 </html>
