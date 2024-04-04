@@ -13,7 +13,6 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @NoArgsConstructor
-/*Preguntar que es facturasN o si lo necesito */
 public class Factura {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

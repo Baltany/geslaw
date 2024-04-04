@@ -23,8 +23,9 @@
             <td>Territorio</td>
             <td>Sede</td>
             <td>Usuario</td>
+            <td>Empresa</td>
             <td>Fichero</td>
-            <td>observaciones</td>
+            <td>Observaciones</td>
             <td>Aplica</td>
             <td>Favorable</td>
             <td>Borrar</td>
@@ -33,12 +34,22 @@
         </thead>
         <tbody>
           <tr th:each="obligadocumplimiento: ${obligadocumplimientos}">
-            <td th:text="${obligadocumplimiento.id}"></td>
+            <td th:text="${obligadocumplimiento.tipo}"></td>
+            <td th:text="${obligadocumplimiento.fechaValidez}"></td>
+            <td th:text="${obligadocumplimiento.territorio}"></td>
+            <td th:text="${obligadocumplimiento.sede}"></td>
+            <td th:text="${obligadocumplimiento.usuario}"></td>
+            <td th:text="${obligadocumplimiento.empresa}"></td>
+            <td th:text="${obligadocumplimiento.fichero}"></td>
+            <td th:text="${obligadocumplimiento.observaciones}"></td>
+            <td th:text="${obligadocumplimiento.aplica}"></td>
+            <td th:text="${obligadocumplimiento.favorable}"></td>
+            <td th:text="${obligadocumplimiento.borrar}"></td>
             
             
             <td>
               <a class="btn btn-success" th:href="|/obligadocumplimientos/edit/${obligadocumplimiento.id}|">Editar</a>
-              <!-- <button class="btn btn-danger" data-toggle="modal" data-target="#confirmDeleteModal" data-usuario-id="${usuario.id}" th:attr="data-usuario-id=${usuario.id}">Borrar</button> -->
+              <button class="btn btn-danger" data-toggle="modal" data-target="#confirmDeleteModal" data-usuario-id="${obligadocumplimiento.id}" th:attr="data-obligadocumplimiento-id=${obligadocumplimiento.id}">Borrar</button>
             </td>
           </tr>
         </tbody>

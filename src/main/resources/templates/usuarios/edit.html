@@ -25,6 +25,10 @@
                         <input type="text" th:field="*{username}" class="form-control" />
                     </div>
                     <div class="col-md-6">
+                        <label class="form-label">Contraseña: </label>
+                        <input type="password" th:field="*{password}" class="form-control" />
+                    </div>
+                    <div class="col-md-6">
                         <label class="form-label">Nombre: </label>
                         <input type="text" th:field="*{nombre}" class="form-control" />
                     </div>
@@ -41,24 +45,16 @@
                         <input type="text" th:field="*{email}" class="form-control" />
                     </div>
                     <div class="col-md-6">
-
                         <label class="form-label">Tipo Usuario:
-
-                            <!-- <select th:field="*{roles}" multiple="multiple" class="form-select">
-                                <option th:each="rol : ${roles}" th:value="${rol.id}"
-                                    th:selected="${#lists.contains(usuario.roles, rol)} ? 'selected' : 'false'"
-                                    th:text="${rol.nombre}">
+                            <select th:field="*{tipoUsuario}" multiple="multiple" class="form-select">
+                                <option th:each="tipo : ${tiposUsuario}" th:value="${tipo.id}" 
+                                        th:selected="${#lists.contains(usuario.tipoUsuario, tipo)} ? 'selected' : ''" 
+                                        th:text="${tipo.nombre}">
                                 </option>
                             </select>
-                        </label> -->
-                        <span th:each="tipo : ${usuario.tipoUsuario}" th:text="${tipo.nombre}"></span>
                         </label>
-                        
-                        
+                    </div>
                     
-
-
-                </div>
             </div>
             <div class="border">
                 <div class="row g-3 m-2">

@@ -17,20 +17,26 @@
         <h3>Añadir Factura:</h3>
 
         <form th:action="|/facturas/add|" th:object="${factura}" method="post">
-            <input hidden th:field="${factura.id}" />
+            <input type="hidden" th:field="*{id}" />
             <div class="border">
                 <div class="row g-3 m-2">
+                    <div class="col-md-6">
+                        <label class="form-label">Nombre: </label>
+                        <input type="text" th:field="*{nombre}" class="form-control" />
+                    </div>
                     <div class="col-md-6">
                         <label class="form-label">Nombre del proveedor: </label>
                         <input type="text" th:field="*{proveedor}" class="form-control" />
                     </div>
                     <div class="col-md-6">
                         <label class="form-label">Sede: </label>
-                        <input type="text" th:field="*{sede}" class="form-control" />
+                        <select th:field="*{sede}" class="form-control">
+                            <option th:each="sede : ${sedes}" th:value="${sede.id}" th:text="${sede.nombre}"></option>
+                        </select>
                     </div>
                     <div class="col-md-6">
                         <label class="form-label">Estado: </label>
-                        <input type="text" th:field="*{estado}" class="form-control" />
+                        <input type="checkbox" th:field="*{estado}" class="form-check-input" />
                     </div>
                     <div class="col-md-6">
                         <label class="form-label">Observaciones: </label>
@@ -38,7 +44,7 @@
                     </div>
                     <div class="col-md-6">
                         <label class="form-label">Visto: </label>
-                        <input type="text" th:field="*{visto}" class="form-control" />
+                        <input type="checkbox" th:field="*{visto}" class="form-check-input" />
                     </div>
                     <div class="col-md-6">
                         <label class="form-label">Fecha de validez: </label>
@@ -50,8 +56,11 @@
                     </div>
                     <div class="col-md-6">
                         <label class="form-label">Usuario: </label>
-                        <input type="text" th:field="*{usuario}" class="form-control" />
+                        <select th:field="*{usuario}" class="form-control">
+                            <option th:each="usuario : ${usuarios}" th:value="${usuario.id}" th:text="${usuario.nombre}"></option>
+                        </select>
                     </div>
+                </div>
             </div>
             <div class="border">
                 <div class="row g-3 m-2">
@@ -60,6 +69,7 @@
                         <a href="/facturas" class="btn btn-danger">Cancelar</a>
                     </div>
                 </div>
+            </div>
         </form>
 
         <div th:replace="~{fragmentos/general.html :: footer}"></div>
