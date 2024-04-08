@@ -44,15 +44,15 @@
                         <label class="form-label">Email: </label>
                         <input type="text" th:field="*{email}" class="form-control" />
                     </div>
-                    <div class="col-md-6">
-                        <label class="form-label">Tipo Usuario:
-                            <select th:field="*{tipoUsuario}" multiple="multiple" class="form-select">
-                                <option th:each="tipo : ${tiposUsuario}" th:value="${tipo.id}" 
-                                        th:selected="${#lists.contains(usuario.tipoUsuario, tipo)} ? 'selected' : ''" 
-                                        th:text="${tipo.nombre}">
-                                </option>
-                            </select>
-                        </label>
+                    <div class="border">
+                        <div class="row g-3 m-2">
+                            <div class="col-md-6">
+                                <label class="form-label">Tipo de Usuario:</label>
+                                <select th:field="*{tipoUsuario}" multiple="multiple" class="form-select">
+                                    <option th:each="tipo : ${tiposUsuario}" th:value="${tipo.id}" th:text="${tipo.nombre}"></option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                     
             </div>

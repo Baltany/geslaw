@@ -21,7 +21,7 @@
             <div class="border">
                 <div class="row g-3 m-2">
                     <div class="col-md-6">
-                        <label class="form-label">NickName: </label>
+                        <label class="form-label">Nombre de usuario: </label>
                         <input type="text" th:field="*{username}" class="form-control" />
                     </div>
                     <div class="col-md-6">
@@ -44,14 +44,14 @@
                         <label class="form-label">Email: </label>
                         <input type="text" th:field="*{email}" class="form-control" />
                     </div>
-                    <div class="col-md-6">
-                        <label class="form-label">Tipo Usuario:
+                    <div class="row g-3 m-2">
+                        <div class="col-md-6">
+                            <label class="form-label">Tipo de Usuario:</label>
                             <select th:field="*{tipoUsuario}" multiple="multiple" class="form-select">
                                 <option th:each="tipo : ${tiposUsuario}" th:value="${tipo.id}" th:text="${tipo.nombre}"></option>
                             </select>
-                        </label>
+                        </div>
                     </div>
-                    
 
             </div>
             <div class="border">

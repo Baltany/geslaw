@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>Ges-Law : Gestión Obligado Cumplimiento</title>
+    <th:block th:replace="~{fragmentos/general.html :: headerfiles}"></th:block>
+</head>
+
+<body>
+    <div th:replace="~{fragmentos/general.html :: navigation}"></div>
+
+    <div class="container">
+        <br>
+        <br>
+        <h3>Editar Obligado Cumplimiento:</h3>
+
+        <form th:action="@{/obligadocumplimientos/add}" th:object="${obligadoCumplimiento}" method="post">
+            <input type="hidden" th:field="*{id}" />
+
+            <div class="border">
+                <div class="row g-3 m-2">
+                    <div class="col-md-6">
+                        <label class="form-label">Tipo de Obligado Cumplimiento:</label>
+                        <input type="text" th:field="*{tipo}" class="form-control" />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Fecha de Validez:</label>
+                        <input type="text" th:field="*{fechaValidez}" class="form-control" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="border">
+                <div class="row g-3 m-2">
+                    <div class="col-md-12">
+                        <label class="form-label">Observaciones:</label>
+                        <textarea th:field="*{observaciones}" class="form-control"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border">
+                <div class="row g-3 m-2">
+                    <!-- Aquí puedes agregar más campos relacionados con ObligadoCumplimiento -->
+                </div>
+            </div>
+
+            <div class="border">
+                <div class="row g-3 m-2">
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-primary">Actualizar</button>
+                        <a href="/obligadocumplimientos" class="btn btn-danger">Cancelar</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <div th:replace="~{fragmentos/general.html :: footer}"></div>
+    </div>
+</body>
+
+</html>

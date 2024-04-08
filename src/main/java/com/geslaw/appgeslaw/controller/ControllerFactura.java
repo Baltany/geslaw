@@ -33,7 +33,7 @@ public class ControllerFactura {
 
     @GetMapping("/add")
     public String addForm(Model modelo) {
-        modelo.addAttribute("facturas", repoFactura.findAll());
+        modelo.addAttribute("factura", new Factura());
         return "facturas/add";
     }
 

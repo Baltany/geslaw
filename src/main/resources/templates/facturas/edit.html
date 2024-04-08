@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>Ges-Law : Gestión usuarios</title>
+    <th:block th:replace="~{fragmentos/general.html :: headerfiles}"></th:block>
+</head>
+
+<body>
+    <div th:replace="~{fragmentos/general.html :: navigation}"></div>
+
+    <div class="container">
+        <br>
+        <br>
+        <h3>Editar Factura:</h3>
+
+        <form th:action="@{/facturas/add}" th:object="${factura}" method="post">
+            <input type="hidden" th:field="*{id}" />
+
+            <div class="border">
+                <div class="row g-3 m-2">
+                    <div class="col-md-6">
+                        <label class="form-label">Nombre:</label>
+                        <input type="text" th:field="*{nombre}" class="form-control" />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Proveedor:</label>
+                        <input type="text" th:field="*{proveedor}" class="form-control" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="border">
+                <div class="row g-3 m-2">
+                    <div class="col-md-6">
+                        <label class="form-label">Estado:</label>
+                        <input type="text" th:field="*{estado}" class="form-control" />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Fecha de Validez:</label>
+                        <input type="text" th:field="*{fechaVa}" class="form-control" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="border">
+                <div class="row g-3 m-2">
+                    <div class="col-md-12">
+                        <label class="form-label">Observaciones:</label>
+                        <textarea th:field="*{observaciones}" class="form-control"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border">
+                <div class="row g-3 m-2">
+                    <!-- Aquí puedes agregar más campos relacionados con Factura -->
+                </div>
+            </div>
+
+            <div class="border">
+                <div class="row g-3 m-2">
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-primary">Actualizar</button>
+                        <a href="/facturas" class="btn btn-danger">Cancelar</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <div th:replace="~{fragmentos/general.html :: footer}"></div>
+    </div>
+</body>
+
+</html>

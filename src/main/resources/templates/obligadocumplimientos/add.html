@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geslaw : Gestión de Obligados Cumplimientos</title>
+    <th:block th:replace="~{fragmentos/general.html :: headerfiles}"></th:block>
+</head>
+<body>
+
+<div th:replace="~{fragmentos/general.html :: navigation}"></div>
+
+<div class="container">
+    <br>
+    <br>
+    <h3>Añadir Obligado Cumplimiento:</h3>
+
+    <form th:action="|/obligadocumplimientos/add|" th:object="${obligadoCumplimiento}" method="post">
+        <input hidden th:field="${obligadoCumplimiento.id}" />
+        <div class="border">
+            <div class="row g-3 m-2">
+                <div class="col-md-6">
+                    <label class="form-label">Tipo de Obligado Cumplimiento:</label>
+                    <input type="text" th:field="*{tipo}" class="form-control" />
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Fecha de Validez:</label>
+                    <input type="text" th:field="*{fechaValidez}" class="form-control" />
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Territorio:</label>
+                    <input type="text" th:field="*{territorio}" class="form-control" />
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Sede:</label>
+                    <input type="text" th:field="*{sede}" class="form-control" />
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Usuario:</label>
+                    <input type="text" th:field="*{usuario}" class="form-control" />
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Empresa:</label>
+                    <input type="text" th:field="*{empresa}" class="form-control" />
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Fichero:</label>
+                    <input type="text" th:field="*{fichero}" class="form-control" />
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Observaciones:</label>
+                    <input type="text" th:field="*{observaciones}" class="form-control" />
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Aplica:</label>
+                    <input type="checkbox" th:field="*{aplica}" class="form-check-input" />
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Favorable:</label>
+                    <input type="checkbox" th:field="*{favorable}" class="form-check-input" />
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Borrar:</label>
+                    <input type="checkbox" th:field="*{borrar}" class="form-check-input" />
+                </div>
+            </div>
+        </div>
+        <div class="border">
+            <div class="row g-3 m-2">
+                <div class="col-md-6">
+                    <button type="submit" class="btn btn-primary">Añadir</button>
+                    <a href="/obligadoscumplimiento" class="btn btn-danger">Cancelar</a>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div th:replace="~{fragmentos/general.html :: footer}"></div>
+</div>
+
+</body>
+</html>

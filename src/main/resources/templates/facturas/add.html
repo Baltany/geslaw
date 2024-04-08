@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ges-Law : Gestión Facturas</title>
+    <title>Ges-Law : Gestión de Facturas</title>
     <th:block th:replace="~{fragmentos/general.html :: headerfiles}"></th:block>
 </head>
 
@@ -16,7 +16,8 @@
         <br>
         <h3>Añadir Factura:</h3>
 
-        <!-- <form th:action="|/facturas/add|" th:object="${factura}" method="post">
+        <!-- Añadir archivo y que solo acepte pdfs -->
+        <form th:action="|/facturas/add|" th:object="${factura}" method="post">
             <input hidden th:field="${factura.id}" />
             <div class="border">
                 <div class="row g-3 m-2">
@@ -25,13 +26,14 @@
                         <input type="text" th:field="*{nombre}" class="form-control" />
                     </div>
                     <div class="col-md-6">
-                        <label class="form-label">Nombre del proveedor: </label>
+                        <label class="form-label">Proveedor: </label>
                         <input type="text" th:field="*{proveedor}" class="form-control" />
                     </div>
                     <div class="col-md-6">
                         <label class="form-label">Sede: </label>
-                        <select th:field="*{sede}" class="form-control">
-                            <option th:each="sede : ${sedes}" th:value="${sede.id}" th:text="${sede.nombre}"></option>
+                        <!-- Aquí puedes mostrar un select con las opciones de sede -->
+                        <select th:field="*{sede.id}" class="form-select">
+                            <option th:each="s : ${sedes}" th:value="${s.id}" th:text="${s.nombre}"></option>
                         </select>
                     </div>
                     <div class="col-md-6">
@@ -47,7 +49,7 @@
                         <input type="checkbox" th:field="*{visto}" class="form-check-input" />
                     </div>
                     <div class="col-md-6">
-                        <label class="form-label">Fecha de validez: </label>
+                        <label class="form-label">Fecha de Validez: </label>
                         <input type="text" th:field="*{fechaVa}" class="form-control" />
                     </div>
                     <div class="col-md-6">
@@ -56,8 +58,9 @@
                     </div>
                     <div class="col-md-6">
                         <label class="form-label">Usuario: </label>
-                        <select th:field="*{usuario}" class="form-control">
-                            <option th:each="usuario : ${usuarios}" th:value="${usuario.id}" th:text="${usuario.nombre}"></option>
+                        <!-- Aquí puedes mostrar un select con las opciones de usuario -->
+                        <select th:field="*{usuario.id}" class="form-select">
+                            <option th:each="u : ${usuarios}" th:value="${u.id}" th:text="${u.nombreCompleto}"></option>
                         </select>
                     </div>
                 </div>
@@ -70,11 +73,10 @@
                     </div>
                 </div>
             </div>
-        </form> -->
+        </form>
 
         <div th:replace="~{fragmentos/general.html :: footer}"></div>
 
     </div>
 </body>
-
 </html>

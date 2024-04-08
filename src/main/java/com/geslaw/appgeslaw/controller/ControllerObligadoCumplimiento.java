@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -32,21 +33,34 @@ public class ControllerObligadoCumplimiento {
         modelo.addAttribute("obligadocumplimientos", repoObligadoCumplimiento.findAll());
         return "obligadocumplimientos/obligadocumplimientos";
     }
-    
+
+    //con obligadoCumplimiento si muestra el add y new ObligadCumplimiento con el findAll() falla
     @GetMapping("/add")
     public String addForm(Model modelo){
-        modelo.addAttribute("obligadocumplimientos", repoObligadoCumplimiento.findAll());
+        modelo.addAttribute("obligadoCumplimiento", new ObligadoCumplimiento());
         return "obligadocumplimientos/add";
     }
 
 
     @PostMapping("/add")
-    public String addFactura(@ModelAttribute("obligadocumplimientos") 
+    public String addObligadoCumplimiento(@ModelAttribute("obligadocumplimientos") 
     @NonNull ObligadoCumplimiento obligadoCumplimiento)
     {
         repoObligadoCumplimiento.save(obligadoCumplimiento);
         return "redirect:/obligadocumplimientos";
     }
+
+    //Lógica para poder recoger un archivo
+    // @PostMapping("/obligadocumplimientos/add")
+    // public String addObligadoCumplimiento(@ModelAttribute("obligadoCumplimiento") ObligadoCumplimiento obligadoCumplimiento) {
+    //     // Aquí puedes procesar y guardar el objeto `obligadoCumplimiento` en la base de datos
+    //     MultipartFile file = obligadoCumplimiento.getFile();
+    //     // Procesar el archivo según sea necesario
+
+    //     // Guardar el objeto en la base de datos o realizar otras operaciones
+
+    //     return "redirect:/obligadoCumplimientos"; // Redirigir a la lista de obligados cumplimiento
+    // }
 
 
     @GetMapping("/delete/{id}")
@@ -82,7 +96,8 @@ public class ControllerObligadoCumplimiento {
             repoObligadoCumplimiento.findAll();
 
         if(obligadoCumplimiento.isPresent()){
-            modelo.addAttribute("obligadocumplimiento", obligadoCumplimiento.get());
+            //Si ponemos obligadocumpliemiento da error solo funciona con obligadoCumpliento
+            modelo.addAttribute("obligadoCumplimiento", obligadoCumplimiento.get());
             modelo.addAttribute("obligadocumplimientos", obligadoCumplimientos);
             return "obligadocumplimientos/edit";
         }else{
