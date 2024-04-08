@@ -33,10 +33,10 @@ public class ControllerPrincipal {
     //     return "login";
     // }
     
-    @GetMapping("/register")
-    public String showRegister() {
-        return "register";
-    }
+    // @GetMapping("/register")
+    // public String showRegister() {
+    //     return "register";
+    // }
 
     /*Si el usuario no tiene los permisos necesarios,lo redirigimos aquí */
     @GetMapping("/denegado")

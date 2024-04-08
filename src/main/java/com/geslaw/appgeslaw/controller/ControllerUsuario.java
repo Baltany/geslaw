@@ -63,26 +63,30 @@ public class ControllerUsuario {
         return "redirect:/usuarios";
     }
 
-    @GetMapping("/delete/{id}")
-    public String deleteUsuarioForm(
-        Model modelo,
-        @PathVariable("id") @NonNull Long id
-    ) {
-        Optional<Usuario> oUsuario = repoUsuario.findById(id);
-        if (oUsuario.isPresent()) 
-            modelo.addAttribute("usuario", oUsuario.get());
-        else {
-            modelo.addAttribute("mensaje", "El usuario consultado no existe.");
-            return "error";
-        }
-        return "usuarios/delete";
-    }
+    
+
+    //quiero que haga el post
+    // @GetMapping("/delete/{id}")
+    // public String deleteUsuarioForm(
+    //     Model modelo,
+    //     @PathVariable("id") @NonNull Long id
+    // ) {
+    //     Optional<Usuario> oUsuario = repoUsuario.findById(id);
+    //     if (oUsuario.isPresent()) 
+    //         modelo.addAttribute("usuario", oUsuario.get());
+    //     else {
+    //         modelo.addAttribute("mensaje", "El usuario consultado no existe.");
+    //         return "error";
+    //     }
+    //     return "usuarios/delete";
+    // }
 
     @PostMapping("/delete/{id}")
-    public String deleteUsuario(@PathVariable("id")@NonNull Long id) {
+    public String deleteUsuario(@PathVariable("id") @NonNull Long id) {
         repoUsuario.deleteById(id);
         return "redirect:/usuarios";
     }
+    
 
     @GetMapping("/edit/{id}")
     public String editUsuarioForm(

@@ -3,13 +3,11 @@ Este proyecto está creado en spring,y como podemos observar uso un contenedor p
 ![Esquema de la base de datos](docs\image.png)
 
 ## Usuarios
-Se encuentra en la carpeta templates/usuarios y podemos encontrar el archivo add y edit,el delete no está ya que lo hago dentro del archivo usuarios.html
-Muestra,edita,añade pero no borra.
+Se encuentra en la carpeta templates/usuarios y podemos encontrar el archivo add y edit,no hace el borrado
 
 ## Facturas
-Se encuentra en la carpeta templates/facturas seguramente haya un fallo en el controller
+No hace el borrado y hay que implementarle la lógica de poder añadir un fichero y únicamente sea pdf
 
 ## Obligado Cumplimiento
-Se encuentra en la carpeta templates/obligadocumplimientos seguramente haya un fallo en el controller
-
+No hace el borrado y hay que implementarle la lógica de poder añadir un fichero y únicamente sea pdf
 

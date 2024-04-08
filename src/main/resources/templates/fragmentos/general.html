@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="img/faviconRosa.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="img/faviconRosa.ico" type="image/x-icon">
     <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
@@ -17,9 +17,15 @@
 <body>
     <div class="container-fluid">
         <div th:fragment="navigation">
+            <!--
+                sec:authorize="hasAuthority('director')"
+                para que solo lo pueda ver el director
+            -->
             <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="#">Ges-Law</a>
+                    <!--Por si queremos añadir algún tipo de logo-->
+                    <!-- <img src="src/main/resources/static/img/faviconRosa.ico" alt="Imagen"> -->
+                    <a class="navbar-brand" href="/">Ges-Law</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -82,7 +88,7 @@
 
             <div class="d-flex justify-content-center">
                 <div class="card bg-light text-center" style="width: 18rem;">
-                    <img class="card-img-top" src="/img/ESCUDO_CHICO.png" alt="Escudo Informática">
+                    <img class="card-img-top" src="/img/imagen.png" alt="Escudo Informática">
                     <div class="card-body">
                         <h5 class="card-title">Ges-Law</h5>
                         <a href="#" id="menu_informe" class="btn btn-primary">Generar informe</a>

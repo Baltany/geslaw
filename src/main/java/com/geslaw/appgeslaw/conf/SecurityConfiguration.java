@@ -40,11 +40,7 @@ public class SecurityConfiguration {
 
     // }
 
-    // /*
-    //      * @Bean UserDetailsService userDetailsService(){
-    //      * return new MyCustomUserDetailsService();
-    //      * }
-    //      */
+
     // @Bean public PasswordEncoder encoder() {
     //     return new BCryptPasswordEncoder();
     // }
@@ -56,7 +52,7 @@ public class SecurityConfiguration {
     //             "/webjars/**",
     //             "/img/**",
     //             "/js/**",
-    //             // "/register/**",
+    //             "/register/**",
     //             "/ayuda/**",
     //             "/acerca/**",
     //             "/login",
@@ -85,6 +81,6 @@ public class SecurityConfiguration {
     //         .build();
 
 
-    //}
+    // }
 
 }

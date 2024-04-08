@@ -28,6 +28,7 @@
         </tr>
       </thead>
       <tbody>
+        <!-- Iterar sobre la lista de usuarios -->
         <tr th:each="usuario: ${usuarios}">
           <td th:text="${usuario.username}"></td>
           <td th:text="${usuario.nombre}"></td>
@@ -36,20 +37,18 @@
           <td th:text="${usuario.email}"></td>
           <td>
             <p>
-                <!-- Recuerda usar:  + ', ' 
-                    si tiene mas de un rol
-                -->
-                <span th:each="tipo : ${usuario.tipoUsuario}" th:text="${tipo.nombre} 
-                "></span>
-
-
+              <!-- Iterar sobre los tipos de usuario -->
+              <span th:each="tipo : ${usuario.tipoUsuario}" th:text="${tipo.nombre}"></span>
             </p>
-
-            </label>
           </td>
           <td>
-            <a class="btn btn-success" th:href="|/usuarios/edit/${usuario.id}|">Editar</a>
-            <button class="btn btn-danger" data-toggle="modal" data-target="#confirmDeleteModal" data-usuario-id="${usuario.id}" th:attr="data-usuario-id=${usuario.id}">Borrar</button>
+            <!-- Botón de Editar -->
+            <a class="btn btn-success" th:href="@{/usuarios/edit/{id}(id=${usuario.id})}">Editar</a>
+            <!-- Botón de Borrar con el ID dinámico del usuario -->
+            <button class="btn btn-danger"
+                    data-toggle="modal"
+                    data-target="#confirmDeleteModal"
+                    data-usuario-id="${usuario.id}">Borrar</button>
           </td>
         </tr>
       </tbody>
@@ -86,21 +85,39 @@
 
   <script>
     $(document).ready(function () {
-        $('#confirmDeleteModal').on('show.bs.modal', function (event) {
-            const button = $(event.relatedTarget);
-            const usuarioId = parseInt(button.attr("data-usuario-id"));
-            const modal = $(this);
-            modal
-                .find('#confirmDeleteButton')
-                .attr("data-usuario-id", usuarioId);
-        });
+      // Manejar clic en el botón de eliminar
+      $('#confirmDeleteButton').click(function (event) {
+        const button = $(this);
+        const usuarioId = parseInt(button.attr("data-usuario-id")); // Convertir a número entero
 
-        $('#confirmDeleteButton').click(function (event) {
-            const usuarioId = $(this).attr("data-usuario-id");
-            window.location.href = "/usuarios/delete/" + usuarioId;
-        });
+        console.log("Usuario ID:", usuarioId); // Depurar el valor de usuarioId
+
+        if (!isNaN(usuarioId)) {
+          // Función para eliminar el usuario
+          eliminarUsuario(usuarioId);
+        } else {
+          alert("ID de usuario no válido.");
+        }
+      });
     });
-</script>
+
+    // Función para eliminar un usuario mediante una solicitud POST
+    function eliminarUsuario(id) {
+      $.ajax({
+        type: "POST",
+        url: "/usuarios/delete/" + id,
+        success: function () {
+          // Redirigir a la página de usuarios después de eliminar
+          window.location.href = "/usuarios";
+        },
+        error: function () {
+          // Manejar el error en caso de fallo en la eliminación
+          alert("Error al eliminar el usuario.");
+        }
+      });
+    }
+  </script>
+
 </body>
 
 </html>

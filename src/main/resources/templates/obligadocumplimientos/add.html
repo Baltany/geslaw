@@ -44,8 +44,9 @@
                     <input type="text" th:field="*{empresa}" class="form-control" />
                 </div>
                 <div class="col-md-6">
-                    <label class="form-label">Fichero:</label>
-                    <input type="text" th:field="*{fichero}" class="form-control" />
+                    <label class="file">Fichero:</label>
+                    <input type="file" class="form-control-file" id="file" th:field="*{fichero}" />
+
                 </div>
                 <div class="col-md-6">
                     <label class="form-label">Observaciones:</label>

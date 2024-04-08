@@ -27,7 +27,27 @@
                         <label class="form-label">Fecha de Validez:</label>
                         <input type="text" th:field="*{fechaValidez}" class="form-control" />
                     </div>
-                </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Territorio:</label>
+                        <input type="text" th:field="*{territorio}" class="form-control" />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Sede:</label>
+                        <input type="text" th:field="*{sede}" class="form-control" />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Usuario:</label>
+                        <input type="text" th:field="*{usuario}" class="form-control" />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Empresa:</label>
+                        <input type="text" th:field="*{empresa}" class="form-control" />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Fichero:</label>
+                        <input type="file" th:field="*{fichero}" class="form-control" />
+                        <small th:if="${obligadoCumplimiento.fichero}" class="form-text text-muted" th:text="|Archivo actual: ${obligadoCumplimiento.fichero}|"></small>
+                    </div>
             </div>
 
             <div class="border">
