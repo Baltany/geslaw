@@ -1,5 +1,6 @@
 -- Insertar tipo de usuario
 INSERT INTO tipo_usuario (nombre) VALUES ('director');
+INSERT INTO tipo_usuario (nombre) VALUES ('cliente');
 
 -- Insertar tipo de sede
 INSERT INTO tipo_sede (nombre) VALUES ('Nombre del tipo de sede');

@@ -46,10 +46,18 @@
                     </div>
                     <div class="row g-3 m-2">
                         <div class="col-md-6">
-                            <label class="form-label">Tipo de Usuario:</label>
-                            <select th:field="*{tipoUsuario}" multiple="multiple" class="form-select">
-                                <option th:each="tipo : ${tiposUsuario}" th:value="${tipo.id}" th:text="${tipo.nombre}"></option>
-                            </select>
+                                <div class="col-md-6">
+                                    <label class="form-label">Tipo de Usuario:</label>
+                                    <select th:field="*{tipoUsuario}" multiple="multiple" class="form-select">
+                                        <option th:each="tipo : ${tiposUsuarios}" th:value="${tipo.id}" th:text="${tipo.nombre}"></option>
+                                    </select>
+                                </div>
+                            
+                                <!-- Otros campos y botones del formulario -->
+                            </form>
+                            
+
+                            
                         </div>
                     </div>
 

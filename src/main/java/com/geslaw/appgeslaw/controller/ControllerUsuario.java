@@ -7,18 +7,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.geslaw.appgeslaw.model.TipoUsuario;
 import com.geslaw.appgeslaw.model.Usuario;
 import com.geslaw.appgeslaw.repo.RepoFactura;
 import com.geslaw.appgeslaw.repo.RepoObligadoCumplimiento;
 import com.geslaw.appgeslaw.repo.RepoSede;
 import com.geslaw.appgeslaw.repo.RepoTipoUsuario;
 import com.geslaw.appgeslaw.repo.RepoUsuario;
+
+import jakarta.persistence.ManyToMany;
 
 @Controller
 @RequestMapping("/usuarios")
@@ -35,6 +41,10 @@ public class ControllerUsuario {
 
     @Autowired private RepoFactura repoFactura;
 
+    @ManyToMany
+    private List<TipoUsuario> tipoUsuario;
+
+
     @GetMapping(path = "/")
     public String findAll(Model model) {
         List<Usuario> listaUsuarios = repoUsuario.findAll();
@@ -50,18 +60,27 @@ public class ControllerUsuario {
     @GetMapping("/add")
     public String addUser(Model model) {
         model.addAttribute("usuario", new Usuario());
-        model.addAttribute("tipoUsuario", repoTipoUsuario.findAll());
-        model.addAttribute("sede", repoSede.findAll());
-        model.addAttribute("obligadocumplimiento", repoObligadoCumplimiento.findAll());
-        model.addAttribute("factura", repoFactura.findAll());
+        model.addAttribute("tiposUsuarios", repoTipoUsuario.findAll());
+        // model.addAttribute("sede", repoSede.findAll());
+        // model.addAttribute("obligadocumplimiento", repoObligadoCumplimiento.findAll());
+        // model.addAttribute("factura", repoFactura.findAll());
         return "usuarios/add";
     }
 
     @PostMapping("/add")
-    public String addUsuario(@ModelAttribute("usuario")@NonNull Usuario usuario) {
+    public String addUsuario(@ModelAttribute("usuario") @Validated Usuario usuario, BindingResult result) {
+        if (result.hasErrors()) {
+            // Si hay errores de validación, volver a mostrar el formulario con los mensajes de error
+            return "usuarios/add";
+        }
+
+        // Guardar el usuario en la base de datos
         repoUsuario.save(usuario);
-        return "redirect:/usuarios";
+
+        return "redirect:/usuarios/";
     }
+
+
 
     
 
@@ -81,11 +100,11 @@ public class ControllerUsuario {
     //     return "usuarios/delete";
     // }
 
-    @PostMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public String deleteUsuario(@PathVariable("id") @NonNull Long id) {
-        repoUsuario.deleteById(id);
-        return "redirect:/usuarios";
-    }
+    repoUsuario.deleteById(id);
+    return "redirect:/usuarios";
+}
     
 
     @GetMapping("/edit/{id}")
