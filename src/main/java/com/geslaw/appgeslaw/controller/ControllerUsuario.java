@@ -61,20 +61,19 @@ public class ControllerUsuario {
     public String addUser(Model model) {
         model.addAttribute("usuario", new Usuario());
         model.addAttribute("tiposUsuarios", repoTipoUsuario.findAll());
-        // model.addAttribute("sede", repoSede.findAll());
-        // model.addAttribute("obligadocumplimiento", repoObligadoCumplimiento.findAll());
-        // model.addAttribute("factura", repoFactura.findAll());
+        model.addAttribute("sede", repoSede.findAll());
+        model.addAttribute("obligadocumplimiento", repoObligadoCumplimiento.findAll());
+        model.addAttribute("factura", repoFactura.findAll());
         return "usuarios/add";
     }
 
+    //Falta validar que si el usuario que se va a añadir ya existe
     @PostMapping("/add")
     public String addUsuario(@ModelAttribute("usuario") @Validated Usuario usuario, BindingResult result) {
         if (result.hasErrors()) {
             // Si hay errores de validación, volver a mostrar el formulario con los mensajes de error
             return "usuarios/add";
         }
-
-        // Guardar el usuario en la base de datos
         repoUsuario.save(usuario);
 
         return "redirect:/usuarios/";
@@ -105,25 +104,74 @@ public class ControllerUsuario {
     repoUsuario.deleteById(id);
     return "redirect:/usuarios";
 }
+
+
+
+
+
+@GetMapping("/edit/{id}")
+public String editUsuarioForm(Model model, @PathVariable("id") @NonNull Long id) {
+    Optional<Usuario> oUsuario = repoUsuario.findById(id);
+    if (oUsuario.isPresent()) {
+        Usuario usuario = oUsuario.get();
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("tiposUsuarios", repoTipoUsuario.findAll());
+        model.addAttribute("sede", repoSede.findAll());
+        model.addAttribute("obligadocumplimiento", repoObligadoCumplimiento.findAll());
+        model.addAttribute("factura", repoFactura.findAll());
+        return "usuarios/edit";
+    } else {
+        model.addAttribute("mensaje", "El usuario consultado no existe.");
+        return "error";
+    }
+}
+
+@PostMapping("/update/{id}")
+public String updateUsuario(@ModelAttribute("usuario") @Validated Usuario usuario, BindingResult result, @PathVariable("id") Long id, Model model) {
+    if (result.hasErrors()) {
+        return "usuarios/edit"; // Volver a mostrar el formulario de edición con errores
+    }
+
+    // Actualizar el usuario en la base de datos
+    Optional<Usuario> oUsuario = repoUsuario.findById(id);
+    if (oUsuario.isPresent()) {
+        Usuario existingUsuario = oUsuario.get();
+        existingUsuario.setUsername(usuario.getUsername());
+        existingUsuario.setNombre(usuario.getNombre());
+        existingUsuario.setApellidos(usuario.getApellidos());
+        existingUsuario.setDni(usuario.getDni());
+        existingUsuario.setEmail(usuario.getEmail());
+        // Actualizar otros campos según sea necesario
+
+        repoUsuario.save(existingUsuario);
+        return "redirect:/usuarios/";
+    } else {
+        model.addAttribute("mensaje", "El usuario a actualizar no existe.");
+        return "error";
+    }
+}
+
+
+
     
 
-    @GetMapping("/edit/{id}")
-    public String editUsuarioForm(
-        Model modelo,
-        @PathVariable("id")@NonNull Long id
-    ) {
-        Optional<Usuario> oUsuario = repoUsuario.findById(id);
-        if (oUsuario.isPresent()) {
-            modelo.addAttribute("usuario", oUsuario.get());
-            modelo.addAttribute("tipoUsuario", repoTipoUsuario.findAll());
-            modelo.addAttribute("sede", repoSede.findAll());
-            modelo.addAttribute("obligadocumplimiento", repoObligadoCumplimiento.findAll());
-            modelo.addAttribute("factura", repoFactura.findAll());
-            return "usuarios/edit";
-        } else {
-            modelo.addAttribute("mensaje", "El usuario consultado no existe.");
-            return "error";
-        }
-    }
+    // @GetMapping("/edit/{id}")
+    // public String editUsuarioForm(
+    //     Model modelo,
+    //     @PathVariable("id")@NonNull Long id
+    // ) {
+    //     Optional<Usuario> oUsuario = repoUsuario.findById(id);
+    //     if (oUsuario.isPresent()) {
+    //         modelo.addAttribute("usuario", oUsuario.get());
+    //         modelo.addAttribute("tipoUsuario", repoTipoUsuario.findAll());
+    //         modelo.addAttribute("sede", repoSede.findAll());
+    //         modelo.addAttribute("obligadocumplimiento", repoObligadoCumplimiento.findAll());
+    //         modelo.addAttribute("factura", repoFactura.findAll());
+    //         return "usuarios/edit";
+    //     } else {
+    //         modelo.addAttribute("mensaje", "El usuario consultado no existe.");
+    //         return "error";
+    //     }
+    // }
 
 }
