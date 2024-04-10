@@ -13,6 +13,7 @@
         <br>
         <br>
         <h3>Editar Obligado Cumplimiento:</h3>
+        <br>
 
         <form th:action="@{/obligadocumplimientos/add}" th:object="${obligadoCumplimiento}" method="post">
             <input type="hidden" th:field="*{id}" />
@@ -49,29 +50,17 @@
                         <small th:if="${obligadoCumplimiento.fichero}" class="form-text text-muted" th:text="|Archivo actual: ${obligadoCumplimiento.fichero}|" ></small>
                     </div>
             </div>
-
-            <div class="border">
                 <div class="row g-3 m-2">
                     <div class="col-md-12">
                         <label class="form-label">Observaciones:</label>
                         <textarea th:field="*{observaciones}" class="form-control"></textarea>
                     </div>
                 </div>
-            </div>
-
-            <div class="border">
-                <div class="row g-3 m-2">
-                    <!-- Aquí puedes agregar más campos relacionados con ObligadoCumplimiento -->
-                </div>
-            </div>
-
-            <div class="border">
                 <div class="row g-3 m-2">
                     <div class="col-md-6">
                         <button type="submit" class="btn btn-primary">Actualizar</button>
                         <a href="/obligadocumplimientos" class="btn btn-danger">Cancelar</a>
                     </div>
-                </div>
             </div>
         </form>
 

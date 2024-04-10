@@ -52,7 +52,7 @@ public class ObligadoCumplimiento {
 
     private Boolean favorable;
 
-    private Boolean borrar;
+    // private Boolean borrar;
     
 
 }

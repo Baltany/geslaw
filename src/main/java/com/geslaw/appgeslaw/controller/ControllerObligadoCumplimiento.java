@@ -64,26 +64,27 @@ public class ControllerObligadoCumplimiento {
 
 
     @PostMapping("/add")
-    public String addObligadoCumplimiento(@ModelAttribute("obligadoCumplimiento") ObligadoCumplimiento obligadoCumplimiento,
-                                           @RequestParam("empresa") Long empresaId,
-                                           @RequestParam("sede") Long sedeId,
-                                           @RequestParam("territorio") Long territorioId,
-                                           @RequestParam("usuario") Long usuarioId) {
-        Empresa empresa = repoEmpresa.findById(empresaId).orElse(null);
-        Sede sede = repoSede.findById(sedeId).orElse(null);
-        Territorio territorio = repoTerritorio.findById(territorioId).orElse(null);
-        Usuario usuario = repoUsuario.findById(usuarioId).orElse(null);
-    
-        obligadoCumplimiento.setEmpresa(empresa);
-        obligadoCumplimiento.setSede(sede);
-        obligadoCumplimiento.setTerritorio(territorio);
-        obligadoCumplimiento.setUsuario(usuario);
-    
-        repoObligadoCumplimiento.save(obligadoCumplimiento);
-    
-        return "redirect:/obligadocumplimientos";
-    }
-    
+public String addObligadoCumplimiento(@ModelAttribute("obligadoCumplimiento") ObligadoCumplimiento obligadoCumplimiento,
+                                       @RequestParam("empresa") Long empresaId,
+                                       @RequestParam("sede") Long sedeId,
+                                       @RequestParam("territorio") Long territorioId,
+                                       @RequestParam("usuario") Long usuarioId) {
+
+    Empresa empresa = repoEmpresa.findById(empresaId).orElse(null);
+    Sede sede = repoSede.findById(sedeId).orElse(null);
+    Territorio territorio = repoTerritorio.findById(territorioId).orElse(null);
+    Usuario usuario = repoUsuario.findById(usuarioId).orElse(null);
+
+    obligadoCumplimiento.setEmpresa(empresa);
+    obligadoCumplimiento.setSede(sede);
+    obligadoCumplimiento.setTerritorio(territorio);
+    obligadoCumplimiento.setUsuario(usuario);
+
+    repoObligadoCumplimiento.save(obligadoCumplimiento);
+
+    return "redirect:/obligadocumplimientos";
+}
+
 
 
     // @PostMapping("/add")

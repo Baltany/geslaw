@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es">
 
 <head>
     <title>Agregar Factura</title>
@@ -12,28 +12,26 @@
 
     <div th:replace="~{fragmentos/general.html :: navigation}"></div>
     <div class="container">
+        <br>
         <h3>Agregar Nueva Factura</h3>
+        <br>
         <form th:action="@{/facturas/add}" method="post" enctype="multipart/form-data">
 
-            <!-- Campo de nombre -->
             <div class="form-group">
                 <label for="nombre">Nombre:</label>
                 <input type="text" class="form-control" id="nombre" name="nombre" required>
             </div>
 
-            <!-- Campo de proveedor -->
             <div class="form-group">
                 <label for="proveedor">Proveedor:</label>
                 <input type="text" class="form-control" id="proveedor" name="proveedor" required>
             </div>
 
-            <!-- Campo de fichero -->
             <div class="form-group">
                 <label for="fichero">Fichero (solo PDF):</label>
                 <input type="file" class="form-control-file" id="fichero" name="fichero" accept=".pdf">
             </div>
-            
-            <!-- Campo de sede -->
+
             <div class="form-group">
                 <label for="sede">Sede:</label>
                 <select class="form-control" id="sede" name="sede" required>
@@ -46,37 +44,31 @@
                 </select>
             </div>
 
-            <!-- Checkbox para estado -->
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="estado" name="estado">
                 <label class="form-check-label" for="estado">Estado</label>
             </div>
 
-            <!-- Campo de observaciones -->
             <div class="form-group">
                 <label for="observaciones">Observaciones:</label>
                 <textarea class="form-control" id="observaciones" name="observaciones" rows="3"></textarea>
             </div>
 
-            <!-- Checkbox para visto -->
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="visto" name="visto">
                 <label class="form-check-label" for="visto">Visto</label>
             </div>
 
-            <!-- Campo de fecha de validez -->
             <div class="form-group">
                 <label for="fechaVa">Fecha de Validez:</label>
                 <input type="date" class="form-control" id="fechaVa" name="fechaVa">
             </div>
 
-            <!-- Campo de concepto -->
             <div class="form-group">
                 <label for="concepto">Concepto:</label>
                 <input type="text" class="form-control" id="concepto" name="concepto">
             </div>
 
-            <!-- Campo de usuario -->
             <div class="form-group">
                 <label for="usuario">Usuario:</label>
                 <select class="form-control" id="usuario" name="usuario" required>
@@ -88,10 +80,18 @@
                     <option value="3">Usuario C</option>
                 </select>
             </div>
-
+            <br>
             <button type="submit" class="btn btn-primary">Guardar</button>
+            <a href="/facturas" class="btn btn-danger">Cancelar</a>
+
         </form>
     </div>
+
+    <!-- Bootstrap JS y jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </body>
 
 </html>

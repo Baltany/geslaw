@@ -2,57 +2,61 @@
 <html lang="es">
 
 <head>
-  <title>Ges-Law : Gestión facturas</title>
-  <th:block th:replace="~{fragmentos/general.html :: headerfiles}"></th:block>
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Ges-Law : Gestión facturas</title>
+    <th:block th:replace="~{fragmentos/general.html :: headerfiles}"></th:block>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 
 <body>
-    
-  <div th:replace="~{fragmentos/general.html :: navigation}"></div>
-  <div class="container">
-    <br>
-    <h3>Lista de facturas</h3>
-    <br>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-            <td>Nombre</td>
-            <td>Proveedor</td>
-            <td>Sede</td>
-            <td>Estado</td>
-            <td>Observaciones</td>
-            <td>Visto</td>
-            <td>Fecha Validez</td>
-            <td>Concepto</td>
-            <td>Usuario</td>
-            <td>Acciones</td>
-        </tr>
-      </thead>
-      <tbody>
-        <tr th:each="factura: ${facturas}">
-          <td th:text="${factura.nombre}"></td>
-          <td th:text="${factura.proveedor}"></td>
-          <td th:text="${factura.sede}"></td>
-          <td th:text="${factura.estado}"></td>
-          <td th:text="${factura.observaciones}"></td>
-          <td th:text="${factura.visto}"></td>
-          <td th:text="${factura.fechaVa}"></td>
-          <td th:text="${factura.concepto}"></td>
-          <td th:text="${factura.usuario}"></td>
 
-          <td>
-            <a class="btn btn-success" th:href="|/facturas/edit/${factura.id}|">Editar</a>
-            <button class="btn btn-danger" data-toggle="modal" data-target="#confirmDeleteModal"
-            data-factura-id="${factura.id}">Borrar</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div th:replace="~{fragmentos/general.html :: navigation}"></div>
+    <div class="container">
+        <br>
+        <h3>Lista de facturas</h3>
+        <br>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <td>Nombre</td>
+                    <td>Proveedor</td>
+                    <td>Sede</td>
+                    <td>Estado</td>
+                    <td>Observaciones</td>
+                    <td>Visto</td>
+                    <td>Fecha Validez</td>
+                    <td>Concepto</td>
+                    <td>Usuario</td>
+                    <td>Acciones</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="factura: ${facturas}">
+                    <td th:text="${factura.nombre}"></td>
+                    <td th:text="${factura.proveedor}"></td>
+                    <td th:text="${factura.sede}"></td>
+                    <td>
+                      <input type="checkbox" th:checked="${factura.estado}" disabled>
+                  </td>
+                    <td th:text="${factura.observaciones}"></td>
+                    <td>
+                        <input type="checkbox" th:checked="${factura.visto}" disabled>
+                    </td>
+                    <td th:text="${factura.fechaVa}"></td>
+                    <td th:text="${factura.concepto}"></td>
+                    <td th:text="${factura.usuario}"></td>
 
-    <!-- Modal -->
-    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog"
+                    <td>
+                        <a class="btn btn-success" th:href="|/facturas/edit/${factura.id}|">Editar</a>
+                        <button class="btn btn-danger" data-toggle="modal" data-target="#confirmDeleteModal"
+                            data-factura-id="${factura.id}">Borrar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Modal -->
+        <div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog"
             aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -71,32 +75,31 @@
                     </div>
                 </div>
             </div>
-        </div> 
+        </div>
 
+    </div>
 
+    <!-- Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-  <!-- Bootstrap JS and jQuery -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#confirmDeleteModal').on('show.bs.modal', function (event) {
+                const button = $(event.relatedTarget);
+                const facturaId = parseInt(button.attr("data-factura-id"));
+                const modal = $(this);
+                modal.find('#confirmDeleteButton').attr("data-factura-id", facturaId);
+            });
 
-  <script>
-    $(document).ready(function () {
-        $('#confirmDeleteModal').on('show.bs.modal', function (event) {
-            const button = $(event.relatedTarget);
-            const usuarioId = parseInt(button.attr("data-factura-id"));
-            const modal = $(this);
-            modal
-                .find('#confirmDeleteButton')
-                .attr("data-factura-id", usuarioId);
+            $('#confirmDeleteButton').click(function (event) {
+                const facturaId = $(this).attr("data-factura-id");
+                window.location.href = "/facturas/delete/" + facturaId;
+            });
         });
+    </script>
 
-        $('#confirmDeleteButton').click(function (event) {
-            const usuarioId = $(this).attr("data-factura-id");
-            window.location.href = "/facturas/delete/" + usuarioId;
-        });
-    });
-</script>
 </body>
 
 </html>
