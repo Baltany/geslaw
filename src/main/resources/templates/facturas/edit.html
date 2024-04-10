@@ -13,7 +13,7 @@
         <br>
         <h3>Editar Factura</h3>
 
-        <form th:action="@{/facturas/update}" th:object="${factura}" method="post">
+        <form th:action="'/facturas/edit/ + ${factura.id}'" th:object="${factura}" method="post">
             <input type="hidden" th:field="*{id}" />
 
             <div class="border p-3 my-3">
