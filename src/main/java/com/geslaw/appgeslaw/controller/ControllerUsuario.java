@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,6 +24,7 @@ import com.geslaw.appgeslaw.repo.RepoObligadoCumplimiento;
 import com.geslaw.appgeslaw.repo.RepoSede;
 import com.geslaw.appgeslaw.repo.RepoTipoUsuario;
 import com.geslaw.appgeslaw.repo.RepoUsuario;
+import com.geslaw.appgeslaw.service.ServiceUsuario;
 
 import jakarta.persistence.ManyToMany;
 
@@ -40,6 +42,10 @@ public class ControllerUsuario {
     @Autowired private RepoObligadoCumplimiento repoObligadoCumplimiento;
 
     @Autowired private RepoFactura repoFactura;
+
+    // @Autowired
+    // private ServiceUsuario userService;
+
 
     @ManyToMany
     private List<TipoUsuario> tipoUsuario;
@@ -99,11 +105,12 @@ public class ControllerUsuario {
     //     return "usuarios/delete";
     // }
 
-    @DeleteMapping("/delete/{id}")
-    public String deleteUsuario(@PathVariable("id") @NonNull Long id) {
-    repoUsuario.deleteById(id);
-    return "redirect:/usuarios";
-}
+    @DeleteMapping("/usuarios/delete/{id}")
+    public String deleteUsuario(@PathVariable("id") Long id) {
+        repoUsuario.deleteById(id);
+        return "redirect:/usuarios";
+    }
+
 
 
 

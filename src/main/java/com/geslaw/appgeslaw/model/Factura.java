@@ -25,6 +25,9 @@ public class Factura {
      */
     private String proveedor;
 
+    private String fichero;
+
+
 
     /*
      * Una factura es de una unica sede

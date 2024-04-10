@@ -1,82 +1,97 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ges-Law : Gestión de Facturas</title>
+    <title>Agregar Factura</title>
     <th:block th:replace="~{fragmentos/general.html :: headerfiles}"></th:block>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 
 <body>
 
-    <div th:replace="~{fragmentos/general.html :: navigation}"> </div>
-
+    <div th:replace="~{fragmentos/general.html :: navigation}"></div>
     <div class="container">
-        <br>
-        <br>
-        <h3>Añadir Factura:</h3>
+        <h3>Agregar Nueva Factura</h3>
+        <form th:action="@{/facturas/add}" method="post" enctype="multipart/form-data">
 
-        <!-- Añadir archivo y que solo acepte pdfs -->
-        <form th:action="|/facturas/add|" th:object="${factura}" method="post">
-            <input hidden th:field="${factura.id}" />
-            <div class="border">
-                <div class="row g-3 m-2">
-                    <div class="col-md-6">
-                        <label class="form-label">Nombre: </label>
-                        <input type="text" th:field="*{nombre}" class="form-control" />
-                    </div>
-                    <div class="col-md-6">
-                        <label class="form-label">Proveedor: </label>
-                        <input type="text" th:field="*{proveedor}" class="form-control" />
-                    </div>
-                    <div class="col-md-6">
-                        <label class="form-label">Sede: </label>
-                        <!-- Aquí puedes mostrar un select con las opciones de sede -->
-                        <select th:field="*{sede.id}" class="form-select">
-                            <option th:each="s : ${sedes}" th:value="${s.id}" th:text="${s.nombre}"></option>
-                        </select>
-                    </div>
-                    <div class="col-md-6">
-                        <label class="form-label">Estado: </label>
-                        <input type="checkbox" th:field="*{estado}" class="form-check-input" />
-                    </div>
-                    <div class="col-md-6">
-                        <label class="form-label">Observaciones: </label>
-                        <input type="text" th:field="*{observaciones}" class="form-control" />
-                    </div>
-                    <div class="col-md-6">
-                        <label class="form-label">Visto: </label>
-                        <input type="checkbox" th:field="*{visto}" class="form-check-input" />
-                    </div>
-                    <div class="col-md-6">
-                        <label class="form-label">Fecha de Validez: </label>
-                        <input type="text" th:field="*{fechaVa}" class="form-control" />
-                    </div>
-                    <div class="col-md-6">
-                        <label class="form-label">Concepto: </label>
-                        <input type="text" th:field="*{concepto}" class="form-control" />
-                    </div>
-                    <div class="col-md-6">
-                        <label class="form-label">Usuario: </label>
-                        <!-- Aquí puedes mostrar un select con las opciones de usuario -->
-                        <select th:field="*{usuario.id}" class="form-select">
-                            <option th:each="u : ${usuarios}" th:value="${u.id}" th:text="${u.nombreCompleto}"></option>
-                        </select>
-                    </div>
-                </div>
+            <!-- Campo de nombre -->
+            <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" required>
             </div>
-            <div class="border">
-                <div class="row g-3 m-2">
-                    <div class="col-md-6">
-                        <button type="submit" class="btn btn-primary">Añadir</button>
-                        <a href="/facturas" class="btn btn-danger">Cancelar</a>
-                    </div>
-                </div>
+
+            <!-- Campo de proveedor -->
+            <div class="form-group">
+                <label for="proveedor">Proveedor:</label>
+                <input type="text" class="form-control" id="proveedor" name="proveedor" required>
             </div>
+
+            <!-- Campo de fichero -->
+            <div class="form-group">
+                <label for="fichero">Fichero (solo PDF):</label>
+                <input type="file" class="form-control-file" id="fichero" name="fichero" accept=".pdf">
+            </div>
+            
+            <!-- Campo de sede -->
+            <div class="form-group">
+                <label for="sede">Sede:</label>
+                <select class="form-control" id="sede" name="sede" required>
+                    <option value="">Seleccionar Sede</option>
+                    <!-- Aquí debes incluir las opciones para seleccionar la sede -->
+                    <!-- Por ejemplo: -->
+                    <option value="1">Sede A</option>
+                    <option value="2">Sede B</option>
+                    <option value="3">Sede C</option>
+                </select>
+            </div>
+
+            <!-- Checkbox para estado -->
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="estado" name="estado">
+                <label class="form-check-label" for="estado">Estado</label>
+            </div>
+
+            <!-- Campo de observaciones -->
+            <div class="form-group">
+                <label for="observaciones">Observaciones:</label>
+                <textarea class="form-control" id="observaciones" name="observaciones" rows="3"></textarea>
+            </div>
+
+            <!-- Checkbox para visto -->
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="visto" name="visto">
+                <label class="form-check-label" for="visto">Visto</label>
+            </div>
+
+            <!-- Campo de fecha de validez -->
+            <div class="form-group">
+                <label for="fechaVa">Fecha de Validez:</label>
+                <input type="date" class="form-control" id="fechaVa" name="fechaVa">
+            </div>
+
+            <!-- Campo de concepto -->
+            <div class="form-group">
+                <label for="concepto">Concepto:</label>
+                <input type="text" class="form-control" id="concepto" name="concepto">
+            </div>
+
+            <!-- Campo de usuario -->
+            <div class="form-group">
+                <label for="usuario">Usuario:</label>
+                <select class="form-control" id="usuario" name="usuario" required>
+                    <option value="">Seleccionar Usuario</option>
+                    <!-- Aquí debes incluir las opciones para seleccionar el usuario -->
+                    <!-- Por ejemplo: -->
+                    <option value="1">Usuario A</option>
+                    <option value="2">Usuario B</option>
+                    <option value="3">Usuario C</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Guardar</button>
         </form>
-
-        <div th:replace="~{fragmentos/general.html :: footer}"></div>
-
     </div>
 </body>
+
 </html>

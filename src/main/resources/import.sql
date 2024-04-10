@@ -1,6 +1,6 @@
 -- Insertar tipo de usuario
-INSERT INTO tipo_usuario (nombre) VALUES ('director');
-INSERT INTO tipo_usuario (nombre) VALUES ('cliente');
+INSERT INTO tipo_usuario (nombre) VALUES ('Director');
+INSERT INTO tipo_usuario (nombre) VALUES ('Cliente');
 
 -- Insertar tipo de sede
 INSERT INTO tipo_sede (nombre) VALUES ('Nombre del tipo de sede');
@@ -18,7 +18,7 @@ INSERT INTO territorio (sede_id, territorio_obligado_cumplimiento_id, nombre) VA
 INSERT INTO sede (habilitar, empresa_id, empresa_sedes_id, sede_factura_id, sede_territorio_id, usuario_id, usuario_sede_id, cp, direccion, localidad, nombre, provincia, telefono, tipo_centro) VALUES (NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'CP', 'Dirección', 'Localidad', 'Nombre Sede', 'Provincia', 'Teléfono', 'Tipo Centro');
 
 -- Insertar factura
-INSERT INTO factura (estado, visto, sede_id, usuario_facturas_id, usuario_id, concepto, fecha_va, nombre, observaciones, proveedor) VALUES (NULL, NULL, NULL, NULL, NULL, 'Concepto Factura', 'Fecha Factura', 'Nombre Factura', 'Observaciones Factura', 'Proveedor Factura');
+INSERT INTO factura (estado, visto, sede_id, usuario_facturas_id, usuario_id, concepto, fecha_va, nombre, observaciones, proveedor,fichero) VALUES (NULL, NULL, NULL, NULL, NULL, 'Concepto Factura', 'Fecha Factura', 'Nombre Factura', 'Observaciones Factura', 'Proveedor Factura','ficherito.pdf');
 
 -- Insertar obligado de cumplimiento
 INSERT INTO obligado_cumplimiento (aplica, borrar, favorable, empresa_id, empresa_obligado_cumplimiento_id, sede_id, territorio_id, usuario_id, fecha_validez, fichero, observaciones,tipo) VALUES (NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Fecha Validez', 'Fichero', 'Observaciones','Tipo de obligado');

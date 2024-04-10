@@ -45,8 +45,8 @@
                     </div>
                     <div class="col-md-6">
                         <label class="form-label">Fichero:</label>
-                        <input type="file" th:field="*{fichero}" class="form-control" />
-                        <small th:if="${obligadoCumplimiento.fichero}" class="form-text text-muted" th:text="|Archivo actual: ${obligadoCumplimiento.fichero}|"></small>
+                        <input type="file" th:field="*{fichero}" class="form-control" accept=".pdf"/>
+                        <small th:if="${obligadoCumplimiento.fichero}" class="form-text text-muted" th:text="|Archivo actual: ${obligadoCumplimiento.fichero}|" ></small>
                     </div>
             </div>
 
