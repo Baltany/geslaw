@@ -7,8 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.geslaw.appgeslaw.model.Empresa;
@@ -17,7 +16,6 @@ import com.geslaw.appgeslaw.model.Sede;
 import com.geslaw.appgeslaw.model.Territorio;
 import com.geslaw.appgeslaw.model.Usuario;
 import com.geslaw.appgeslaw.repo.RepoEmpresa;
-import com.geslaw.appgeslaw.repo.RepoFactura;
 import com.geslaw.appgeslaw.repo.RepoObligadoCumplimiento;
 import com.geslaw.appgeslaw.repo.RepoSede;
 import com.geslaw.appgeslaw.repo.RepoTerritorio;
@@ -29,7 +27,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 
 

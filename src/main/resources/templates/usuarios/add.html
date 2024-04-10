@@ -41,6 +41,12 @@
                         <input type="text" th:field="*{dni}" class="form-control" required/>
                     </div>
                     <div class="col-md-6">
+                        <label class="form-label">Habilitar(si lo marcas el Usuario podrá usarse): </label>
+                        <div class="form-check">
+                            <input type="checkbox" th:field="*{habilitar}" class="form-check-input"/>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
                         <label class="form-label">Email: </label>
                         <input type="text" th:field="*{email}" class="form-control" required/>
                     </div>
@@ -70,7 +76,7 @@
                 </div>
         </form>
 
-        <div th:replace="~{fragmentos/general.html :: footer}"></div>
+        <!-- <div th:replace="~{fragmentos/general.html :: footer}"></div> -->
 
     </div>
 </body>

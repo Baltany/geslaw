@@ -90,7 +90,7 @@ INSERT INTO empresa (nombre) VALUES ('MACROTOUR, SCA');
 INSERT INTO empresa (nombre) VALUES ('PLENIMUS, S.L.');
 
 -- Insertar usuario/password:Secreto123
-INSERT INTO usuario (usuario_obligado_cumplimiento_id, apellidos, dni, email, nombre, password, username,habilitar) VALUES (NULL, 'Apellidos Usuario', 'DNI Usuario', 'email@usuario.com', 'Balbino', '$2a$10$PMDCjYqXJxGsVlnve1t9Jug2DkDDckvUDl8.vF4Dc6yg0FMjovsXO', 'username',1);
+INSERT INTO usuario (usuario_obligado_cumplimiento_id, apellidos, dni, email, nombre, password, username,habilitar) VALUES (NULL, 'Apellidos Usuario', 'DNI Usuario', 'email@usuario.com', 'Balbino', '$2a$10$PMDCjYqXJxGsVlnve1t9Jug2DkDDckvUDl8.vF4Dc6yg0FMjovsXO', 'bmoylop0903',1);
 
 -- Insertar territorio
 INSERT INTO territorio (sede_id, territorio_obligado_cumplimiento_id, nombre) VALUES (NULL, NULL, 'DT1');

@@ -18,10 +18,10 @@
     <div class="container-fluid">
         <div th:fragment="navigation">
             <!--
-                sec:authorize="hasAuthority('director')"
+                sec:authorize="hasAuthority('Admin')"
                 para que solo lo pueda ver el director
             -->
-            <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-primary" sec:authorize="hasAuthority('Admin')">
                 <div class="container-fluid">
                     <!--Por si queremos añadir algún tipo de logo-->
                     <!-- <img src="src/main/resources/static/img/faviconRosa.ico" alt="Imagen"> -->
@@ -105,8 +105,8 @@
                     <hr/>
                     
                     <p>
-                        <p sec:authorize="hasAuthority('director')">
-                            <b>Este párrafo sólo se ve si eres un director</b>
+                        <p sec:authorize="hasAuthority('Admin')">
+                            <b>Este párrafo sólo se ve si eres un admin</b>
                         </p>
                     </p>
                     <hr/>

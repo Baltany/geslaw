@@ -102,7 +102,7 @@
                 // Realizar la solicitud AJAX solo si usuarioId no es undefined
                 const csrfToken = $("meta[name='_csrf']").attr("content");
                 $.ajax({
-                    type: "POST",
+                    type: "DELETE", // Cambiado de POST a DELETE
                     url: "/usuarios/delete/" + usuarioId,
                     headers: {
                         "X-CSRF-TOKEN": csrfToken
@@ -121,7 +121,8 @@
             }
         });
     });
-    </script>
+</script>
+
   <!-- <script>
     $(document).ready(function () {
   // Cuando se hace clic en el botón de borrar, guarda el usuarioId en el botón de confirmación de eliminación
