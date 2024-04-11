@@ -28,23 +28,32 @@ import org.springframework.web.bind.annotation.RequestBody;
 @Controller
 @RequestMapping("/empresas")
 public class ControllerEmpresa {
+
+    /* @Autowired -> sirve para inyectar automaticamente las dependencias que necesitemos  */
     @Autowired
     private RepoEmpresa repoEmpresa;
 
+    /*
+     * @GetMapping -> PETICION DE TIPO GET,indicamos el endpoint a donde queremos que se rediriga o el cual queremos para hacer las petciones
+     */
     @GetMapping("")
     public String findAll(Model modelo) {
         modelo.addAttribute(
             "empresas", 
-            repoEmpresa.findAll());
+            repoEmpresa.findAll()); //muestra todos los datos
         return "empresas/empresas";
     }
 
+
     @GetMapping("/add")
     public String addForm(Model modelo) {
-        modelo.addAttribute("empresas", repoEmpresa.findAll());
+        modelo.addAttribute("empresas", repoEmpresa.findAll()); //muestra todos los datos para el formulario
         return "empresas/add";
     }
 
+    /* @PostMapping -> PETICION DE TIPO POST,indicampos el endpoint a donde queremos que haga referencia
+     * @ModelAttribute -> hace referencia a nuestra clase entidad
+     */
     @PostMapping("/add")
     public String addEmpresa(@ModelAttribute("empresa") @NonNull Empresa empresa) {
         repoEmpresa.save(empresa);        
