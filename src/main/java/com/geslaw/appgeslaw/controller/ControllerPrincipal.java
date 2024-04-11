@@ -5,11 +5,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class ControllerPrincipal {
-    
-    @GetMapping("/ayuda")
-    public String showAyuda(){
-        return "help";
-    }
 
     
     @GetMapping("/acerca")
@@ -25,6 +20,11 @@ public class ControllerPrincipal {
     @GetMapping("/")
     public String showIndex() {
         return "index";
+    }
+
+    @GetMapping("/ayuda")
+    public String mostrarAyuda() {
+        return "ayuda";
     }
 
 

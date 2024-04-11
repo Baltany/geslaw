@@ -38,12 +38,12 @@
           <td>
             <p>
               <!-- Iterar sobre los tipos de usuario -->
-              <span th:each="tipo : ${usuario.tipoUsuario}" th:text="${tipo.nombre}"></span>
+              <span th:each="tipo : ${usuario.tipoUsuario}" th:text="${tipo.nombre} + ' '"></span>
             </p>
           </td>
           <td>
             <!-- Botón de Editar -->
-            <a class="btn btn-success" th:href="@{/usuarios/edit/{id}(id=${usuario.id})}">Editar</a>
+            <a class="btn btn-primary" th:href="@{/usuarios/edit/{id}(id=${usuario.id})}">Editar</a>
             <!-- Botón de Borrar con el ID dinámico del usuario -->
             <button class="btn btn-danger"
         data-toggle="modal"

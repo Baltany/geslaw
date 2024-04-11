@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>Agregar Factura</title>
+    <title>Ges-Law : Gestión Facturas</title>
     <th:block th:replace="~{fragmentos/general.html :: headerfiles}"></th:block>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -11,78 +11,98 @@
 <body>
 
     <div th:replace="~{fragmentos/general.html :: navigation}"></div>
+
     <div class="container">
         <br>
-        <h3>Agregar Nueva Factura</h3>
-        <br>
+        <h3 class="mb-4">Agregar Nueva Factura</h3>
         <form th:action="@{/facturas/add}" method="post" enctype="multipart/form-data">
 
-            <div class="form-group">
-                <label for="nombre">Nombre:</label>
-                <input type="text" class="form-control" id="nombre" name="nombre" required>
-            </div>
+            <div class="border p-4">
 
-            <div class="form-group">
-                <label for="proveedor">Proveedor:</label>
-                <input type="text" class="form-control" id="proveedor" name="proveedor" required>
-            </div>
+                <div class="form-group row">
+                    <label for="nombre" class="col-sm-4 col-form-label">Nombre:</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="nombre" name="nombre" required>
+                    </div>
+                </div>
 
-            <div class="form-group">
-                <label for="fichero">Fichero (solo PDF):</label>
-                <input type="file" class="form-control-file" id="fichero" name="fichero" accept=".pdf">
-            </div>
+                <div class="form-group row">
+                    <label for="proveedor" class="col-sm-4 col-form-label">Proveedor:</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="proveedor" name="proveedor" required>
+                    </div>
+                </div>
 
-            <div class="form-group">
-                <label for="sede">Sede:</label>
-                <select class="form-control" id="sede" name="sede" required>
-                    <option value="">Seleccionar Sede</option>
-                    <!-- Aquí debes incluir las opciones para seleccionar la sede -->
-                    <!-- Por ejemplo: -->
-                    <option value="1">Sede A</option>
-                    <option value="2">Sede B</option>
-                    <option value="3">Sede C</option>
-                </select>
-            </div>
+                <div class="form-group row">
+                    <label for="fichero" class="col-sm-4 col-form-label">Fichero (solo PDF):</label>
+                    <div class="col-sm-8">
+                        <input type="file" class="form-control-file" id="fichero" name="fichero" accept=".pdf">
+                    </div>
+                </div>
 
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="estado" name="estado">
-                <label class="form-check-label" for="estado">Estado</label>
-            </div>
+                <div class="form-group row">
+                    <label for="sede" class="col-sm-4 col-form-label">Sede:</label>
+                    <div class="col-sm-8">
+                        <select class="form-control" id="sede" name="sede" required>
+                            <option value="">Seleccionar Sede</option>
+                            <option value="1">Sede A</option>
+                            <option value="2">Sede B</option>
+                            <option value="3">Sede C</option>
+                        </select>
+                    </div>
+                </div>
 
-            <div class="form-group">
-                <label for="observaciones">Observaciones:</label>
-                <textarea class="form-control" id="observaciones" name="observaciones" rows="3"></textarea>
-            </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="estado" name="estado">
+                    <label class="form-check-label" for="estado">Estado</label>
+                </div>
 
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="visto" name="visto">
-                <label class="form-check-label" for="visto">Visto</label>
-            </div>
+                
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="visto" name="visto">
+                    <label class="form-check-label" for="visto">Visto</label>
+                </div>
+                
+                <div class="form-group row">
+                    <label for="fechaVa" class="col-sm-4 col-form-label">Fecha de Validez:</label>
+                    <div class="col-sm-8">
+                        <input type="date" class="form-control" id="fechaVa" name="fechaVa">
+                    </div>
+                </div>
+                
+                <div class="form-group row">
+                    <label for="concepto" class="col-sm-4 col-form-label">Concepto:</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="concepto" name="concepto">
+                    </div>
+                </div>
+                
+                <div class="form-group row">
+                    <label for="usuario" class="col-sm-4 col-form-label">Usuario:</label>
+                    <div class="col-sm-8">
+                        <select class="form-control" id="usuario" name="usuario" required>
+                            <option value="">Seleccionar Usuario</option>
+                            <option value="1">Usuario A</option>
+                            <option value="2">Usuario B</option>
+                            <option value="3">Usuario C</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="observaciones">Observaciones:</label>
+                        <textarea class="form-control" id="observaciones" name="observaciones" rows="3"></textarea>
+                    </div>
+                </div>
 
-            <div class="form-group">
-                <label for="fechaVa">Fecha de Validez:</label>
-                <input type="date" class="form-control" id="fechaVa" name="fechaVa">
-            </div>
+                <div class="row justify-content-end">
+                    <div class="col-auto">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                    <div class="col-auto">
+                        <a href="/facturas" class="btn btn-danger">Cancelar</a>
+                    </div>
+                </div>
 
-            <div class="form-group">
-                <label for="concepto">Concepto:</label>
-                <input type="text" class="form-control" id="concepto" name="concepto">
             </div>
-
-            <div class="form-group">
-                <label for="usuario">Usuario:</label>
-                <select class="form-control" id="usuario" name="usuario" required>
-                    <option value="">Seleccionar Usuario</option>
-                    <!-- Aquí debes incluir las opciones para seleccionar el usuario -->
-                    <!-- Por ejemplo: -->
-                    <option value="1">Usuario A</option>
-                    <option value="2">Usuario B</option>
-                    <option value="3">Usuario C</option>
-                </select>
-            </div>
-            <br>
-            <button type="submit" class="btn btn-primary">Guardar</button>
-            <a href="/facturas" class="btn btn-danger">Cancelar</a>
 
         </form>
     </div>

@@ -6,24 +6,32 @@
   <th:block th:replace="~{fragmentos/general.html :: headerfiles}"></th:block>
   <style>
     .card-img-top{
-      background-color: deeppink;
+      background-color: #CE295E;
     }
     .card-body{
-      background-color: deeppink;
+      background-color: #CE295E;
       color:whitesmoke;
     }
     .btn.btn-primary{
       background-color: white;
-      color:deeppink;
+      color:#CE295E;
       border-color: pink;
+
       
     }
+    .btn.btn-primary:hover,
+        .btn.btn-primary:active,
+        .btn.btn-primary:focus {
+            background-color: #bfbfbf; /* Color cuando se hace clic o se enfoca */
+            color: #CE295E; /* Cambia el color del texto al hacer clic */
+            border-color: pink; /* Opcional: mantener el color del borde */
+        }
   </style>
 </head>
 
 <body>
+  <div th:replace="~{fragmentos/general.html :: navigation}"> </div>
   <div class="container-fluid">
-    <div th:replace="~{fragmentos/general.html :: navigation}"> </div>
   <center>
   <div class="container">
     <div class="card m-4" style="width: 18rem;">

@@ -47,7 +47,7 @@
                     <td th:text="${factura.usuario}"></td>
 
                     <td>
-                        <a class="btn btn-success" th:href="|/facturas/edit/${factura.id}|">Editar</a>
+                        <a class="btn btn-primary" th:href="|/facturas/edit/${factura.id}|">Editar</a>
                         <button class="btn btn-danger" data-toggle="modal" data-target="#confirmDeleteModal"
                             data-factura-id="${factura.id}">Borrar</button>
                     </td>

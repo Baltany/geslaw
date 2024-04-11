@@ -48,7 +48,7 @@
                         <input type="checkbox" th:checked="${obligadocumplimiento.favorable}" disabled>
                     </td>
                     <td>
-                        <a class="btn btn-success" th:href="|/obligadocumplimientos/edit/${obligadocumplimiento.id}|">Editar</a>
+                        <a class="btn btn-primary" th:href="|/obligadocumplimientos/edit/${obligadocumplimiento.id}|">Editar</a>
                         <button class="btn btn-danger" data-toggle="modal" data-target="#confirmDeleteModal"
                             data-obligadocumplimiento-id="${obligadocumplimiento.id}"
                             th:attr="data-obligadocumplimiento-id=${obligadocumplimiento.id}">Borrar</button>
