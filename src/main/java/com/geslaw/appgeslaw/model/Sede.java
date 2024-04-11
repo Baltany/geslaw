@@ -16,10 +16,18 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
+/* @Data -> indicamos a spring que necesitamos getters y setters,por lo que los genera automáticamente
+ * @Entity -> inidicamos a spring que es una clase entidad
+ * @NoArgsConstructor -> no necesitamos los constructores,porque automáticamente los genera
+ */
 @Data
 @Entity
 @NoArgsConstructor
 public class Sede {
+
+    /*
+     * Hace que cuando lanzamos spring y genere la base de datos automáticamente,detecte que este campo es un idy lo autoincremente
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -49,8 +57,8 @@ public class Sede {
 
 
     /*
-     * tipoSede:id y nombre;
-     * el nombre del centro
+     * @ManyToMany -> Varias sedes tiene muchos tipos de sedes
+     * Posible cambio a @OneToMany
      */
     @ManyToMany
     private List<TipoSede> tipoSede;
@@ -59,18 +67,22 @@ public class Sede {
 
 
     /*
-     * Recoge el id del usuario
+     * @ManyToOne -> Un usuario tiene varias sedes
      */
     @ManyToOne
     private Usuario usuario; 
 
 
     /*
-     * Una empresa tiene varias sedes
+     *  @ManyToOne -> Varias empresas pertenecen a una unica sede
      */
     @ManyToOne
     private Empresa empresa;
 
+    /*
+     * @OneToOne -> Una factura es de una unica sede
+     * @JoinColumn -> Se le añade el id a la tabla correspondiente
+     */
     @OneToOne
     @JoinColumn(name = "sede_factura_id")
     private Factura factura;
@@ -79,7 +91,8 @@ public class Sede {
     private Boolean habilitar;
 
     /*
-     * idTerritorio
+     * @OneToOne -> Una sede pertence a un unico territorio
+     * @JoinColumn -> Se le añade el id a la tabla correspondiente
      */
     @OneToOne
     @JoinColumn(name = "sede_territorio_id")

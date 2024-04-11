@@ -4,7 +4,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.geslaw.appgeslaw.model.TipoSede;
 /*
- * Lo he puesto como Long porque he puesto que el id va a ser de tipo Long
+ * Interfaz para manejar lo que necesitemos de la clase entidad,
+ * JpaRepository<Entidad,Long>  <-- es Long porque yo lo he definido en mi clase entidad como tipo Long
  */
 public interface RepoTipoSede extends JpaRepository<TipoSede,Long>{
     

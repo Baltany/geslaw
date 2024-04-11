@@ -22,7 +22,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 
-
+/* @Controller -> Controlador de mi clase Entidad,es el que maneja el crud completo y algun método mas si hiciera falta 
+ * @RequestMapping -> indicamos el nombre de nuestro endpoint
+*/
 @Controller
 @RequestMapping("/empresas")
 public class ControllerEmpresa {
