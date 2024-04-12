@@ -19,12 +19,23 @@ La organización del proyecto está compuesta por las siguientes carpetas:
         - add.hml: muestra el formulario para añadir facturas.
         - edit.html: muestra el formulario para editar facturas.
       - fragmentos:
-        - general.html:
-      - obligadocumplimientos:
-      - usuarios:en el encontramos los archivos:
+        - general.html: son los menús que he definido por defecto que he definido
+        - plantilla.html: es el esquema que sigue nuestro frontend
+      - obligadocumplimientos: donde se encuentran los siguientes archivos:
+        - obligadocumplimientos.html: muestra todos los obligado cumplimientos
+        - add.html: formulario de añadir
+        - edit.html: formulario de editar
+      - usuarios: en el encontramos los archivos:
         - usuarios.html: muestra todos los usuarios,si tienes los requisitos suficientes para verlos(Admin).
         - add.html: muestra el formulario para añadir un usuario,si tienes los requisitos suficientes para verlos(Admin).
         - edit.html: muestra el formulario para editar un usuario,si tienes los requisitos suficientes para verlos(Admin).
+      - acerca.html: archivo html que no tiene utilidad pero como en el menú existe lo creado,es estético.
+      - ayuda.html: al igual que acerca,es totalmente estético.
+      - denegado.html: es un archivo el cual indica a un usuario sino tiene permisos pues lo redirigimos a la siguiente página.
+      - error.html: en caso de que exista algún tipo de error en nuestra página lo redirigimos a está que resulta más cómodo para el cliente ver que hay un error y que tiene que contactar con soporte.
+      - index.html: es la página a la que redirigimos por defecto una vez hecho el login.
+      - login.html: es la página por defecto de nuestro login.
+      - signup.html: es la página para hacer un registro.
 
 
 ## Ejecución del proyecto
