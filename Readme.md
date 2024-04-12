@@ -1,4 +1,21 @@
-# Organización del proyecto
+# Documentación
+## Ejecución del proyecto
+Para ejecutar el proyecto realizado en spring primeramente necesitaremos haber montado previamente docker y haberlo ejecutado,para ello deberiamos de irnos a la carpeta donde se aloja nuestro docker-compose.yml y deberemos de ejecutar el siguiente comando:
+```docker
+docker-compose -f nombre_del_archivo.yml up -d
+```
+Con este comando se nos ejecutará en los puertos que nosotros tengamos predefinidos en el archivo.yml el adminer,es decir, nuestra gestor de la base datos,para ver nuestra base de datos en ejecución entonces necesitaremos ejecutar spring que para ello podemos hacerlo de varias maneras,o desde visual studio con la extensión de spring que hay un botón de ejecutar o directamente con el comando:
+```spring
+mvn spring-boot:run
+```
+Ejecutaremos el proyecto en el puerto por defecto que usa spring el 8080,si quisieramos cambiar el puerto por defecto de spring,lo deberemos de hacer en el archivo aplication.properties y poner algo talque así:
+```application.properties
+server.port=7070
+```
+He puesto el puerto 7070,pero se podría poner otro sin problemas siempre y cuando no esté ocupado
+
+
+## Organización del proyecto
 La organización del proyecto está compuesta por las siguientes carpetas:
 - docs: aquí se alojan todas las fotos o documentos de interés que necesitemos.
 - src:
@@ -36,10 +53,16 @@ La organización del proyecto está compuesta por las siguientes carpetas:
       - index.html: es la página a la que redirigimos por defecto una vez hecho el login.
       - login.html: es la página por defecto de nuestro login.
       - signup.html: es la página para hacer un registro.
+- stack: aquí se encuentran los archivos:
+  - docker-compose.yml: este archivo es nuestro contenedor y dentro montamos las imagenes que necesitamos y el motor de base de datos que usamos
+  - .env: aquí encontramos las contraseñas de nuestro docker-compose
+  - setup.sql: es un archivo que sirve para inicializar la base de datos con el nombre que nosotros queramos ponerle a nuestra base de datos.
+- pom.xml: es nuestro archivo de dependecias,sin él, el proyecto sería inservible
 
 
-## Ejecución del proyecto
-Este proyecto está creado en spring,y como podemos observar uso un contenedor para crear la base de datos en mysql esto es gracias a las librerias que existen en spring,con ellas podemos crear nuestras clases modelo y una vez lancemos el programa de spring y con nuestro contenedor docker andando podremos ver como se crea automaticamente la base de datos a partir de nuestra base de datos. 
+
+## Esquema de la base de datos
+Aquí podemos ver un breve esquema de los que sería nuestras clases modelo una vez ya creadas en mysql:  
 ![Esquema de la base de datos](docs\image.png)
 
 
