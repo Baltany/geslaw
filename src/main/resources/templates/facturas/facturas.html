@@ -34,7 +34,7 @@
                 <tr th:each="factura: ${facturas}">
                     <td th:text="${factura.nombre}"></td>
                     <td th:text="${factura.proveedor}"></td>
-                    <td th:text="${factura.sede}"></td>
+                    <td th:text="${factura.sede.nombre}"></td>
                     <td>
                       <input type="checkbox" th:checked="${factura.estado}" disabled>
                   </td>
@@ -44,7 +44,7 @@
                     </td>
                     <td th:text="${factura.fechaVa}"></td>
                     <td th:text="${factura.concepto}"></td>
-                    <td th:text="${factura.usuario}"></td>
+                    <td th:text="${factura.usuario.nombre}"></td>
 
                     <td>
                         <a class="btn btn-primary" th:href="|/facturas/edit/${factura.id}|">Editar</a>

@@ -132,7 +132,7 @@ INSERT INTO empresa (id, nombre) VALUES (1, 'Macrosad'); -- Establecemos manualm
 
 
 -- Insertar Datos en usuario con Relaciones
-INSERT INTO usuario (username, nombre, apellidos, dni, email, password, habilitar) VALUES ('usuario1', 'Juan', 'Pérez', '12345678A', 'juan@example.com', 'password123', 1);
+INSERT INTO usuario (username, nombre, apellidos, dni, email, password, habilitar) VALUES ('macro', 'Juan', 'Pérez', '12345678A', 'juan@example.com', '$2a$10$PMDCjYqXJxGsVlnve1t9Jug2DkDDckvUDl8.vF4Dc6yg0FMjovsXO', 1);
 
 
 
@@ -145,7 +145,7 @@ INSERT INTO factura (estado, visto, sede_id, usuario_id, concepto, fecha_va, nom
 
 
 -- Insertar Datos en obligado_cumplimiento con empresa_id establecido manualmente
-INSERT INTO obligado_cumplimiento (tipo, fecha_validez, usuario_id, empresa_id) VALUES ('Seguro', '2024-04-30', 1, 1);
+INSERT INTO obligado_cumplimiento (tipo, fecha_validez, usuario_id, empresa_id,aplica,favorable) VALUES ('Seguro', '2024-04-30', 1, 1, 1, 1);
 
 -- Insertar territorio
 INSERT INTO territorio (sede_id, territorio_obligado_cumplimiento_id, nombre) VALUES (1, 1, 'DT1');

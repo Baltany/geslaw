@@ -39,8 +39,8 @@
                     <td th:text="${obligadocumplimiento.sede != null ? obligadocumplimiento.sede.nombre : ''}"></td>
                     <td th:text="${obligadocumplimiento.usuario != null ? obligadocumplimiento.usuario.username : ''}"></td>
                     <td th:text="${obligadocumplimiento.empresa != null ? obligadocumplimiento.empresa.nombre : ''}"></td>
-                    <td th:text="${obligadocumplimiento.fichero}"></td>
-                    <td th:text="${obligadocumplimiento.observaciones}"></td>
+                    <td th:text="${obligadocumplimiento.fichero != null ? obligadocumplimiento.fichero : 'No se ha adjuntado ningún archivo'}"></td>
+                    <td th:text="${obligadocumplimiento.observaciones != null ? obligadocumplimiento.observaciones : 'No se ha encontrado ninguna observación'}"></td>
                     <td>
                         <input type="checkbox" th:checked="${obligadocumplimiento.aplica}" disabled>
                     </td>
