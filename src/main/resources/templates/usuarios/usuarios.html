@@ -88,41 +88,44 @@
 
 
   <script>
-    $(document).ready(function () {
-        // Cuando se hace clic en el botón de borrar, guarda el usuarioId en el botón de confirmación de eliminación
-        $('.btn-danger').click(function () {
-            $('#confirmDeleteButton').data('usuario-id', $(this).data('usuario-id'));
-        });
-    
-        $('#confirmDeleteButton').click(function (event) {
-            // Obtener el valor de data-usuario-id del botón de eliminar
-            const usuarioId = $(this).data("usuario-id");
-            console.log("Usuario ID:", usuarioId);
-    
-            // Verificar que el ID de usuario sea válido (no undefined)
-            if (usuarioId) {
-                // Realizar la solicitud AJAX solo si usuarioId no es undefined
-                const csrfToken = $("meta[name='_csrf']").attr("content");
-                $.ajax({
-                    type: "DELETE", // Cambiado de POST a DELETE
-                    url: "/usuarios/delete/" + usuarioId,
-                    headers: {
-                        "X-CSRF-TOKEN": csrfToken
-                    },
-                    success: function (response) {
-                        console.log("Usuario borrado correctamente");
-                        // Recargar la página o actualizar la lista de usuarios después de borrar
-                        location.reload();
-                    },
-                    error: function (error) {
-                        console.error("Error al borrar el usuario:", error);
-                    }
-                });
-            } else {
-                console.error("Usuario ID no definido");
-            }
-        });
+$(document).ready(function () {
+    // Función para borrar un usuario al confirmar la eliminación
+    $('#confirmDeleteButton').click(function (event) {
+        // Obtener el ID de usuario almacenado en el botón de confirmación
+        const usuarioId = $(this).data("usuario-id");
+
+        // Verificar que el ID de usuario sea válido
+        if (usuarioId) {
+            // Obtener el token CSRF de la etiqueta meta
+            const csrfToken = $("meta[name='_csrf']").attr("content");
+
+            // Configurar la solicitud AJAX para eliminar el usuario
+            $.ajax({
+                type: "DELETE",
+                url: "/usuarios/delete/" + usuarioId,
+                headers: {
+                    "X-CSRF-TOKEN": csrfToken
+                },
+                success: function (response) {
+                    console.log("Usuario borrado correctamente");
+                    // Recargar la página después de borrar el usuario
+                    location.reload();
+                },
+                error: function (error) {
+                    console.error("Error al borrar el usuario:", error);
+                    // Mostrar mensaje de error al usuario si es necesario
+                    alert("Error al borrar el usuario. Consulta la consola para más detalles.");
+                }
+            });
+        } else {
+            console.error("ID de usuario no definido");
+            console.log(url);
+            // Mostrar mensaje de error al usuario si el ID no está definido
+            alert("ID de usuario no definido. No se pudo borrar el usuario.");
+        }
     });
+});
+
 </script>
 
   <!-- <script>

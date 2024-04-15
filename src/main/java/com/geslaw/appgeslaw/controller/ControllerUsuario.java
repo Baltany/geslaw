@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.lang.NonNull;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -105,10 +106,32 @@ public class ControllerUsuario {
     //     return "usuarios/delete";
     // }
 
-    @DeleteMapping("/usuarios/delete/{id}")
-    public String deleteUsuario(@PathVariable("id") Long id) {
-        repoUsuario.deleteById(id);
-        return "redirect:/usuarios";
+    // @DeleteMapping("/usuarios/delete/{id}")
+    // public String deleteUsuario(@PathVariable("id") Long id) {
+    //     repoUsuario.deleteById(id);
+    //     return "redirect:/usuarios";
+    // }
+
+
+
+    // Método para manejar la solicitud DELETE para eliminar un usuario por su ID
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteUsuario(@PathVariable("id") Long id) {
+        try {
+            // Buscar el usuario por su ID en la base de datos
+            Usuario usuario = repoUsuario.findById(id).orElse(null);
+    
+            // Verificar si el usuario existe
+            if (usuario!= null) {
+                // Eliminar el usuario de la base de datos
+                repoUsuario.delete(usuario);
+                return ResponseEntity.ok("Usuario eliminado exitosamente");
+            } else {
+                return ResponseEntity.notFound().build(); // Usuario no encontrado
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("Error al eliminar el usuario: " + e.getMessage());
+        }
     }
 
 

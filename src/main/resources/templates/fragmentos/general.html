@@ -28,13 +28,9 @@
     <div class="container-fluid">
         <div th:fragment="navigation">
             <!--
-                sec:authorize="hasAuthority('Admin')"
-                para que solo lo pueda ver el director
+                Solo es momentaneo este menú cuando pueda usar el login se borrará
             -->
-            <nav class="navbar navbar-expand-lg navbar-dark "  
-            
-            
-            >
+            <nav class="navbar navbar-expand-lg navbar-dark">
                 <div class="container-fluid">
                     <!--Por si queremos añadir algún tipo de logo-->
                     <!-- <img src="src/main/resources/static/img/faviconRosa.ico" alt="Imagen"> -->
@@ -94,6 +90,266 @@
                     </div>
                 </div>
             </nav>
+
+
+            <!-- BORRAR -->
+
+
+
+            <!--
+                sec:authorize="hasAuthority('Admin')"
+                para que solo lo pueda ver el director
+            -->
+            <nav sec:authorize="hasAuthority('Admin')" class="navbar navbar-expand-lg navbar-dark">
+                <div class="container-fluid">
+                    <!--Por si queremos añadir algún tipo de logo-->
+                    <!-- <img src="src/main/resources/static/img/faviconRosa.ico" alt="Imagen"> -->
+                    <a class="navbar-brand" href="/">Ges-Law</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav me-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/">Inicio </a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Usuarios
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a id="menu_modulo" class="dropdown-item" href="/usuarios">Listado</a></li>
+                                    <li><a id="menu_enseñanza" class="dropdown-item" href="/usuarios/add">Alta</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Obligado Cumplimiento
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a id="menu_modulo" class="dropdown-item" href="/obligadocumplimientos">Listado</a></li>
+                                    <li><a id="menu_enseñanza" class="dropdown-item" href="/obligadocumplimientos/add">Alta</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Facturas
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a id="menu_modulo" class="dropdown-item" href="/facturas">Listado</a></li>
+                                    <li><a id="menu_enseñanza" class="dropdown-item" href="/facturas/add">Alta</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="/ayuda">Ayuda </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/acerca">Sobre esta Web </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/logout">Desconexión </a>
+                            </li>
+                        </ul>
+                        
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Un Coordinador lo ve todo pero unicamente de las sedes que tenga ASIGNADAS -->
+            <nav sec:authorize="hasAuthority('Coordinador')" class="navbar navbar-expand-lg navbar-dark">
+                <div class="container-fluid">
+                    <!--Por si queremos añadir algún tipo de logo-->
+                    <!-- <img src="src/main/resources/static/img/faviconRosa.ico" alt="Imagen"> -->
+                    <a class="navbar-brand" href="/">Ges-Law</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav me-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/">Inicio </a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Usuarios
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a id="menu_modulo" class="dropdown-item" href="/usuarios">Listado</a></li>
+                                    <li><a id="menu_enseñanza" class="dropdown-item" href="/usuarios/add">Alta</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Obligado Cumplimiento
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a id="menu_modulo" class="dropdown-item" href="/obligadocumplimientos">Listado</a></li>
+                                    <li><a id="menu_enseñanza" class="dropdown-item" href="/obligadocumplimientos/add">Alta</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Facturas
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a id="menu_modulo" class="dropdown-item" href="/facturas">Listado</a></li>
+                                    <li><a id="menu_enseñanza" class="dropdown-item" href="/facturas/add">Alta</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="/ayuda">Ayuda </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/acerca">Sobre esta Web </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/logout">Desconexión </a>
+                            </li>
+                        </ul>
+                        
+                    </div>
+                </div>
+            </nav>
+
+            <!-- El director solo puede añadir documentación,no podrá editar -->
+            <nav sec:authorize="hasAuthority('Director')" class="navbar navbar-expand-lg navbar-dark">
+                <div class="container-fluid">
+                    <!--Por si queremos añadir algún tipo de logo-->
+                    <!-- <img src="src/main/resources/static/img/faviconRosa.ico" alt="Imagen"> -->
+                    <a class="navbar-brand" href="/">Ges-Law</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav me-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/">Inicio </a>
+                            </li>
+                            <!-- No es relevante que vea los Usuarios que existen 
+                                <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Usuarios
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a id="menu_modulo" class="dropdown-item" href="/usuarios">Listado</a></li>
+                                    <li><a id="menu_enseñanza" class="dropdown-item" href="/usuarios/add">Alta</a></li>
+                                </ul>
+                            </li> -->
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Obligado Cumplimiento
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a id="menu_modulo" class="dropdown-item" href="/obligadocumplimientos">Listado</a></li>
+                                    <li><a id="menu_enseñanza" class="dropdown-item" href="/obligadocumplimientos/add">Alta</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Facturas
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a id="menu_modulo" class="dropdown-item" href="/facturas">Listado</a></li>
+                                    <li><a id="menu_enseñanza" class="dropdown-item" href="/facturas/add">Alta</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="/ayuda">Ayuda </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/acerca">Sobre esta Web </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/logout">Desconexión </a>
+                            </li>
+                        </ul>
+                        
+                    </div>
+                </div>
+            </nav>
+
+            <nav sec:authorize="hasAuthority('Trabajador')" class="navbar navbar-expand-lg navbar-dark">
+                <div class="container-fluid">
+                    <!--Por si queremos añadir algún tipo de logo-->
+                    <!-- <img src="src/main/resources/static/img/faviconRosa.ico" alt="Imagen"> -->
+                    <a class="navbar-brand" href="/">Ges-Law</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav me-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/">Inicio </a>
+                            </li>
+                            <!-- El Trabajador no ve los usuarios que hay  
+                                <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Usuarios
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a id="menu_modulo" class="dropdown-item" href="/usuarios">Listado</a></li>
+                                    <li><a id="menu_enseñanza" class="dropdown-item" href="/usuarios/add">Alta</a></li>
+                                </ul>
+                            </li> -->
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Obligado Cumplimiento
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a id="menu_modulo" class="dropdown-item" href="/obligadocumplimientos">Listado</a></li>
+                                    <!-- El trabajador solo ve
+                                        <li><a id="menu_enseñanza" class="dropdown-item" href="/obligadocumplimientos/add">Alta</a></li> -->
+                                </ul>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Facturas
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a id="menu_modulo" class="dropdown-item" href="/facturas">Listado</a></li>
+                                    <!-- El trabajador solo  ve 
+                                        <li><a id="menu_enseñanza" class="dropdown-item" href="/facturas/add">Alta</a></li> -->
+                                </ul>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="/ayuda">Ayuda </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/acerca">Sobre esta Web </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/logout">Desconexión </a>
+                            </li>
+                        </ul>
+                        
+                    </div>
+                </div>
+            </nav>
+
         </div>
 
         <div th:fragment="header">
@@ -107,8 +363,6 @@
                         <a href="#" id="menu_informe" class="btn btn-primary">Generar informe</a>
                     </div>
                 </div>
-
-
             </div>
         </div>
 
