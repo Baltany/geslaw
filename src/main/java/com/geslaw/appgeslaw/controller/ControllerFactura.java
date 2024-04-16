@@ -103,9 +103,13 @@ public class ControllerFactura {
     Model modelo){
         Optional<Factura> factura = repoFactura.findById(id);
         List<Factura> facturas = repoFactura.findAll();
+        List<Sede> sedes = repoSede.findAll();
+        List<Usuario> usuarios = repoUsuario.findAll();
         if(factura.isPresent()){
             modelo.addAttribute("factura", factura.get());
             modelo.addAttribute("facturas", facturas);
+            modelo.addAttribute("sedes", sedes);
+            modelo.addAttribute("usuarios", usuarios);
             return "facturas/edit";
         }else{
             modelo.addAttribute("mensaje", "factura no encontrada");

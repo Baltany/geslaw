@@ -140,28 +140,28 @@ public String addObligadoCumplimiento(@ModelAttribute("obligadoCumplimiento") Ob
     }
 
     @GetMapping("/edit/{id}")
-public String editForm(@PathVariable @NonNull Long id, Model model) {
-    Optional<ObligadoCumplimiento> optionalObligado = repoObligadoCumplimiento.findById(id);
-    List<ObligadoCumplimiento> obligadoCumplimientos = repoObligadoCumplimiento.findAll();
-    List<Empresa> empresas = repoEmpresa.findAll();
-    List<Sede> sedes = repoSede.findAll();
-    List<Territorio> territorios = repoTerritorio.findAll();
-    List<Usuario> usuarios = repoUsuario.findAll();
+    public String editForm(@PathVariable @NonNull Long id, Model model) {
+        Optional<ObligadoCumplimiento> optionalObligado = repoObligadoCumplimiento.findById(id);
+        List<ObligadoCumplimiento> obligadoCumplimientos = repoObligadoCumplimiento.findAll();
+        List<Empresa> empresas = repoEmpresa.findAll();
+        List<Sede> sedes = repoSede.findAll();
+        List<Territorio> territorios = repoTerritorio.findAll();
+        List<Usuario> usuarios = repoUsuario.findAll();
 
-    if (optionalObligado.isPresent()) {
-        ObligadoCumplimiento obligadoCumplimiento = optionalObligado.get();
-        model.addAttribute("obligadoCumplimiento", obligadoCumplimiento);
-        model.addAttribute("obligadocumplimientos", obligadoCumplimientos);
-        model.addAttribute("empresas", empresas);
-        model.addAttribute("sedes", sedes);
-        model.addAttribute("territorios", territorios);
-        model.addAttribute("usuarios", usuarios);
-        return "obligadocumplimientos/edit";
-    } else {
-        model.addAttribute("mensaje", "Obligado de cumplimiento no encontrado");
-        return "error";
+        if (optionalObligado.isPresent()) {
+            ObligadoCumplimiento obligadoCumplimiento = optionalObligado.get();
+            model.addAttribute("obligadoCumplimiento", obligadoCumplimiento);
+            model.addAttribute("obligadocumplimientos", obligadoCumplimientos);
+            model.addAttribute("empresas", empresas);
+            model.addAttribute("sedes", sedes);
+            model.addAttribute("territorios", territorios);
+            model.addAttribute("usuarios", usuarios);
+            return "obligadocumplimientos/edit";
+        } else {
+            model.addAttribute("mensaje", "Obligado de cumplimiento no encontrado");
+            return "error";
+        }
     }
-}
 
     
     

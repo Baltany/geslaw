@@ -67,12 +67,3 @@ Aquí podemos ver un breve esquema de los que sería nuestras clases modelo una 
 
 
 
-## Usuarios
-Se encuentra en la carpeta templates/usuarios y podemos encontrar el archivo add y edit,no hace el borrado
-
-## Facturas
-No hace el borrado y hay que implementarle la lógica de poder añadir un fichero y únicamente sea pdf
-
-## Obligado Cumplimiento
-No hace el borrado y hay que implementarle la lógica de poder añadir un fichero y únicamente sea pdf
-
