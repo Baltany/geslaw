@@ -56,7 +56,7 @@
                         <div class="col-md-6">
                                 <div class="col-md-6">
                                     <label class="form-label">Tipo de Usuario:</label>
-                                    <select th:field="*{tipoUsuario}" multiple="multiple" class="form-select" required>
+                                    <select th:field="*{tipoUsuario}" class="form-select" required>
                                         <option th:each="tipo : ${tiposUsuarios}" th:value="${tipo.id}" th:text="${tipo.nombre}"></option>
                                     </select>
                                 </div>

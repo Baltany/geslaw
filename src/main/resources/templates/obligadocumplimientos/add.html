@@ -23,7 +23,7 @@
                 <div class="form-group row">
                     <label for="tipo" class="col-sm-4 col-form-label">Tipo:</label>
                     <div class="col-sm-8">
-                        <select class="form-control" id="tipo" name="tipo">
+                        <select class="form-control" id="tipo" name="tipo" required>
                             <option value="obligadocumplimiento">Obligado Cumplimiento</option>
                             <option value="contratos">Contratos/Autorizaciones/Licencias</option>
                             <option value="subcontrata">Subcontratas</option>
@@ -36,24 +36,24 @@
                 <div class="form-group row">
                     <label for="fechaValidez" class="col-sm-4 col-form-label">Fecha de Validez:</label>
                     <div class="col-sm-8">
-                        <input type="date" id="fechaValidez" name="fechaValidez" class="form-control">
+                        <input type="date" id="fechaValidez" name="fechaValidez" class="form-control" required>
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label for="empresa" class="col-sm-4 col-form-label">Empresa:</label>
                     <div class="col-sm-8">
-                        <select id="empresa" name="empresa" class="form-control">
+                        <select id="empresa" name="empresa" class="form-control" required>
                             <option value="">Seleccione una empresa...</option>
                             <option th:each="emp : ${empresas}" th:value="${emp.id}" th:text="${emp.nombre}"></option>
-                        </select>
+                        </select>                        
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label for="sede" class="col-sm-4 col-form-label">Sede:</label>
                     <div class="col-sm-8">
-                        <select id="sede" name="sede" class="form-control">
+                        <select id="sede" name="sede" class="form-control" required>
                             <option value="">Seleccione una sede...</option>
                             <option th:each="sed : ${sedes}" th:value="${sed.id}" th:text="${sed.nombre}"></option>
                         </select>
@@ -63,7 +63,7 @@
                 <div class="form-group row">
                     <label for="territorio" class="col-sm-4 col-form-label">Territorio:</label>
                     <div class="col-sm-8">
-                        <select id="territorio" name="territorio" class="form-control">
+                        <select id="territorio" name="territorio" class="form-control" required>
                             <option value="">Seleccione un territorio...</option>
                             <th:block th:each="terr : ${territorios}">
                                 <option th:value="${terr.id}" th:text="${terr.nombre}"></option>
@@ -75,7 +75,7 @@
                 <div class="form-group row">
                     <label for="usuario" class="col-sm-4 col-form-label">Usuario:</label>
                     <div class="col-sm-8">
-                        <select id="usuario" name="usuario" class="form-control">
+                        <select id="usuario" name="usuario" class="form-control" required>
                             <option value="">Seleccione un usuario...</option>
                             <th:block th:each="user : ${usuarios}">
                                 <option th:value="${user.id}" th:text="${user.username}"></option>
@@ -87,17 +87,17 @@
                 <div class="form-group row">
                     <label for="fichero" class="col-sm-4 col-form-label">Adjuntar Fichero:</label>
                     <div class="col-sm-8">
-                        <input type="file" id="fichero" name="fichero" class="form-control-file" accept=".pdf">
+                        <input type="file" id="fichero" name="fichero" class="form-control-file" accept=".pdf" required>
                     </div>
                 </div>
 
                 <div class="form-check">
-                    <input type="checkbox" id="aplica" name="aplica" class="form-check-input">
+                    <input type="checkbox" id="aplica" name="aplica" class="form-check-input" required>
                     <label for="aplica" class="form-check-label">Aplica</label>
                 </div>
 
                 <div class="form-check">
-                    <input type="checkbox" id="favorable" name="favorable" class="form-check-input">
+                    <input type="checkbox" id="favorable" name="favorable" class="form-check-input" required>
                     <label for="favorable" class="form-check-label">Favorable</label>
                 </div>
 

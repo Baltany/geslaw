@@ -21,28 +21,49 @@
             <div class="border">
                 <div class="row g-3 m-2">
                     <div class="col-md-6">
-                        <label class="form-label">Tipo de Obligado Cumplimiento:</label>
-                        <input type="text" th:field="*{tipo}" class="form-control" />
+                        <div class="col-md-6">
+                            <label class="form-label">Tipo de Obligado Cumplimiento:</label>
+                            <select class="form-control" id="tipo" name="tipo" required>
+                                <option value="obligadocumplimiento" th:selected="${obligadoCumplimiento.tipo == 'obligadocumplimiento'}">Obligado Cumplimiento</option>
+                                <option value="contratos" th:selected="${obligadoCumplimiento.tipo == 'contratos'}">Contratos/Autorizaciones/Licencias</option>
+                                <option value="subcontrata" th:selected="${obligadoCumplimiento.tipo == 'subcontrata'}">Subcontratas</option>
+                                <option value="seguros" th:selected="${obligadoCumplimiento.tipo == 'seguros'}">Seguros</option>
+                                <option value="inspecciones" th:selected="${obligadoCumplimiento.tipo == 'inspecciones'}">Inspecciones</option>
+                            </select>
+                        </div>
+                        
                     </div>
                     <div class="col-md-6">
                         <label class="form-label">Fecha de Validez:</label>
-                        <input type="text" th:field="*{fechaValidez}" class="form-control" />
+                        <input type="date" th:field="*{fechaValidez}" class="form-control" />
                     </div>
                     <div class="col-md-6">
                         <label class="form-label">Territorio:</label>
-                        <input type="text" th:field="*{territorio}" class="form-control" />
+                        <select th:field="*{territorio}" class="form-control">
+                            <option value="">Seleccione un territorio...</option>
+                            <option th:each="terr : ${territorios}" th:value="${terr.id}" th:text="${terr.nombre}"></option>
+                        </select>
                     </div>
                     <div class="col-md-6">
                         <label class="form-label">Sede:</label>
-                        <input type="text" th:field="*{sede}" class="form-control" />
+                        <select th:field="*{sede}" class="form-control">
+                            <option value="">Seleccione una sede...</option>
+                            <option th:each="sed : ${sedes}" th:value="${sed.id}" th:text="${sed.nombre}"></option>
+                        </select>
                     </div>
                     <div class="col-md-6">
                         <label class="form-label">Usuario:</label>
-                        <input type="text" th:field="*{usuario}" class="form-control" />
+                        <select th:field="*{usuario}" class="form-control">
+                            <option value="">Seleccione un usuario...</option>
+                            <option th:each="user : ${usuarios}" th:value="${user.id}" th:text="${user.username}"></option>
+                        </select>
                     </div>
                     <div class="col-md-6">
                         <label class="form-label">Empresa:</label>
-                        <input type="text" th:field="*{empresa}" class="form-control" />
+                        <select th:field="*{empresa}" class="form-control">
+                            <option value="">Seleccione una empresa...</option>
+                            <option th:each="emp : ${empresas}" th:value="${emp.id}" th:text="${emp.nombre}"></option>
+                        </select>
                     </div>
                     <div class="col-md-6">
                         <label class="form-label">Fichero:</label>

@@ -53,10 +53,19 @@ public class ControllerObligadoCumplimiento {
 
     //con obligadoCumplimiento si muestra el add y new ObligadCumplimiento con el findAll() falla
     @GetMapping("/add")
-    public String addForm(Model modelo){
+    public String mostrarFormulario(Model modelo){
+        List<Empresa> empresas = repoEmpresa.findAll(); // Obtener todas las empresas
+        List<Sede> sedes = repoSede.findAll(); // Obtener todas las sedes
+        List<Territorio> territorios = repoTerritorio.findAll(); // Obtener todas los territorios
+        List<Usuario> usuarios = repoUsuario.findAll(); // Obtener todos los usuarios
+        modelo.addAttribute("empresas", empresas);
+        modelo.addAttribute("sedes", sedes);
+        modelo.addAttribute("territorios", territorios);
+        modelo.addAttribute("usuarios", usuarios);
         modelo.addAttribute("obligadoCumplimiento", new ObligadoCumplimiento());
         return "obligadocumplimientos/add";
-    }
+}
+
 
 
 
@@ -131,22 +140,29 @@ public String addObligadoCumplimiento(@ModelAttribute("obligadoCumplimiento") Ob
     }
 
     @GetMapping("/edit/{id}")
-    public String editForm(@PathVariable @NonNull Long id,Model modelo){
-        Optional<ObligadoCumplimiento> obligadoCumplimiento = 
-            repoObligadoCumplimiento.findById(id);
-        List<ObligadoCumplimiento> obligadoCumplimientos =
-            repoObligadoCumplimiento.findAll();
+public String editForm(@PathVariable @NonNull Long id, Model model) {
+    Optional<ObligadoCumplimiento> optionalObligado = repoObligadoCumplimiento.findById(id);
+    List<ObligadoCumplimiento> obligadoCumplimientos = repoObligadoCumplimiento.findAll();
+    List<Empresa> empresas = repoEmpresa.findAll();
+    List<Sede> sedes = repoSede.findAll();
+    List<Territorio> territorios = repoTerritorio.findAll();
+    List<Usuario> usuarios = repoUsuario.findAll();
 
-        if(obligadoCumplimiento.isPresent()){
-            //Si ponemos obligadocumpliemiento da error solo funciona con obligadoCumpliento
-            modelo.addAttribute("obligadoCumplimiento", obligadoCumplimiento.get());
-            modelo.addAttribute("obligadocumplimientos", obligadoCumplimientos);
-            return "obligadocumplimientos/edit";
-        }else{
-            modelo.addAttribute("mensaje", "obligadoCumplimiento no encontrado");
-            return "error";
-        }
+    if (optionalObligado.isPresent()) {
+        ObligadoCumplimiento obligadoCumplimiento = optionalObligado.get();
+        model.addAttribute("obligadoCumplimiento", obligadoCumplimiento);
+        model.addAttribute("obligadocumplimientos", obligadoCumplimientos);
+        model.addAttribute("empresas", empresas);
+        model.addAttribute("sedes", sedes);
+        model.addAttribute("territorios", territorios);
+        model.addAttribute("usuarios", usuarios);
+        return "obligadocumplimientos/edit";
+    } else {
+        model.addAttribute("mensaje", "Obligado de cumplimiento no encontrado");
+        return "error";
     }
+}
+
     
     
 }
