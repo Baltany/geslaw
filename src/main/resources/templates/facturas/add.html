@@ -36,55 +36,53 @@
                 <div class="form-group row">
                     <label for="fichero" class="col-sm-4 col-form-label">Fichero (solo PDF):</label>
                     <div class="col-sm-8">
-                        <input type="file" class="form-control-file" id="fichero" name="fichero" accept=".pdf">
+                        <input type="file" class="form-control-file" id="fichero" name="fichero" accept=".pdf" required>
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label for="sede" class="col-sm-4 col-form-label">Sede:</label>
                     <div class="col-sm-8">
-                        <select class="form-control" id="sede" name="sede" required>
-                            <option value="">Seleccionar Sede</option>
-                            <option value="1">Sede A</option>
-                            <option value="2">Sede B</option>
-                            <option value="3">Sede C</option>
+                        <select id="sede" name="sede" class="form-control" required>
+                            <option value="">Seleccione una sede...</option>
+                            <option th:each="sed : ${sedes}" th:value="${sed.id}" th:text="${sed.nombre}"></option>
                         </select>
                     </div>
                 </div>
 
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="estado" name="estado">
+                    <input class="form-check-input" type="checkbox" id="estado" name="estado" required>
                     <label class="form-check-label" for="estado">Estado</label>
                 </div>
 
                 
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="visto" name="visto">
+                    <input class="form-check-input" type="checkbox" id="visto" name="visto" required>
                     <label class="form-check-label" for="visto">Visto</label>
                 </div>
                 
                 <div class="form-group row">
                     <label for="fechaVa" class="col-sm-4 col-form-label">Fecha de Validez:</label>
                     <div class="col-sm-8">
-                        <input type="date" class="form-control" id="fechaVa" name="fechaVa">
+                        <input type="date" class="form-control" id="fechaVa" name="fechaVa" required>
                     </div>
                 </div>
                 
                 <div class="form-group row">
                     <label for="concepto" class="col-sm-4 col-form-label">Concepto:</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" id="concepto" name="concepto">
+                        <input type="text" class="form-control" id="concepto" name="concepto" required>
                     </div>
                 </div>
                 
                 <div class="form-group row">
                     <label for="usuario" class="col-sm-4 col-form-label">Usuario:</label>
                     <div class="col-sm-8">
-                        <select class="form-control" id="usuario" name="usuario" required>
-                            <option value="">Seleccionar Usuario</option>
-                            <option value="1">Usuario A</option>
-                            <option value="2">Usuario B</option>
-                            <option value="3">Usuario C</option>
+                        <select id="usuario" name="usuario" class="form-control" required>
+                            <option value="">Seleccione un usuario...</option>
+                            <th:block th:each="user : ${usuarios}">
+                                <option th:value="${user.id}" th:text="${user.username}"></option>
+                            </th:block>
                         </select>
                     </div>
                     <div class="form-group">

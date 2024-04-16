@@ -14,7 +14,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.geslaw.appgeslaw.model.Factura;
+import com.geslaw.appgeslaw.model.Sede;
+import com.geslaw.appgeslaw.model.Usuario;
+import com.geslaw.appgeslaw.repo.RepoEmpresa;
 import com.geslaw.appgeslaw.repo.RepoFactura;
+import com.geslaw.appgeslaw.repo.RepoObligadoCumplimiento;
+import com.geslaw.appgeslaw.repo.RepoSede;
+import com.geslaw.appgeslaw.repo.RepoTerritorio;
+import com.geslaw.appgeslaw.repo.RepoUsuario;
+
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -23,6 +31,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class ControllerFactura {
     @Autowired
     private RepoFactura repoFactura;
+
+    @Autowired
+    private RepoObligadoCumplimiento repoObligadoCumplimiento;
+    
+    @Autowired
+    private RepoEmpresa repoEmpresa;
+    
+    @Autowired
+    private RepoSede repoSede;
+    
+    @Autowired
+    private RepoTerritorio repoTerritorio;
+    
+    @Autowired
+    private RepoUsuario repoUsuario;
 
 
     @GetMapping("")
@@ -33,6 +56,10 @@ public class ControllerFactura {
 
     @GetMapping("/add")
     public String addForm(Model modelo) {
+        List<Sede> sedes = repoSede.findAll(); // Obtener todas las sedes
+        List<Usuario> usuarios = repoUsuario.findAll(); // Obtener todos los usuarios
+        modelo.addAttribute("sedes", sedes);
+        modelo.addAttribute("usuarios", usuarios);
         modelo.addAttribute("factura", new Factura());
         return "facturas/add";
     }

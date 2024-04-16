@@ -27,6 +27,7 @@
                     <td>Fecha Validez</td>
                     <td>Concepto</td>
                     <td>Usuario</td>
+                    <td>Fichero</td>
                     <td>Acciones</td>
                 </tr>
             </thead>
@@ -45,6 +46,7 @@
                     <td th:text="${factura.fechaVa}"></td>
                     <td th:text="${factura.concepto}"></td>
                     <td th:text="${factura.usuario.nombre}"></td>
+                    <td th:text="${factura.fichero != null ? factura.fichero : 'No se ha adjuntado ningún archivo'}"></td>
 
                     <td>
                         <a class="btn btn-primary" th:href="|/facturas/edit/${factura.id}|">Editar</a>
