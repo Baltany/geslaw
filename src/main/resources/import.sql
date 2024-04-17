@@ -150,6 +150,9 @@ INSERT INTO empresa (id, nombre) VALUES (16,'PLENIMUS, S.L.');
 
 -- Insertar Datos en usuario con Relaciones
 INSERT INTO usuario (username, nombre, apellidos, dni, email, password, habilitar) VALUES ('macro', 'Juan', 'Pérez', '12345678A', 'juan@example.com', '$2a$10$PMDCjYqXJxGsVlnve1t9Jug2DkDDckvUDl8.vF4Dc6yg0FMjovsXO', 1);
+INSERT INTO usuario (username, nombre, apellidos, dni, email, password, habilitar) VALUES ('coordinador', 'Juan', 'Pérez', '12345678A', 'juan@example.com', '$2a$10$PMDCjYqXJxGsVlnve1t9Jug2DkDDckvUDl8.vF4Dc6yg0FMjovsXO', 1);
+INSERT INTO usuario (username, nombre, apellidos, dni, email, password, habilitar) VALUES ('director', 'Juan', 'Pérez', '12345678A', 'juan@example.com', '$2a$10$PMDCjYqXJxGsVlnve1t9Jug2DkDDckvUDl8.vF4Dc6yg0FMjovsXO', 1);
+INSERT INTO usuario (username, nombre, apellidos, dni, email, password, habilitar) VALUES ('trabajador', 'Juan', 'Pérez', '12345678A', 'juan@example.com', '$2a$10$PMDCjYqXJxGsVlnve1t9Jug2DkDDckvUDl8.vF4Dc6yg0FMjovsXO', 1);
 
 
 
@@ -169,6 +172,9 @@ INSERT INTO territorio (sede_id, territorio_obligado_cumplimiento_id, nombre) VA
 
 -- Relacionar usuario con tipo_usuario (por ejemplo, Admin)
 INSERT INTO usuario_tipo_usuario (tipo_usuario_id, usuario_id) VALUES (1, 1); -- Asumo que 'Admin' tiene ID 1 y 'usuario1' también tiene ID 1
+INSERT INTO usuario_tipo_usuario (tipo_usuario_id, usuario_id) VALUES (2, 2); -- Asumo que 'Admin' tiene ID 1 y 'usuario1' también tiene ID 1
+INSERT INTO usuario_tipo_usuario (tipo_usuario_id, usuario_id) VALUES (3, 3); -- Asumo que 'Admin' tiene ID 1 y 'usuario1' también tiene ID 1
+INSERT INTO usuario_tipo_usuario (tipo_usuario_id, usuario_id) VALUES (4, 4); -- Asumo que 'Admin' tiene ID 1 y 'usuario1' también tiene ID 1
 
 
 -- Relacionar sede con tipo_sede (por ejemplo, SIERRA OESTE 101)
