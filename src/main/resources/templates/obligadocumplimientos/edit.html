@@ -173,19 +173,21 @@
     <nav
     sec:authorize="hasAuthority('Director')"
     >
-    <div class="container">
-        <br>
-        <br>
-        <h3>NO TIENES PERMISOS</h3>
+    <h4>Acceso denegado</h4>
+
+    <p>Por favor identifíquese con el usuario con los privilegios correctos para acceder a esta parte de la Web.</p>
+
+    <p><a href="/logout">Salir del sistema</a></p>
 
         </nav>
     <nav
     sec:authorize="hasAuthority('Trabajador')"
     >
-    <div class="container">
-        <br>
-        <br>
-        <h3>NO TIENES PERMISOS</h3>
+    <h4>Acceso denegado</h4>
+
+    <p>Por favor identifíquese con el usuario con los privilegios correctos para acceder a esta parte de la Web.</p>
+
+    <p><a href="/logout">Salir del sistema</a></p>
 
         </nav>
     
