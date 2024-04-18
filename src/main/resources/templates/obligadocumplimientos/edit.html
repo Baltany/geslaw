@@ -9,6 +9,9 @@
 <body>
     <div th:replace="~{fragmentos/general.html :: navigation}"></div>
 
+    <nav
+    sec:authorize="hasAuthority('Admin')"
+    >
     <div class="container">
         <br>
         <br>
@@ -84,6 +87,109 @@
                     </div>
             </div>
         </form>
+
+        </nav>
+
+    <nav
+    sec:authorize="hasAuthority('Coordinador')"
+    >
+    <div class="container">
+        <br>
+        <br>
+        <h3>Editar Obligado Cumplimiento:</h3>
+        <br>
+
+        <form th:action="@{/obligadocumplimientos/add}" th:object="${obligadoCumplimiento}" method="post">
+            <input type="hidden" th:field="*{id}" />
+
+            <div class="border">
+                <div class="row g-3 m-2">
+                    <div class="col-md-6">
+                        <div class="col-md-6">
+                            <label class="form-label">Tipo de Obligado Cumplimiento:</label>
+                            <select class="form-control" id="tipo" name="tipo" required>
+                                <option value="obligadocumplimiento" th:selected="${obligadoCumplimiento.tipo == 'obligadocumplimiento'}">Obligado Cumplimiento</option>
+                                <option value="contratos" th:selected="${obligadoCumplimiento.tipo == 'contratos'}">Contratos/Autorizaciones/Licencias</option>
+                                <option value="subcontrata" th:selected="${obligadoCumplimiento.tipo == 'subcontrata'}">Subcontratas</option>
+                                <option value="seguros" th:selected="${obligadoCumplimiento.tipo == 'seguros'}">Seguros</option>
+                                <option value="inspecciones" th:selected="${obligadoCumplimiento.tipo == 'inspecciones'}">Inspecciones</option>
+                            </select>
+                        </div>
+                        
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Fecha de Validez:</label>
+                        <input type="date" th:field="*{fechaValidez}" class="form-control" />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Territorio:</label>
+                        <select th:field="*{territorio}" class="form-control">
+                            <option value="">Seleccione un territorio...</option>
+                            <option th:each="terr : ${territorios}" th:value="${terr.id}" th:text="${terr.nombre}"></option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Sede:</label>
+                        <select th:field="*{sede}" class="form-control">
+                            <option value="">Seleccione una sede...</option>
+                            <option th:each="sed : ${sedes}" th:value="${sed.id}" th:text="${sed.nombre}"></option>
+                        </select>
+                    </div>
+                    <!-- <div class="col-md-6">
+                        <label class="form-label">Usuario:</label>
+                        <select th:field="*{usuario}" class="form-control">
+                            <option value="">Seleccione un usuario...</option>
+                            <option th:each="user : ${usuarios}" th:value="${user.id}" th:text="${user.username}"></option>
+                        </select>
+                    </div> -->
+                    <div class="col-md-6">
+                        <label class="form-label">Empresa:</label>
+                        <select th:field="*{empresa}" class="form-control">
+                            <option value="">Seleccione una empresa...</option>
+                            <option th:each="emp : ${empresas}" th:value="${emp.id}" th:text="${emp.nombre}"></option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Fichero:</label>
+                        <input type="file" th:field="*{fichero}" class="form-control" accept=".pdf"/>
+                        <small th:if="${obligadoCumplimiento.fichero}" class="form-text text-muted" th:text="|Archivo actual: ${obligadoCumplimiento.fichero}|" ></small>
+                    </div>
+            </div>
+                <div class="row g-3 m-2">
+                    <div class="col-md-12">
+                        <label class="form-label">Observaciones:</label>
+                        <textarea th:field="*{observaciones}" class="form-control"></textarea>
+                    </div>
+                </div>
+                <div class="row g-3 m-2">
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-primary">Actualizar</button>
+                        <a href="/obligadocumplimientos" class="btn btn-danger">Cancelar</a>
+                    </div>
+            </div>
+        </form>
+
+        </nav>
+    <nav
+    sec:authorize="hasAuthority('Director')"
+    >
+    <div class="container">
+        <br>
+        <br>
+        <h3>NO TIENES PERMISOS</h3>
+
+        </nav>
+    <nav
+    sec:authorize="hasAuthority('Trabajador')"
+    >
+    <div class="container">
+        <br>
+        <br>
+        <h3>NO TIENES PERMISOS</h3>
+
+        </nav>
+    
+
 
         <div th:replace="~{fragmentos/general.html :: footer}"></div>
     </div>

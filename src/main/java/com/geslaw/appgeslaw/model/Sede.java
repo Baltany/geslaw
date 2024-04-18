@@ -33,7 +33,7 @@ public class Sede {
     private Long id;
 
     /*
-     * Nombre de la sede
+     * Nombre de la sede o del centro? 
      */
     private String nombre;
 
