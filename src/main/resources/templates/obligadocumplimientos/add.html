@@ -11,12 +11,12 @@
 <body>
 
     <div th:replace="~{fragmentos/general.html :: navigation}"></div>
+    <nav
+    sec:authorize="hasAuthority('Admin')">
 
     <div class="container">
         <br>
         <h3 class="mb-4">Agregar Obligado Cumplimiento</h3>
-        <nav
-        sec:authorize="hasAuthority('Admin')">
 
         <form th:action="@{/obligadocumplimientos/add}" method="post" th:object="${obligadoCumplimiento}"
             enctype="multipart/form-data">
@@ -119,8 +119,13 @@
 
         </form>
         </nav>
-        <nav
-        sec:authorize="hasAuthority('Coordinador')">
+        
+    <nav
+    sec:authorize="hasAuthority('Coordinador')">
+
+    <div class="container">
+        <br>
+        <h3 class="mb-4">Agregar Obligado Cumplimiento</h3>
 
         <form th:action="@{/obligadocumplimientos/add}" method="post" th:object="${obligadoCumplimiento}"
             enctype="multipart/form-data">
@@ -179,7 +184,7 @@
                     </div>
                 </div>
 
-                <div class="form-group row">
+                <!-- <div class="form-group row">
                     <label for="usuario" class="col-sm-4 col-form-label">Usuario:</label>
                     <div class="col-sm-8">
                         <select id="usuario" name="usuario" class="form-control" required>
@@ -189,7 +194,7 @@
                             </th:block>
                         </select>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="form-group row">
                     <label for="fichero" class="col-sm-4 col-form-label">Adjuntar Fichero:</label>
@@ -223,8 +228,13 @@
 
         </form>
         </nav>
-        <nav
-        sec:authorize="hasAuthority('Director')">
+        
+    <nav
+    sec:authorize="hasAuthority('Director')">
+
+    <div class="container">
+        <br>
+        <h3 class="mb-4">Agregar Obligado Cumplimiento</h3>
 
         <form th:action="@{/obligadocumplimientos/add}" method="post" th:object="${obligadoCumplimiento}"
             enctype="multipart/form-data">
@@ -283,7 +293,7 @@
                     </div>
                 </div>
 
-                <div class="form-group row">
+                <!-- <div class="form-group row">
                     <label for="usuario" class="col-sm-4 col-form-label">Usuario:</label>
                     <div class="col-sm-8">
                         <select id="usuario" name="usuario" class="form-control" required>
@@ -293,7 +303,7 @@
                             </th:block>
                         </select>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="form-group row">
                     <label for="fichero" class="col-sm-4 col-form-label">Adjuntar Fichero:</label>
@@ -327,6 +337,15 @@
 
         </form>
         </nav>
+        
+    <nav
+    sec:authorize="hasAuthority('Trabajador')">
+
+    <div class="container">
+        <br>
+        <h3 class="mb-4">NO TIENES PERMISOS</h3>
+        </nav>
+        
     </div>
 
     <!-- Bootstrap JS y jQuery -->

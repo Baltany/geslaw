@@ -9,6 +9,9 @@
 <body>
     <div th:replace="~{fragmentos/general.html :: navigation}"></div>
 
+    <nav
+    sec:authorize="hasAuthority('Admin')"
+    >
     <div class="container">
         <br>
         <h3>Editar Factura</h3>
@@ -84,6 +87,107 @@
             </div>
 
         </form>
+
+    </nav>
+    <nav
+    sec:authorize="hasAuthority('Coordinador')"
+    >
+    <div class="container">
+        <br>
+        <h3>Editar Factura</h3>
+
+        <form th:action="'/facturas/edit/ + ${factura.id}'" th:object="${factura}" method="post">
+            <input type="hidden" th:field="*{id}" />
+
+            <div class="border p-3 my-3">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label class="form-label">Nombre:</label>
+                        <input type="text" th:field="*{nombre}" class="form-control" />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Proveedor:</label>
+                        <input type="text" th:field="*{proveedor}" class="form-control" />
+                        <br>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Sede:</label>
+                        <select th:field="*{sede}" class="form-control">
+                            <option value="">Seleccione una sede...</option>
+                            <option th:each="sed : ${sedes}" th:value="${sed.id}" th:text="${sed.nombre}"></option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Usuario:</label>
+                        <select th:field="*{usuario}" class="form-control">
+                            <option value="">Seleccione un usuario...</option>
+                            <option th:each="user : ${usuarios}" th:value="${user.id}" th:text="${user.username}"></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <label class="form-label">Estado:</label>
+                        <div class="form-check">
+                            <input type="checkbox" id="estado" th:field="*{estado}" class="form-check-input">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Visto:</label>
+                        <div class="form-check">
+                            <input type="checkbox" id="estado" th:field="*{visto}" class="form-check-input">
+                        </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Concepto:</label>
+                            <input type="text" th:field="*{concepto}" class="form-control" />
+                        </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Fecha de Validez:</label>
+                        <input type="date" th:field="*{fechaVa}" class="form-control" />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Fichero:</label>
+                        <input type="file" th:field="*{fichero}" class="form-control" accept=".pdf"/>
+                        <small th:if="${factura.fichero}" class="form-text text-muted" th:text="|Archivo actual: ${factura.fichero}|" ></small>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <label class="form-label">Observaciones:</label>
+                        <textarea th:field="*{observaciones}" class="form-control" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                        <div class="col-md-6">
+                            <button type="submit" class="btn btn-primary">Actualizar</button>
+                            <a th:href="@{/facturas}" class="btn btn-danger">Cancelar</a>
+                        </div>
+                </div>
+            </div>
+
+        </form>
+
+    </nav>
+    <nav
+    sec:authorize="hasAuthority('Director')"
+    >
+    <div class="container">
+        <br>
+        <h3>NO TIENES PERMISOS</h3>
+
+
+    </nav>
+    <nav
+    sec:authorize="hasAuthority('Trabajador')"
+    >
+    <div class="container">
+        <br>
+        <h3>NO TIENES PERMISOS</h3>
+
+        
+
+    </nav>
 
         <div th:replace="~{fragmentos/general.html :: footer}"></div>
     </div>
