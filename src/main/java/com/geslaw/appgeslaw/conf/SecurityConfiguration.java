@@ -10,7 +10,11 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.DefaultSecurityFilterChain;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.RequestMatcher;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 @Configuration
 @EnableWebSecurity
@@ -40,27 +44,34 @@ public class SecurityConfiguration {
             ; // Utiliza el PasswordEncoder inyectado
     }
 
+    
+
     @Bean
-    public SecurityFilterChain filter(HttpSecurity httpSecurity) throws Exception {
-        return httpSecurity
-            .authorizeHttpRequests((request) -> request
-                .requestMatchers("/webjars/**", "/img/**", "/js/**", "/register/**", "/ayuda/**", "/acerca/**", "/login", "/denegado")
-                .permitAll()
-                .requestMatchers(
-                    "/usuarios/**", "/usuarios/*/**", "/usuarios/*/*/**",
-                    "/facturas/**", "/facturas/*/**", "/facturas/*/*/**",
-                    "/obligadocumplimientos/**", "/obligadocumplimientos/*/**", "/obligadocumplimientos/*/*/**",
-                    "/ayuda/**", "/acerca/**")
-                .hasAuthority("Admin"))
-            .exceptionHandling((exception) -> exception.accessDeniedPage("/denegado"))
-            .formLogin((formLogin) -> formLogin
+    public DefaultSecurityFilterChain filter(HttpSecurity httpSecurity) throws Exception {
+        
+        httpSecurity
+            .authorizeHttpRequests(authorizeRequests -> authorizeRequests
+                .requestMatchers("/webjars/**", "/img/**", "/js/**", "/register/**", "/ayuda/**", "/acerca/**", "/login", "/denegado", "/logout","/obligadocumplimientos","/facturas","/obligadocumplimientos/**","/facturas/**")
+                    .permitAll()
+                .requestMatchers("/usuarios/**", "/facturas/**", "/obligadocumplimientos/**", "/ayuda/**", "/acerca/**")
+                    .hasAnyAuthority("Admin", "Coordinador")
+                .requestMatchers("/facturas/add", "/obligadocumplimientos/add")
+                    .hasAuthority("Director")
+                .requestMatchers("/facturas", "/obligadocumplimientos")
+                    .hasAnyAuthority("Trabajador", "Director")
+                .anyRequest().authenticated())
+            .exceptionHandling(exceptionHandling -> exceptionHandling
+                .accessDeniedPage("/denegado"))
+            .formLogin(formLogin -> formLogin
                 .permitAll())
-            .rememberMe(Customizer.withDefaults())
-            .logout((logout) -> logout.invalidateHttpSession(true)
+            .logout(logout -> logout
+                .invalidateHttpSession(true)
                 .logoutSuccessUrl("/")
                 .permitAll())
-            .csrf((protection) -> protection
-                .disable())//para deshabilitar el uso de token
-            .build();
+            .csrf(csrf -> csrf
+                .disable());
+
+        return httpSecurity.build();
     }
+    
 }

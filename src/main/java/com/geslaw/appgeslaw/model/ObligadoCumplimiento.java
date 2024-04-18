@@ -1,5 +1,7 @@
 package com.geslaw.appgeslaw.model;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -7,6 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.Transient;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -44,21 +47,24 @@ public class ObligadoCumplimiento {
     private Sede sede;
 
     /* @OneToOne -> Un ObligadoCumplimiento pertenece a un unico usuario */    
-    @OneToOne
-    private Usuario usuario;
+    // @OneToOne
+    // private Usuario usuario;
 
     /* @ManyToOne -> VARIOS Obligados Cumplimientos tiene una unica Empresa */
     @ManyToOne
     private Empresa empresa;
 
 
-    private String fichero;
+    @Transient
+    private MultipartFile fichero;
+    // private String fichero;
 
     private String observaciones;
 
     private Boolean aplica;
 
     private Boolean favorable;
+
 
     // private Boolean borrar;
     

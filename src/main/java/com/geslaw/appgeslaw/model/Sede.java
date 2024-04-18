@@ -97,4 +97,9 @@ public class Sede {
     @OneToOne
     @JoinColumn(name = "sede_territorio_id")
     private Territorio territorio;
+
+
+    @OneToOne
+    @JoinColumn(name = "sede_obligado_cumplimiento_id")
+    private ObligadoCumplimiento obligadoCumplimiento;
 }

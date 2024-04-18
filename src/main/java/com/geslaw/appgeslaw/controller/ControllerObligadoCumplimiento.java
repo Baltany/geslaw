@@ -1,14 +1,24 @@
 package com.geslaw.appgeslaw.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-
+import org.springframework.util.StringUtils;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 
 import com.geslaw.appgeslaw.model.Empresa;
 import com.geslaw.appgeslaw.model.ObligadoCumplimiento;
@@ -45,6 +55,7 @@ public class ControllerObligadoCumplimiento {
     @Autowired
     private RepoUsuario repoUsuario;
 
+    @PreAuthorize("hasAnyAuthority('Admin','Coordinador','Director','Trabajador')")
     @GetMapping("")
     public String findAll(Model modelo) {
         modelo.addAttribute("obligadocumplimientos", repoObligadoCumplimiento.findAll());
@@ -52,6 +63,7 @@ public class ControllerObligadoCumplimiento {
     }
 
     //con obligadoCumplimiento si muestra el add y new ObligadCumplimiento con el findAll() falla
+    @PreAuthorize("hasAnyAuthority('Admin','Coordinador','Director')")
     @GetMapping("/add")
     public String mostrarFormulario(Model modelo){
         List<Empresa> empresas = repoEmpresa.findAll(); // Obtener todas las empresas
@@ -68,29 +80,49 @@ public class ControllerObligadoCumplimiento {
 
 
 
-
+    @PreAuthorize("hasAnyAuthority('Admin','Coordinador','Director')")
     @PostMapping("/add")
-public String addObligadoCumplimiento(@ModelAttribute("obligadoCumplimiento") ObligadoCumplimiento obligadoCumplimiento,
-                                       @RequestParam("empresa") Long empresaId,
-                                       @RequestParam("sede") Long sedeId,
-                                       @RequestParam("territorio") Long territorioId,
-                                       @RequestParam("usuario") Long usuarioId) {
+    public String addObligadoCumplimiento(
+            @ModelAttribute("obligadoCumplimiento") ObligadoCumplimiento obligadoCumplimiento,
+            @RequestParam("empresa") Long empresaId,
+            @RequestParam("sede") Long sedeId,
+            @RequestParam("territorio") Long territorioId,
+            // @RequestParam("usuario") Long usuarioId,
+            @RequestParam("fichero") MultipartFile multipartFile,
+            @RequestParam("aplica") boolean aplica,
+            @RequestParam("favorable") boolean favorable,
+            BindingResult bindingResult,
+            Model model) {
 
-    Empresa empresa = repoEmpresa.findById(empresaId).orElse(null);
-    Sede sede = repoSede.findById(sedeId).orElse(null);
-    Territorio territorio = repoTerritorio.findById(territorioId).orElse(null);
-    Usuario usuario = repoUsuario.findById(usuarioId).orElse(null);
+        if (bindingResult.hasErrors()) {
+            return "obligadocumplimientos/add";
+        }
 
-    obligadoCumplimiento.setEmpresa(empresa);
-    obligadoCumplimiento.setSede(sede);
-    obligadoCumplimiento.setTerritorio(territorio);
-    obligadoCumplimiento.setUsuario(usuario);
+        Empresa empresa = repoEmpresa.findById(empresaId).orElse(null);
+        Sede sede = repoSede.findById(sedeId).orElse(null);
+        Territorio territorio = repoTerritorio.findById(territorioId).orElse(null);
+        // Usuario usuario = repoUsuario.findById(usuarioId).orElse(null);
 
-    repoObligadoCumplimiento.save(obligadoCumplimiento);
+        if (empresa == null || sede == null || territorio == null) {
+            model.addAttribute("error", "No se encontró una o más entidades relacionadas");
+            return "error";
+        }
 
-    return "redirect:/obligadocumplimientos";
-}
+        obligadoCumplimiento.setEmpresa(empresa);
+        obligadoCumplimiento.setSede(sede);
+        obligadoCumplimiento.setTerritorio(territorio);
+        // obligadoCumplimiento.setUsuario(usuario);
+        obligadoCumplimiento.setAplica(aplica);
+        obligadoCumplimiento.setFavorable(favorable);
 
+        // Asignar el archivo multipartFile a la propiedad fichero
+        obligadoCumplimiento.setFichero(multipartFile);
+
+        // Guardar el objeto en la base de datos
+        repoObligadoCumplimiento.save(obligadoCumplimiento);
+
+        return "redirect:/obligadocumplimientos";
+    }
 
 
     // @PostMapping("/add")
@@ -139,8 +171,11 @@ public String addObligadoCumplimiento(@ModelAttribute("obligadoCumplimiento") Ob
         return "redirect:/obligadocumplimientos";
     }
 
+
+    @PreAuthorize("hasAnyAuthority('Admin', 'Coordinador')")
     @GetMapping("/edit/{id}")
     public String editForm(@PathVariable @NonNull Long id, Model model) {
+        
         Optional<ObligadoCumplimiento> optionalObligado = repoObligadoCumplimiento.findById(id);
         List<ObligadoCumplimiento> obligadoCumplimientos = repoObligadoCumplimiento.findAll();
         List<Empresa> empresas = repoEmpresa.findAll();
@@ -166,3 +201,35 @@ public String addObligadoCumplimiento(@ModelAttribute("obligadoCumplimiento") Ob
     
     
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

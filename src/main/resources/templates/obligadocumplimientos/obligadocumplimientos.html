@@ -22,13 +22,33 @@
                     <td>Validez</td>
                     <td>Territorio</td>
                     <td>Sede</td>
-                    <td>Usuario</td>
+                    <!-- <td>Usuario</td> -->
                     <td>Empresa</td>
                     <td>Fichero</td>
                     <td>Observaciones</td>
                     <td>Aplica</td>
                     <td>Favorable</td>
-                    <td>Acciones</td>
+                    <nav
+                            sec:authorize="hasAuthority('Admin')"
+                            >
+                            <td>Acciones</td>
+                    </nav>
+                    <nav
+                            sec:authorize="hasAuthority('Coordinador')"
+                            >
+                            <td>Acciones</td>
+                    </nav>
+                    <nav
+                            sec:authorize="hasAuthority('Director')"
+                            >
+                            <td>Acciones</td>
+                    </nav>
+                    <nav
+                            sec:authorize="hasAuthority('Trabajador')"
+                            >
+                            <td>Acciones</td>
+                    </nav>
+                    
                 </tr>
             </thead>
             <tbody>
@@ -37,7 +57,7 @@
                     <td th:text="${obligadocumplimiento.fechaValidez}"></td>
                     <td th:text="${obligadocumplimiento.territorio != null ? obligadocumplimiento.territorio.nombre : ''}"></td>
                     <td th:text="${obligadocumplimiento.sede != null ? obligadocumplimiento.sede.nombre : ''}"></td>
-                    <td th:text="${obligadocumplimiento.usuario != null ? obligadocumplimiento.usuario.username : ''}"></td>
+                    <!-- <td th:text="${obligadocumplimiento.usuario != null ? obligadocumplimiento.usuario.username : ''}"></td> -->
                     <td th:text="${obligadocumplimiento.empresa != null ? obligadocumplimiento.empresa.nombre : ''}"></td>
                     <td th:text="${obligadocumplimiento.fichero != null ? obligadocumplimiento.fichero : 'No se ha adjuntado ningún archivo'}"></td>
                     <td th:text="${obligadocumplimiento.observaciones != null ? obligadocumplimiento.observaciones : 'No se ha encontrado ninguna observación'}"></td>
@@ -47,12 +67,48 @@
                     <td>
                         <input type="checkbox" th:checked="${obligadocumplimiento.favorable}" disabled>
                     </td>
-                    <td>
-                        <a class="btn btn-primary" th:href="|/obligadocumplimientos/edit/${obligadocumplimiento.id}|">Editar</a>
-                        <button class="btn btn-danger" data-toggle="modal" data-target="#confirmDeleteModal"
-                            data-obligadocumplimiento-id="${obligadocumplimiento.id}"
-                            th:attr="data-obligadocumplimiento-id=${obligadocumplimiento.id}">Borrar</button>
-                    </td>
+                    
+                    <nav 
+                    sec:authorize="hasAuthority('Admin')"
+                    
+                    >
+                        <td>
+                            <a class="btn btn-primary" th:href="|/obligadocumplimientos/edit/${obligadocumplimiento.id}|">Editar</a>
+                            <button class="btn btn-danger" data-toggle="modal" data-target="#confirmDeleteModal"
+                                data-obligadocumplimiento-id="${obligadocumplimiento.id}"
+                                th:attr="data-obligadocumplimiento-id=${obligadocumplimiento.id}">Borrar</button>
+                        </td>
+                    </nav>
+                    <nav 
+                    sec:authorize="hasAuthority('Coordinador')"
+                    
+                    >
+                        <td>
+                            <a class="btn btn-primary" th:href="|/obligadocumplimientos/edit/${obligadocumplimiento.id}|">Editar</a>
+                            <button class="btn btn-danger" data-toggle="modal" data-target="#confirmDeleteModal"
+                                data-obligadocumplimiento-id="${obligadocumplimiento.id}"
+                                th:attr="data-obligadocumplimiento-id=${obligadocumplimiento.id}">Borrar</button>
+                        </td>
+                    </nav>
+                    <nav 
+                    sec:authorize="hasAuthority('Director')"
+                    
+                    >
+                        <td>
+                            <!-- ESTO HAY QUE CAMBIARLO Y DARLE LOGICA -->
+                            <a class="btn btn-primary" th:href="|/obligadocumplimientos/edit/${obligadocumplimiento.id}|">Subir</a>
+                        </td>
+                    </nav>
+                    <nav 
+                    sec:authorize="hasAuthority('Trabajador')"
+                    
+                    >
+                        <td>
+                            <!-- ESTO HAY QUE CAMBIARLO Y DARLE LOGICA -->
+                            <a class="btn btn-primary" th:href="|/obligadocumplimientos/edit/${obligadocumplimiento.id}|">Ver</a>
+                        </td>
+                    </nav>
+
                 </tr>
             </tbody>
         </table>

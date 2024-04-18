@@ -68,9 +68,9 @@ public class Usuario {
     private List<Sede> sede;
 
 
-    @OneToOne
-    @JoinColumn(name = "usuario_obligado_cumplimiento_id")
-    private ObligadoCumplimiento obligadoCumplimiento;
+    // @OneToOne
+    // @JoinColumn(name = "usuario_obligado_cumplimiento_id")
+    // private ObligadoCumplimiento obligadoCumplimiento;
 
     @OneToMany
     @JoinColumn(name = "usuario_facturas_id")

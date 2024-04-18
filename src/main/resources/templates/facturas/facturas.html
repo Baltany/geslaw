@@ -28,7 +28,25 @@
                     <td>Concepto</td>
                     <td>Usuario</td>
                     <td>Fichero</td>
-                    <td>Acciones</td>
+                    <nav
+                    sec:authorize="hasAuthority('Admin')"
+                    >
+                        <td>Acciones</td>
+                    </nav>
+                    <nav
+                    sec:authorize="hasAuthority('Coordinador')"
+                    >
+                        <td>Acciones</td>
+                    </nav>
+                    <nav
+                    sec:authorize="hasAuthority('Director')"
+                    >
+                        <td>Acciones</td>
+                    </nav>
+                    <nav
+                    sec:authorize="hasAuthority('Trabajador')">
+                        <td>Acciones</td>
+                    </nav>
                 </tr>
             </thead>
             <tbody>
@@ -48,11 +66,38 @@
                     <td th:text="${factura.usuario.nombre}"></td>
                     <td th:text="${factura.fichero != null ? factura.fichero : 'No se ha adjuntado ningún archivo'}"></td>
 
-                    <td>
-                        <a class="btn btn-primary" th:href="|/facturas/edit/${factura.id}|">Editar</a>
-                        <button class="btn btn-danger" data-toggle="modal" data-target="#confirmDeleteModal"
-                            data-factura-id="${factura.id}">Borrar</button>
-                    </td>
+                    <nav sec:authorize="hasAuthority('Admin')"
+                    >
+                        <td>
+                            <a class="btn btn-primary" th:href="|/facturas/edit/${factura.id}|">Editar</a>
+                            <button class="btn btn-danger" data-toggle="modal" data-target="#confirmDeleteModal"
+                                data-factura-id="${factura.id}">Borrar</button>
+                        </td>
+                        
+                    </nav>
+                    <nav sec:authorize="hasAuthority('Coordinador')"
+                    >
+                        <td>
+                            <a class="btn btn-primary" th:href="|/facturas/edit/${factura.id}|">Editar</a>
+                            <button class="btn btn-danger" data-toggle="modal" data-target="#confirmDeleteModal"
+                                data-factura-id="${factura.id}">Borrar</button>
+                        </td>
+                        
+                    </nav>
+                    <nav sec:authorize="hasAuthority('Director')"
+                    >
+                        <td>
+                            <a class="btn btn-primary" th:href="|/facturas/edit/${factura.id}|">Subir</a>
+                        </td>
+                        
+                    </nav>
+                    <nav sec:authorize="hasAuthority('Trabajador')"
+                    >
+                        <td>
+                            <a class="btn btn-primary" th:href="|/facturas/edit/${factura.id}|">Ver</a>
+                        </td>
+                        
+                    </nav>
                 </tr>
             </tbody>
         </table>
