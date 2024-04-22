@@ -9,9 +9,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -127,17 +129,24 @@ public class ControllerFactura {
         }
     }
 
-    @PostMapping
-    public String delete(
-        @PathVariable("id") @NonNull Long id
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteFactura(
+        @PathVariable("id") Long id
     ){
         try{
-            repoFactura.deleteById(id);
+            Factura factura = repoFactura.findById(id).orElse(null);
+
+            if (factura != null) {
+                repoFactura.delete(factura);
+                return ResponseEntity.ok("Factura eliminada correctamente");
+            }else{
+                return ResponseEntity.notFound().build();
+            }
+
         }catch(Exception e){
-            return "error";
+            return ResponseEntity.status(500).body("Error al eliminar la factura");
         }
 
-        return "redirect:/facturas";
     }
 
     @GetMapping("/edit/{id}")

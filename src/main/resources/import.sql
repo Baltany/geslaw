@@ -161,7 +161,7 @@ INSERT INTO sede (nombre, direccion, localidad, provincia, telefono, cp, tipo_ce
 
 
 -- Insertar Datos en factura
-INSERT INTO factura (estado, visto, sede_id, usuario_id, concepto, fecha_va, nombre, observaciones, proveedor, fichero) VALUES (1, 1, 1, 1, 'Servicios de Consultoría', '2024-04-10', 'Factura Consultoría', 'Detalles de la factura', 'Consultora S.A.', 'factura_consultoria.pdf');
+INSERT INTO factura (estado, visto, sede_id, usuario_id, concepto, fecha_va, nombre, observaciones, proveedor, fichero) VALUES (1, 1, 1, 1, 'Servicios de Consultoria', '2024-04-10', 'Factura Consultoria', 'Detalles de la factura', 'Consultora S.A.', 'factura_consultoria.pdf');
 
 
 -- Insertar Datos en obligado_cumplimiento con empresa_id establecido manualmente(sede_id y territorio_id habría que añadirlos)
