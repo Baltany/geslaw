@@ -16,9 +16,9 @@
         <br>
         <h3>Editar Factura</h3>
 
-        <form th:action="'/facturas/edit/ + ${factura.id}'" th:object="${factura}" method="post">
+        <form th:action="@{'/facturas/edit/' + ${factura.id}}" th:object="${factura}" method="post" enctype="multipart/form-data">
             <input type="hidden" th:field="*{id}" />
-
+        
             <div class="border p-3 my-3">
                 <div class="row">
                     <div class="col-md-6">
@@ -28,8 +28,9 @@
                     <div class="col-md-6">
                         <label class="form-label">Proveedor:</label>
                         <input type="text" th:field="*{proveedor}" class="form-control" />
-                        <br>
                     </div>
+                </div>
+                <div class="row mt-3">
                     <div class="col-md-6">
                         <label class="form-label">Sede:</label>
                         <select th:field="*{sede}" class="form-control">
@@ -55,20 +56,24 @@
                     <div class="col-md-6">
                         <label class="form-label">Visto:</label>
                         <div class="form-check">
-                            <input type="checkbox" id="estado" th:field="*{visto}" class="form-check-input">
+                            <input type="checkbox" id="visto" th:field="*{visto}" class="form-check-input">
                         </div>
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label">Concepto:</label>
-                            <input type="text" th:field="*{concepto}" class="form-control" />
-                        </div>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <label class="form-label">Concepto:</label>
+                        <input type="text" th:field="*{concepto}" class="form-control" />
+                    </div>
                     <div class="col-md-6">
                         <label class="form-label">Fecha de Validez:</label>
                         <input type="date" th:field="*{fechaVa}" class="form-control" />
                     </div>
+                </div>
+                <div class="row mt-3">
                     <div class="col-md-6">
                         <label class="form-label">Fichero:</label>
-                        <input type="file" th:field="*{fichero}" class="form-control" accept=".pdf"/>
+                        <input type="file" th:field="*{file}" class="form-control" accept=".pdf"/>
                         <small th:if="${factura.fichero}" class="form-text text-muted" th:text="|Archivo actual: ${factura.fichero}|" ></small>
                     </div>
                 </div>
@@ -79,14 +84,14 @@
                     </div>
                 </div>
                 <div class="row mt-3">
-                        <div class="col-md-6">
-                            <button type="submit" class="btn btn-primary">Actualizar</button>
-                            <a th:href="@{/facturas}" class="btn btn-danger">Cancelar</a>
-                        </div>
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-primary">Actualizar</button>
+                        <a th:href="@{/facturas}" class="btn btn-danger">Cancelar</a>
+                    </div>
                 </div>
             </div>
-
         </form>
+        
 
     </nav>
     <nav
@@ -96,7 +101,7 @@
         <br>
         <h3>Editar Factura</h3>
 
-        <form th:action="'/facturas/edit/ + ${factura.id}'" th:object="${factura}" method="post">
+        <form th:action="'/facturas/edit/' + ${factura.id}" th:object="${factura}" method="post">
             <input type="hidden" th:field="*{id}" />
 
             <div class="border p-3 my-3">

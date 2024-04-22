@@ -180,4 +180,3 @@ INSERT INTO usuario_tipo_usuario (tipo_usuario_id, usuario_id) VALUES (4, 4); --
 -- Relacionar sede con tipo_sede (por ejemplo, SIERRA OESTE 101)
 INSERT INTO sede_tipo_sede (sede_id, tipo_sede_id) VALUES (1, 1); -- Asumo que 'Sede Principal' tiene ID 1 y 'SIERRA OESTE 101' también tiene ID 1
 
-

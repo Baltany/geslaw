@@ -1,5 +1,7 @@
 package com.geslaw.appgeslaw.model;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import jakarta.annotation.Generated;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -7,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.Transient;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -33,7 +36,12 @@ public class Factura {
      */
     private String proveedor;
 
+    @Transient
+    private MultipartFile file;
+
+    
     private String fichero;
+
 
 
 
