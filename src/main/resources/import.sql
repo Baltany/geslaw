@@ -149,10 +149,10 @@ INSERT INTO empresa (id, nombre) VALUES (16,'PLENIMUS, S.L.');
 
 
 -- Insertar Datos en usuario con Relaciones
-INSERT INTO usuario (username, nombre, apellidos, dni, email, password, habilitar) VALUES ('macro', 'Juan', 'Pérez', '12345678A', 'juan@example.com', '$2a$10$PMDCjYqXJxGsVlnve1t9Jug2DkDDckvUDl8.vF4Dc6yg0FMjovsXO', 1);
-INSERT INTO usuario (username, nombre, apellidos, dni, email, password, habilitar) VALUES ('coordinador', 'Juan', 'Pérez', '12345678A', 'juan@example.com', '$2a$10$PMDCjYqXJxGsVlnve1t9Jug2DkDDckvUDl8.vF4Dc6yg0FMjovsXO', 1);
-INSERT INTO usuario (username, nombre, apellidos, dni, email, password, habilitar) VALUES ('director', 'Juan', 'Pérez', '12345678A', 'juan@example.com', '$2a$10$PMDCjYqXJxGsVlnve1t9Jug2DkDDckvUDl8.vF4Dc6yg0FMjovsXO', 1);
-INSERT INTO usuario (username, nombre, apellidos, dni, email, password, habilitar) VALUES ('trabajador', 'Juan', 'Pérez', '12345678A', 'juan@example.com', '$2a$10$PMDCjYqXJxGsVlnve1t9Jug2DkDDckvUDl8.vF4Dc6yg0FMjovsXO', 1);
+INSERT INTO usuario (username, nombre, apellidos, dni, email, password, habilitar) VALUES ('macro', 'Juan', 'Perez', '12345678A', 'juan@example.com', '$2a$10$PMDCjYqXJxGsVlnve1t9Jug2DkDDckvUDl8.vF4Dc6yg0FMjovsXO', 1);
+INSERT INTO usuario (username, nombre, apellidos, dni, email, password, habilitar) VALUES ('coordinador', 'Juanito', 'Perez', '12345678A', 'juan@example.com', '$2a$10$PMDCjYqXJxGsVlnve1t9Jug2DkDDckvUDl8.vF4Dc6yg0FMjovsXO', 1);
+INSERT INTO usuario (username, nombre, apellidos, dni, email, password, habilitar) VALUES ('director', 'Antonio', 'Perez', '12345678A', 'juan@example.com', '$2a$10$PMDCjYqXJxGsVlnve1t9Jug2DkDDckvUDl8.vF4Dc6yg0FMjovsXO', 1);
+INSERT INTO usuario (username, nombre, apellidos, dni, email, password, habilitar) VALUES ('trabajador', 'Pedro', 'Perez', '12345678A', 'juan@example.com', '$2a$10$PMDCjYqXJxGsVlnve1t9Jug2DkDDckvUDl8.vF4Dc6yg0FMjovsXO', 1);
 
 
 
