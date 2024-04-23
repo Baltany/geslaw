@@ -36,6 +36,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.bind.annotation.PostMapping;
 
 
@@ -146,27 +147,36 @@ public class ControllerObligadoCumplimiento {
     // }
 
 
-    @GetMapping("/delete/{id}")
-    public String deleteForm(@PathVariable(name = "id") @NonNull Long id,Model modelo) {
-        try{
-            Optional<ObligadoCumplimiento> obligadoCumplimiento = repoObligadoCumplimiento.findById(id);
-            if(obligadoCumplimiento.isPresent()){
-                modelo.addAttribute("obligadocumplimiento", obligadoCumplimiento.get());
-                return "obligadocumplimientos/delete";
-            }else{
-                return "error";
-            }
-        }catch(Exception e){
-            return "error";
-        }
-    }
+    // @GetMapping("/delete/{id}")
+    // public String deleteForm(@PathVariable(name = "id") @NonNull Long id,Model modelo) {
+    //     try{
+    //         Optional<ObligadoCumplimiento> obligadoCumplimiento = repoObligadoCumplimiento.findById(id);
+    //         if(obligadoCumplimiento.isPresent()){
+    //             modelo.addAttribute("obligadocumplimiento", obligadoCumplimiento.get());
+    //             return "obligadocumplimientos/delete";
+    //         }else{
+    //             return "error";
+    //         }
+    //     }catch(Exception e){
+    //         return "error";
+    //     }
+    // }
 
     @PostMapping("/delete/{id}")
-    public String postMethodName(@PathVariable("id") @NonNull Long id) {
+    public String deleteObligado (@PathVariable Long id,RedirectAttributes redirectAttributes){
         try{
-            repoObligadoCumplimiento.deleteById(id);
+            Optional<ObligadoCumplimiento> obligadoCumplimientoOptional = repoObligadoCumplimiento.findById(id);
+            
+            if(obligadoCumplimientoOptional.isPresent()){
+                ObligadoCumplimiento obligadoCumplimiento = obligadoCumplimientoOptional.get();
+                repoObligadoCumplimiento.delete(obligadoCumplimiento);
+                redirectAttributes.addFlashAttribute("successMessage", "Obligado Cumplimiento eliminado correctamente");
+
+            }else{
+                redirectAttributes.addFlashAttribute("errorMessage", "Obligado Cumplimiento no encontrado");
+            }
         }catch(Exception e){
-            return "error";
+            redirectAttributes.addFlashAttribute("errorMessage", "Erro al intentar borrar el Obligado Cumplimiento");
         }
         return "redirect:/obligadocumplimientos";
     }

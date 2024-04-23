@@ -74,9 +74,13 @@
                     >
                         <td>
                             <a class="btn btn-primary" th:href="|/obligadocumplimientos/edit/${obligadocumplimiento.id}|">Editar</a>
-                            <button class="btn btn-danger" data-toggle="modal" data-target="#confirmDeleteModal"
-                                data-obligadocumplimiento-id="${obligadocumplimiento.id}"
-                                th:attr="data-obligadocumplimiento-id=${obligadocumplimiento.id}">Borrar</button>
+                            <button class="btn btn-danger"
+                            data-toggle="modal"
+                            data-target="#confirmDeleteModal"
+                            th:data-obligadocumplimiento-id="${obligadocumplimiento.id}"
+                            th:if="${#authorization.expression('hasAuthority(''Admin'') or hasAuthority(''Coordinador'')')}">
+                            Borrar
+                            </button>
                         </td>
                     </nav>
                     <nav 
@@ -85,9 +89,13 @@
                     >
                         <td>
                             <a class="btn btn-primary" th:href="|/obligadocumplimientos/edit/${obligadocumplimiento.id}|">Editar</a>
-                            <button class="btn btn-danger" data-toggle="modal" data-target="#confirmDeleteModal"
-                                data-obligadocumplimiento-id="${obligadocumplimiento.id}"
-                                th:attr="data-obligadocumplimiento-id=${obligadocumplimiento.id}">Borrar</button>
+                            <button class="btn btn-danger"
+                            data-toggle="modal"
+                            data-target="#confirmDeleteModal"
+                            th:data-obligadocumplimiento-id="${obligadocumplimiento.id}"
+                            th:if="${#authorization.expression('hasAuthority(''Admin'') or hasAuthority(''Coordinador'')')}">
+                            Borrar
+                            </button>
                         </td>
                     </nav>
                     <nav 
@@ -147,19 +155,40 @@
         $(document).ready(function () {
             $('#confirmDeleteModal').on('show.bs.modal', function (event) {
                 const button = $(event.relatedTarget);
-                const usuarioId = parseInt(button.attr("data-obligadocumplimiento-id"));
-                const modal = $(this);
-                modal
-                    .find('#confirmDeleteButton')
-                    .attr("data-obligadocumplimiento-id", usuarioId);
+                const obligadocumplimientoId = button.data("obligadocumplimiento-id");
+
+                if (obligadocumplimientoId !== undefined && !isNaN(parseInt(obligadocumplimientoId))) {
+                    const modal = $(this);
+                    modal.find('#confirmDeleteButton').data("obligadocumplimiento-id", obligadocumplimientoId);
+                } else {
+                    console.error("ID de obligadocumplimiento no válido:", obligadocumplimientoId);
+                }
             });
 
             $('#confirmDeleteButton').click(function (event) {
-                const usuarioId = $(this).attr("data-obligadocumplimiento-id");
-                window.location.href = "/obligadocumplimientos/delete/" + usuarioId;
+                const obligadocumplimientoId = $(this).data("obligadocumplimiento-id");
+
+                if (obligadocumplimientoId !== undefined && !isNaN(parseInt(obligadocumplimientoId))) {
+                    fetch(`/obligadocumplimientos/delete/${obligadocumplimientoId}`, {
+                        method: 'POST'
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            window.location.href = "/obligadocumplimientos"; // Redirige después de eliminar
+                        } else {
+                            console.error("Error al eliminar la obligadocumplimiento:", response.statusText);
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error de red:", error);
+                    });
+                } else {
+                    console.error("ID de obligadocumplimiento no válido:", obligadocumplimientoId);
+                }
             });
         });
     </script>
+
 
 </body>
 

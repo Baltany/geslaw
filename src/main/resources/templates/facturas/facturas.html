@@ -86,8 +86,13 @@
                     >
                         <td>
                             <a class="btn btn-primary" th:href="|/facturas/edit/${factura.id}|">Editar</a>
-                            <button class="btn btn-danger" data-toggle="modal" data-target="#confirmDeleteModal"
-                                data-factura-id="${factura.id}">Borrar</button>
+                            <button class="btn btn-danger"
+                            data-toggle="modal"
+                            data-target="#confirmDeleteModal"
+                            th:data-factura-id="${factura.id}"
+                            th:if="${#authorization.expression('hasAuthority(''Admin'') or hasAuthority(''Coordinador'')')}">
+                            Borrar
+                            </button>
                         </td>
                         
                     </nav>
