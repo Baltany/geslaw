@@ -157,7 +157,7 @@
 
                 if (facturaId !== undefined && !isNaN(parseInt(facturaId))) {
                     fetch(`/facturas/delete/${facturaId}`, {
-                        method: 'DELETE'
+                        method: 'POST'
                     })
                     .then(response => {
                         if (response.ok) {

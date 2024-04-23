@@ -129,7 +129,7 @@ public class ControllerFactura {
     //     }
     // }
 
-    @DeleteMapping("/delete/{id}")
+    @PostMapping("/delete/{id}")
     public String deleteFactura(@PathVariable Long id, RedirectAttributes redirectAttributes) {
         try {
             Optional<Factura> facturaOptional = repoFactura.findById(id);
