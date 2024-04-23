@@ -4,6 +4,7 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -53,8 +54,9 @@ public class SecurityConfiguration {
             .authorizeHttpRequests(authorizeRequests -> authorizeRequests
                 .requestMatchers("/webjars/**", "/img/**", "/js/**", "/register/**", "/ayuda/**", "/acerca/**", "/login", "/denegado", "/logout","/obligadocumplimientos","/facturas","/obligadocumplimientos/**","/facturas/**")
                     .permitAll()
-                .requestMatchers("/usuarios/**", "/facturas/**", "/obligadocumplimientos/**", "/ayuda/**", "/acerca/**")
+                .requestMatchers("/usuarios/**", "/usuarios/*/*/**", "/facturas/**","/facturas/*/*/**", "/obligadocumplimientos/**","/obligadocumplimientos/*/*/**", "/ayuda/**", "/acerca/**")
                     .hasAnyAuthority("Admin", "Coordinador")
+                .requestMatchers(HttpMethod.DELETE,"/facturas/delete/**","/obligadocumplimientos/delete/**").hasAnyAuthority("Admin","Coordinador")
                 .requestMatchers("/facturas/add", "/obligadocumplimientos/add")
                     .hasAuthority("Director")
                 .requestMatchers("/facturas", "/obligadocumplimientos")

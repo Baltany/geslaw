@@ -114,40 +114,40 @@ public class ControllerFactura {
         }
     }
 
-    @GetMapping("/delete/{id}")
-    public String deleteForm(@PathVariable(name = "id") @NonNull Long id,Model modelo ){
-        try{
-            Optional<Factura> factura = repoFactura.findById(id);
-            if(factura.isPresent()){
-                modelo.addAttribute("factura", factura.get());
-                return "facturas/delete";
-            } else{
-                return "error";
-            }
-        }catch(Exception e){
-            return "error";
-        }
-    }
+    // @GetMapping("/delete/{id}")
+    // public String deleteForm(@PathVariable(name = "id") @NonNull Long id,Model modelo ){
+    //     try{
+    //         Optional<Factura> factura = repoFactura.findById(id);
+    //         if(factura.isPresent()){
+    //             modelo.addAttribute("factura", factura.get());
+    //             return "facturas/delete";
+    //         } else{
+    //             return "error";
+    //         }
+    //     }catch(Exception e){
+    //         return "error";
+    //     }
+    // }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> deleteFactura(
-        @PathVariable("id") Long id
-    ){
-        try{
-            Factura factura = repoFactura.findById(id).orElse(null);
-
-            if (factura != null) {
+    public String deleteFactura(@PathVariable Long id, RedirectAttributes redirectAttributes) {
+        try {
+            Optional<Factura> facturaOptional = repoFactura.findById(id);
+    
+            if (facturaOptional.isPresent()) {
+                Factura factura = facturaOptional.get();
                 repoFactura.delete(factura);
-                return ResponseEntity.ok("Factura eliminada correctamente");
-            }else{
-                return ResponseEntity.notFound().build();
+                redirectAttributes.addFlashAttribute("successMessage", "Factura eliminada correctamente");
+            } else {
+                redirectAttributes.addFlashAttribute("errorMessage", "Factura no encontrada");
             }
-
-        }catch(Exception e){
-            return ResponseEntity.status(500).body("Error al eliminar la factura");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", "Error al eliminar la factura");
         }
-
+    
+        return "redirect:/facturas"; // Redirige a la página principal de facturas
     }
+    
 
     @GetMapping("/edit/{id}")
     public String editForm(@PathVariable Long id, Model model) {
