@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.lang.NonNull;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -81,6 +82,8 @@ public class ControllerUsuario {
             // Si hay errores de validación, volver a mostrar el formulario con los mensajes de error
             return "usuarios/add";
         }
+        //Encryptamos la password
+        usuario.setPassword(new BCryptPasswordEncoder().encode(usuario.getPassword()));
         repoUsuario.save(usuario);
 
         return "redirect:/usuarios/";
