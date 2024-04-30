@@ -94,6 +94,8 @@
         
 
     </nav>
+
+    <!-- No puede editar una sede y ponerse en otra sede en la que le usuario no esté eso lo deberá de hacer el admin -->
     <nav
     sec:authorize="hasAuthority('Coordinador')"
     >
@@ -174,6 +176,7 @@
         </form>
 
     </nav>
+
     <nav
     sec:authorize="hasAuthority('Director')"
     >

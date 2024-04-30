@@ -50,6 +50,8 @@
                 </tr>
             </thead>
             <tbody>
+                <nav sec:authorize="hasAuthority('Admin')"
+                >
                 <tr th:each="factura: ${facturas}">
                     <td th:text="${factura.nombre}"></td>
                     <td th:text="${factura.proveedor}"></td>
@@ -66,8 +68,6 @@
                     <td th:text="${factura.usuario.username}"></td>
                     <td th:text="${factura.fichero != null ? factura.fichero : 'No se ha adjuntado ningún archivo'}"></td>
 
-                    <nav sec:authorize="hasAuthority('Admin')"
-                    >
                         <td>
                             <a class="btn btn-primary" th:href="|/facturas/edit/${factura.id}|">Editar</a>
                             <button class="btn btn-danger"
@@ -82,8 +82,25 @@
                         </td>
                         
                     </nav>
+                    
+                    <!-- Unicamente tiene que mostrar las facturas que se encuentran en su sede -->
                     <nav sec:authorize="hasAuthority('Coordinador')"
                     >
+                    <tr th:each="factura: ${facturas}">
+                        <td th:text="${factura.nombre}"></td>
+                        <td th:text="${factura.proveedor}"></td>
+                        <td th:text="${factura.sede.nombre}"></td>
+                        <td>
+                          <input type="checkbox" th:checked="${factura.estado}" disabled>
+                      </td>
+                        <td th:text="${factura.observaciones}"></td>
+                        <td>
+                            <input type="checkbox" th:checked="${factura.visto}" disabled>
+                        </td>
+                        <td th:text="${factura.fechaVa}"></td>
+                        <td th:text="${factura.concepto}"></td>
+                        <td th:text="${factura.usuario.username}"></td>
+                        <td th:text="${factura.fichero != null ? factura.fichero : 'No se ha adjuntado ningún archivo'}"></td>
                         <td>
                             <a class="btn btn-primary" th:href="|/facturas/edit/${factura.id}|">Editar</a>
                             <button class="btn btn-danger"
@@ -98,6 +115,21 @@
                     </nav>
                     <nav sec:authorize="hasAuthority('Director')"
                     >
+                    <tr th:each="factura: ${facturas}">
+                        <td th:text="${factura.nombre}"></td>
+                        <td th:text="${factura.proveedor}"></td>
+                        <td th:text="${factura.sede.nombre}"></td>
+                        <td>
+                          <input type="checkbox" th:checked="${factura.estado}" disabled>
+                      </td>
+                        <td th:text="${factura.observaciones}"></td>
+                        <td>
+                            <input type="checkbox" th:checked="${factura.visto}" disabled>
+                        </td>
+                        <td th:text="${factura.fechaVa}"></td>
+                        <td th:text="${factura.concepto}"></td>
+                        <td th:text="${factura.usuario.username}"></td>
+                        <td th:text="${factura.fichero != null ? factura.fichero : 'No se ha adjuntado ningún archivo'}"></td>
                         <td>
                             <a class="btn btn-primary" th:href="|/facturas/edit/${factura.id}|">Subir</a>
                         </td>
@@ -105,6 +137,21 @@
                     </nav>
                     <nav sec:authorize="hasAuthority('Trabajador')"
                     >
+                    <tr th:each="factura: ${facturas}">
+                        <td th:text="${factura.nombre}"></td>
+                        <td th:text="${factura.proveedor}"></td>
+                        <td th:text="${factura.sede.nombre}"></td>
+                        <td>
+                          <input type="checkbox" th:checked="${factura.estado}" disabled>
+                      </td>
+                        <td th:text="${factura.observaciones}"></td>
+                        <td>
+                            <input type="checkbox" th:checked="${factura.visto}" disabled>
+                        </td>
+                        <td th:text="${factura.fechaVa}"></td>
+                        <td th:text="${factura.concepto}"></td>
+                        <td th:text="${factura.usuario.username}"></td>
+                        <td th:text="${factura.fichero != null ? factura.fichero : 'No se ha adjuntado ningún archivo'}"></td>
                         <td>
                             <a class="btn btn-primary" th:href="|/facturas/edit/${factura.id}|">Ver</a>
                         </td>
