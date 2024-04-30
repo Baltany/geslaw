@@ -24,3 +24,7 @@ O un usuario tiene muchas sedes y muchas sedes tienen muchos usuarios
 11.Un trabajador solo puede ver las facturas etc de su sede?
 La misma pregunta pero con director.
 
+12.Una sede tiene varias facturas? 
+
+13.Jose tiene que ponerse conmigo con la base de datos verla y comprobar que fallos hay
+

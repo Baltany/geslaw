@@ -4,16 +4,181 @@
 <head>
     <title>Ges-Law</title>
     <th:block th:replace="~{fragmentos/general.html :: headerfiles}"></th:block>
+    <style>
+        /* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.contenidoform {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.titulo_simple {
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.linea_sep {
+    border-bottom: 2px solid #f16b6f;
+    width: 80px;
+    margin-top: 10px;
+}
+
+.anchoformcontacto {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.anchocontacto {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.tamcontacto {
+    flex: 0 0 48%;
+}
+
+.campo {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    resize: none;
+}
+
+.texto-gris {
+    color: #666;
+}
+
+.enviar {
+    padding: 10px 20px;
+    background-color: #f16b6f;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.enviar:hover {
+    background-color: #d1565f;
+}
+
+/* Estilos de iconos */
+.icocontacto {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-size: cover;
+    margin-right: 10px;
+}
+
+.icocontactousuario {
+    background-image: url('path/to/user-icon.png');
+}
+
+.icocontactotelefono {
+    background-image: url('path/to/phone-icon.png');
+}
+
+.icocontactoasunto {
+    background-image: url('path/to/subject-icon.png');
+}
+
+.icocontactocorreo {
+    background-image: url('path/to/email-icon.png');
+}
+
+.icocontactomensaje {
+    background-image: url('path/to/message-icon.png');
+}
+
+    </style>
 </head>
 
 <body>
     <div th:replace="~{fragmentos/general.html :: navigation}"> </div>
+    <br>
         <div class="container">        
-            <h5>AYUDA</h5>
-            <p>Seleccione una opción de los menús.</p>
-            <p>Según el tipo de usuario podrá acceder a unas partes
-                u otras de esta Web. </p>
+            <section class="contenidoform ancho900">
+                <h1 class="titulo_simple">
+                    Formulario de Contacto
+                    <div class="linea_sep"></div>
+                </h1>
+                <form autocomplete="off" method="post" action="procesar_formulario.php">
+                    <div class="anchoformcontacto">
+                        <div class="anchocontacto">
+                            <div class="tamcontacto">
+                                <div class="icocontacto icocontactousuario"></div>
+                                <input id="nombre" name="nombre" type="text" class="campo" placeholder="Nombre" required>
+                            </div>
+                            <div class="tamcontacto">
+                                <div class="icocontacto icocontactotelefono"></div>
+                                <input id="telefono" name="telefono" type="tel" class="campo" placeholder="Teléfono" required>
+                            </div>
+                        </div>
+                        <div class="anchocontacto">
+                            <div class="tamcontacto">
+                                <div class="icocontacto icocontactoasunto"></div>
+                                <input id="asunto" name="asunto" type="text" class="campo" placeholder="Asunto" required>
+                            </div>
+                            <div class="tamcontacto">
+                                <div class="icocontacto icocontactocorreo"></div>
+                                <input id="email" type="email" name="email" class="campo" placeholder="Email" required>
+                            </div>
+                        </div>
+                        <div class="anchocontacto" style="margin-top: 20px;">
+                            <div class="icocontacto icocontactomensaje"></div>
+                            <textarea id="mensaje" name="mensaje" class="textarea" placeholder="Mensaje" required></textarea>
+                        </div>
+                        <div class="anchocontacto texto-gris" style="margin-top: 30px;">
+                            <input type="checkbox" id="lopd" required>
+                            Al marcar esta casilla confirmas que has sido informado y aceptas la <a href="https://macrosad.es/legal/avisolegal.php" class="color-rosa" target="_blank">LOPD</a>.
+                        </div>
+                        <div id="captcha" align="center" class="g-recaptcha" data-sitekey="your_recaptcha_site_key" style="margin-top: 20px;"></div>
+                        <div class="marcoenviar">
+                            <input type="submit" value="Enviar Consulta" class="enviar">
+                        </div>
+                    </div>
+                </form>
+            </section>
         </div>
+    
+    
+        <!-- Scripts adicionales si es necesario -->
+        <script>
+            function mandaMensaje() {
+                // Lógica de envío del mensaje (puedes implementarla según tus necesidades)
+                alert('Mensaje enviado correctamente');
+            }
+        </script>
+
     <div th:replace="~{fragmentos/general.html :: footer}"></div>
     
 </body>
