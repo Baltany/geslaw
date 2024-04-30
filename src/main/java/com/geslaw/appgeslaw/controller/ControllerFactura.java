@@ -92,7 +92,7 @@ public class ControllerFactura {
             if (!file.isEmpty()) {
                 // Guardar el archivo adjunto en el sistema de archivos
                 String originalFileName = file.getOriginalFilename();
-                Path uploadPath = Paths.get("/docs/obligados", originalFileName);
+                Path uploadPath = Paths.get("/docs/facturas", originalFileName);
                 
                 // Crear directorios si no existen
                 Files.createDirectories(uploadPath.getParent());
