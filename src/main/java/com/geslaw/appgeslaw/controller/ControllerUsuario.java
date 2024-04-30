@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.geslaw.appgeslaw.model.Sede;
 import com.geslaw.appgeslaw.model.TipoUsuario;
 import com.geslaw.appgeslaw.model.Usuario;
 import com.geslaw.appgeslaw.repo.RepoFactura;
@@ -67,13 +68,20 @@ public class ControllerUsuario {
     }
 
     //muestra la sede a la que pertenece cada usuario
-    @GetMapping("/index")
-    public String paginaInicio(Model model, Authentication authentication) {
-        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        Usuario usuario = repoUsuario.findByUsername(userDetails.getUsername());
-        model.addAttribute("usuario", usuario);
-        return "index";
-    }
+@GetMapping("/index")
+public String paginaInicio(Model model, Authentication authentication) {
+    UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+    Usuario usuario = repoUsuario.findByUsername(userDetails.getUsername());
+    
+    // Cargar la lista de sedes asociadas al usuario
+    List<Sede> sedes = usuario.getSede();
+    
+    model.addAttribute("usuario", usuario);
+    model.addAttribute("sedes", sedes); // Agregar las sedes al modelo
+
+    return "index";
+}
+
 
 
     @GetMapping("/add")

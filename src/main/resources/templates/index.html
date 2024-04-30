@@ -40,9 +40,13 @@
         <h5 class="card-title">Macrosad</h5>
         <p class="card-text">Bienvenido a Ges-Law!</p>
         <nav sec:authorize="hasAuthority('Coordinador')">
+          <strong>
           <p>Sede a la que perteneces:
-            <span th:if="${usuario.sedes != null}" th:text="${#strings.capitalize(usuario.sedes[0].nombre)}">Nombre de la Sede</span>
+              <span th:if="${sedes != null and not #lists.isEmpty(sedes)}"
+                  th:text="${#strings.capitalize(sedes[0].nombre)}">Nombre de la Sede</span>
+              <span th:unless="${sedes != null and not #lists.isEmpty(sedes)}">No se encontró la sede</span>
           </p>
+        </strong>
         </nav>
         <a href="/login" class="btn btn-primary">Empezar ahora!</a>
       </div>
