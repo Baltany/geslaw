@@ -16,4 +16,5 @@ relacion uno a muchos?
 
 8.ObligadoCumplimiento que tipo de relacion tiene con Territorio?
 
+9.Un usuario pertence únicamente a una sede?
 
