@@ -41,7 +41,7 @@
         <p class="card-text">Bienvenido a Ges-Law!</p>
         <nav sec:authorize="hasAuthority('Coordinador')">
           <strong>
-          <p>Sede a la que perteneces:
+          <p>Sede a la que perteneces: <span th:each="sede : ${sedes}" th:text="${#strings.capitalize(sede.nombre)} + ', '"></span>
               <span th:if="${sedes != null and not #lists.isEmpty(sedes)}"
                   th:text="${#strings.capitalize(sedes[0].nombre)}">Nombre de la Sede</span>
               <span th:unless="${sedes != null and not #lists.isEmpty(sedes)}">No se encontró la sede</span>
