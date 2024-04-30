@@ -21,3 +21,6 @@ O un usuario tiene muchas sedes y muchas sedes tienen muchos usuarios
 
 10.Pongo la sede a la que pertenece el usuario coordinador en el menú de navegación a la derecha?
 
+11.Un trabajador solo puede ver las facturas etc de su sede?
+La misma pregunta pero con director.
+
