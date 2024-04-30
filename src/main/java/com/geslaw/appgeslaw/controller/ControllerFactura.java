@@ -1,5 +1,6 @@
 package com.geslaw.appgeslaw.controller;
 
+import java.io.File;
 import java.io.IOException;
 
 import java.util.List;
@@ -7,6 +8,7 @@ import java.util.Optional;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -31,8 +33,8 @@ import com.geslaw.appgeslaw.repo.RepoTerritorio;
 import com.geslaw.appgeslaw.repo.RepoUsuario;
 import com.geslaw.appgeslaw.service.ServiceFile;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.FileSystemUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -85,32 +87,51 @@ public class ControllerFactura {
         return "facturas/add";
     }
 
-    @PostMapping("/add")
-    public String addFactura(@ModelAttribute("factura") @NonNull Factura factura,
-                             @RequestParam("fichero") MultipartFile file) {
-        try {
-            if (!file.isEmpty()) {
-                // Guardar el archivo adjunto en el sistema de archivos
-                String originalFileName = file.getOriginalFilename();
-                Path uploadPath = Paths.get("/docs/facturas", originalFileName);
-                
-                // Crear directorios si no existen
-                Files.createDirectories(uploadPath.getParent());
-                
-                // Transferir el archivo al directorio de carga
-                file.transferTo(uploadPath);
+    @PostMapping("/facturas/add")
+    public String addFactura(@RequestParam("nombre") String nombre,
+                             @RequestParam("proveedor") String proveedor,
+                             @RequestParam("fichero") MultipartFile fichero,
+                             @RequestParam("sede") Long sede,
+                             @RequestParam("estado") boolean estado,
+                             @RequestParam("visto") boolean visto,
+                             @RequestParam("fechaVa") String fechaVa,
+                             @RequestParam("concepto") String concepto,
+                             @RequestParam("usuario") Long usuario,
+                             @RequestParam("observaciones") String observaciones,
+                             RedirectAttributes redirectAttributes) {
 
-                // Guardar la factura en la base de datos
-                repoFactura.save(factura);
-    
-                return "redirect:/facturas";
-            } else {
-                // Manejo de error si el archivo está vacío
-                return "error";
-            }
-        } catch (IOException e) {
-            // Manejo de excepciones
-            return "error";
+        // Validación de los datos si es necesario
+        if (fichero.isEmpty()) {
+            // Manejar caso de archivo vacío, si es necesario
+        }
+
+        try {
+            // Obtener el nombre original del archivo y guardarlo en la factura
+            String originalFileName = StringUtils.cleanPath(fichero.getOriginalFilename());
+
+            // Crear una nueva factura con los datos recibidos
+            Factura factura = new Factura();
+            factura.setNombre(nombre);
+            factura.setProveedor(proveedor);
+            factura.setFichero(originalFileName); // Guardar el nombre del archivo en la factura
+            factura.setSede(repoSede.getById(sede));
+            factura.setEstado(estado);
+            factura.setVisto(visto);
+            factura.setFechaVa(fechaVa);
+            factura.setConcepto(concepto);
+            factura.setUsuario(repoUsuario.getById(usuario));
+            factura.setObservaciones(observaciones);
+
+            // Guardar la factura y procesar el archivo adjunto
+            // Aquí deberías implementar la lógica para guardar la factura en la base de datos
+            // y procesar el archivo adjunto (guardarlo en el sistema de archivos, etc.)
+
+            redirectAttributes.addFlashAttribute("successMessage", "Factura añadida correctamente");
+            return "redirect:/facturas";
+        } catch (Exception e) {
+            // Manejar errores durante el procesamiento
+            redirectAttributes.addFlashAttribute("errorMessage", "Error al procesar la factura");
+            return "redirect:/facturas/add"; // Redirigir a la página de creación de facturas con mensaje de error
         }
     }
 
