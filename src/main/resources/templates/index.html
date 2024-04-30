@@ -39,6 +39,11 @@
       <div class="card-body">
         <h5 class="card-title">Macrosad</h5>
         <p class="card-text">Bienvenido a Ges-Law!</p>
+        <nav sec:authorize="hasAuthority('Coordinador')">
+          <p>Sede a la que perteneces:
+            <span th:if="${usuario != null and usuario.sede != null}" th:text="${#strings.capitalize(usuario.sede.nombre)}"></span>
+          </p>
+        </nav>
         <a href="/login" class="btn btn-primary">Empezar ahora!</a>
       </div>
     </div>

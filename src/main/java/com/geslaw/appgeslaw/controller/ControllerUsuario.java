@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.lang.NonNull;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -64,6 +65,16 @@ public class ControllerUsuario {
     public String findAll2(Model model) {
         return findAll(model);
     }
+
+    //muestra la sede a la que pertenece cada usuario
+    @GetMapping("/index")
+    public String paginaInicio(Model model, Authentication authentication) {
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        Usuario usuario = repoUsuario.findByUsername(userDetails.getUsername());
+        model.addAttribute("usuario", usuario);
+        return "index";
+    }
+
 
     @GetMapping("/add")
     public String addUser(Model model) {
