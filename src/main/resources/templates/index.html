@@ -41,7 +41,7 @@
         <p class="card-text">Bienvenido a Ges-Law!</p>
         <nav sec:authorize="hasAuthority('Coordinador')">
           <p>Sede a la que perteneces:
-            <span th:if="${usuario != null and usuario.sede != null}" th:text="${#strings.capitalize(usuario.sede.nombre)}"></span>
+            <span th:if="${usuario.sedes != null}" th:text="${#strings.capitalize(usuario.sedes[0].nombre)}">Nombre de la Sede</span>
           </p>
         </nav>
         <a href="/login" class="btn btn-primary">Empezar ahora!</a>
