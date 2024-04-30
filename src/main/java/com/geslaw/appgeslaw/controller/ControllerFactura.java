@@ -87,54 +87,44 @@ public class ControllerFactura {
         return "facturas/add";
     }
 
-    @PostMapping("/facturas/add")
+    @PostMapping("/add")
     public String addFactura(@RequestParam("nombre") String nombre,
                              @RequestParam("proveedor") String proveedor,
                              @RequestParam("fichero") MultipartFile fichero,
-                             @RequestParam("sede") Long sede,
+                             @RequestParam("sede") Long sedeId,
                              @RequestParam("estado") boolean estado,
                              @RequestParam("visto") boolean visto,
                              @RequestParam("fechaVa") String fechaVa,
                              @RequestParam("concepto") String concepto,
-                             @RequestParam("usuario") Long usuario,
+                             @RequestParam("usuario") Long usuarioId,
                              @RequestParam("observaciones") String observaciones,
                              RedirectAttributes redirectAttributes) {
 
-        // Validación de los datos si es necesario
-        if (fichero.isEmpty()) {
-            // Manejar caso de archivo vacío, si es necesario
-        }
-
         try {
-            // Obtener el nombre original del archivo y guardarlo en la factura
-            String originalFileName = StringUtils.cleanPath(fichero.getOriginalFilename());
+            String uniqueFileName = serviceFile.guardarFile(fichero);
 
-            // Crear una nueva factura con los datos recibidos
+            // Crear una nueva instancia de Factura y guardarla en la base de datos
             Factura factura = new Factura();
             factura.setNombre(nombre);
             factura.setProveedor(proveedor);
-            factura.setFichero(originalFileName); // Guardar el nombre del archivo en la factura
-            factura.setSede(repoSede.getById(sede));
+            factura.setFichero(uniqueFileName);
+            factura.setSede(repoSede.getById(sedeId));
             factura.setEstado(estado);
             factura.setVisto(visto);
             factura.setFechaVa(fechaVa);
             factura.setConcepto(concepto);
-            factura.setUsuario(repoUsuario.getById(usuario));
+            factura.setUsuario(repoUsuario.getById(usuarioId));
             factura.setObservaciones(observaciones);
 
-            // Guardar la factura y procesar el archivo adjunto
-            // Aquí deberías implementar la lógica para guardar la factura en la base de datos
-            // y procesar el archivo adjunto (guardarlo en el sistema de archivos, etc.)
+            repoFactura.save(factura);
 
             redirectAttributes.addFlashAttribute("successMessage", "Factura añadida correctamente");
             return "redirect:/facturas";
-        } catch (Exception e) {
-            // Manejar errores durante el procesamiento
+        } catch (IOException e) {
             redirectAttributes.addFlashAttribute("errorMessage", "Error al procesar la factura");
-            return "redirect:/facturas/add"; // Redirigir a la página de creación de facturas con mensaje de error
+            return "redirect:/facturas/add";
         }
     }
-
     // @GetMapping("/delete/{id}")
     // public String deleteForm(@PathVariable(name = "id") @NonNull Long id,Model modelo ){
     //     try{
