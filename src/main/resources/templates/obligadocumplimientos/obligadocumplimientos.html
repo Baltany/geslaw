@@ -52,26 +52,25 @@
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="obligadocumplimiento: ${obligadocumplimientos}">
-                    <td th:text="${obligadocumplimiento.tipo}"></td>
-                    <td th:text="${obligadocumplimiento.fechaValidez}"></td>
-                    <td th:text="${obligadocumplimiento.territorio != null ? obligadocumplimiento.territorio.nombre : ''}"></td>
-                    <td th:text="${obligadocumplimiento.sede != null ? obligadocumplimiento.sede.nombre : ''}"></td>
-                    <!-- <td th:text="${obligadocumplimiento.usuario != null ? obligadocumplimiento.usuario.username : ''}"></td> -->
-                    <td th:text="${obligadocumplimiento.empresa != null ? obligadocumplimiento.empresa.nombre : ''}"></td>
-                    <td th:text="${obligadocumplimiento.fichero != null ? obligadocumplimiento.fichero : 'No se ha adjuntado ningún archivo'}"></td>
-                    <td th:text="${obligadocumplimiento.observaciones != null ? obligadocumplimiento.observaciones : 'No se ha encontrado ninguna observación'}"></td>
-                    <td>
-                        <input type="checkbox" th:checked="${obligadocumplimiento.aplica}" disabled>
-                    </td>
-                    <td>
-                        <input type="checkbox" th:checked="${obligadocumplimiento.favorable}" disabled>
-                    </td>
-                    
                     <nav 
                     sec:authorize="hasAuthority('Admin')"
                     
                     >
+                    <tr th:each="obligadocumplimiento: ${obligadocumplimientos}">
+                        <td th:text="${obligadocumplimiento.tipo}"></td>
+                        <td th:text="${obligadocumplimiento.fechaValidez}"></td>
+                        <td th:text="${obligadocumplimiento.territorio != null ? obligadocumplimiento.territorio.nombre : ''}"></td>
+                        <td th:text="${obligadocumplimiento.sede != null ? obligadocumplimiento.sede.nombre : ''}"></td>
+                        <!-- <td th:text="${obligadocumplimiento.usuario != null ? obligadocumplimiento.usuario.username : ''}"></td> -->
+                        <td th:text="${obligadocumplimiento.empresa != null ? obligadocumplimiento.empresa.nombre : ''}"></td>
+                        <td th:text="${obligadocumplimiento.fichero != null ? obligadocumplimiento.fichero : 'No se ha adjuntado ningún archivo'}"></td>
+                        <td th:text="${obligadocumplimiento.observaciones != null ? obligadocumplimiento.observaciones : 'No se ha encontrado ninguna observación'}"></td>
+                        <td>
+                            <input type="checkbox" th:checked="${obligadocumplimiento.aplica}" disabled>
+                        </td>
+                        <td>
+                            <input type="checkbox" th:checked="${obligadocumplimiento.favorable}" disabled>
+                        </td>
                         <td>
                             <a class="btn btn-primary" th:href="|/obligadocumplimientos/edit/${obligadocumplimiento.id}|">Editar</a>
                             <button class="btn btn-danger"
@@ -83,10 +82,27 @@
                             </button>
                         </td>
                     </nav>
+
+                    <!-- Únicamente puede ver los obligadocumplimientos que existen en su sede -->
                     <nav 
                     sec:authorize="hasAuthority('Coordinador')"
                     
                     >
+                    <tr th:each="obligadocumplimiento: ${obligadocumplimientos}">
+                        <td th:text="${obligadocumplimiento.tipo}"></td>
+                        <td th:text="${obligadocumplimiento.fechaValidez}"></td>
+                        <td th:text="${obligadocumplimiento.territorio != null ? obligadocumplimiento.territorio.nombre : ''}"></td>
+                        <td th:text="${obligadocumplimiento.sede != null ? obligadocumplimiento.sede.nombre : ''}"></td>
+                        <!-- <td th:text="${obligadocumplimiento.usuario != null ? obligadocumplimiento.usuario.username : ''}"></td> -->
+                        <td th:text="${obligadocumplimiento.empresa != null ? obligadocumplimiento.empresa.nombre : ''}"></td>
+                        <td th:text="${obligadocumplimiento.fichero != null ? obligadocumplimiento.fichero : 'No se ha adjuntado ningún archivo'}"></td>
+                        <td th:text="${obligadocumplimiento.observaciones != null ? obligadocumplimiento.observaciones : 'No se ha encontrado ninguna observación'}"></td>
+                        <td>
+                            <input type="checkbox" th:checked="${obligadocumplimiento.aplica}" disabled>
+                        </td>
+                        <td>
+                            <input type="checkbox" th:checked="${obligadocumplimiento.favorable}" disabled>
+                        </td>
                         <td>
                             <a class="btn btn-primary" th:href="|/obligadocumplimientos/edit/${obligadocumplimiento.id}|">Editar</a>
                             <button class="btn btn-danger"
@@ -98,19 +114,53 @@
                             </button>
                         </td>
                     </nav>
+
+
                     <nav 
                     sec:authorize="hasAuthority('Director')"
                     
                     >
+                    <tr th:each="obligadocumplimiento: ${obligadocumplimientos}">
+                        <td th:text="${obligadocumplimiento.tipo}"></td>
+                        <td th:text="${obligadocumplimiento.fechaValidez}"></td>
+                        <td th:text="${obligadocumplimiento.territorio != null ? obligadocumplimiento.territorio.nombre : ''}"></td>
+                        <td th:text="${obligadocumplimiento.sede != null ? obligadocumplimiento.sede.nombre : ''}"></td>
+                        <!-- <td th:text="${obligadocumplimiento.usuario != null ? obligadocumplimiento.usuario.username : ''}"></td> -->
+                        <td th:text="${obligadocumplimiento.empresa != null ? obligadocumplimiento.empresa.nombre : ''}"></td>
+                        <td th:text="${obligadocumplimiento.fichero != null ? obligadocumplimiento.fichero : 'No se ha adjuntado ningún archivo'}"></td>
+                        <td th:text="${obligadocumplimiento.observaciones != null ? obligadocumplimiento.observaciones : 'No se ha encontrado ninguna observación'}"></td>
+                        <td>
+                            <input type="checkbox" th:checked="${obligadocumplimiento.aplica}" disabled>
+                        </td>
+                        <td>
+                            <input type="checkbox" th:checked="${obligadocumplimiento.favorable}" disabled>
+                        </td>
                         <td>
                             <!-- ESTO HAY QUE CAMBIARLO Y DARLE LOGICA -->
                             <a class="btn btn-primary" th:href="|/obligadocumplimientos/edit/${obligadocumplimiento.id}|">Subir</a>
                         </td>
                     </nav>
+
+
                     <nav 
                     sec:authorize="hasAuthority('Trabajador')"
                     
                     >
+                    <tr th:each="obligadocumplimiento: ${obligadocumplimientos}">
+                        <td th:text="${obligadocumplimiento.tipo}"></td>
+                        <td th:text="${obligadocumplimiento.fechaValidez}"></td>
+                        <td th:text="${obligadocumplimiento.territorio != null ? obligadocumplimiento.territorio.nombre : ''}"></td>
+                        <td th:text="${obligadocumplimiento.sede != null ? obligadocumplimiento.sede.nombre : ''}"></td>
+                        <!-- <td th:text="${obligadocumplimiento.usuario != null ? obligadocumplimiento.usuario.username : ''}"></td> -->
+                        <td th:text="${obligadocumplimiento.empresa != null ? obligadocumplimiento.empresa.nombre : ''}"></td>
+                        <td th:text="${obligadocumplimiento.fichero != null ? obligadocumplimiento.fichero : 'No se ha adjuntado ningún archivo'}"></td>
+                        <td th:text="${obligadocumplimiento.observaciones != null ? obligadocumplimiento.observaciones : 'No se ha encontrado ninguna observación'}"></td>
+                        <td>
+                            <input type="checkbox" th:checked="${obligadocumplimiento.aplica}" disabled>
+                        </td>
+                        <td>
+                            <input type="checkbox" th:checked="${obligadocumplimiento.favorable}" disabled>
+                        </td>
                         <td>
                             <!-- ESTO HAY QUE CAMBIARLO Y DARLE LOGICA -->
                             <a class="btn btn-primary" th:href="|/obligadocumplimientos/edit/${obligadocumplimiento.id}|">Ver</a>
