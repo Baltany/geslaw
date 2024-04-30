@@ -145,7 +145,7 @@
                 <div class="form-group row">
                     <label for="sede" class="col-sm-4 col-form-label">Sede:</label>
                     <div class="col-sm-8">
-                        <select id="sede" name="sede" class="form-control" required>
+                        <select id="sede" name="sede" class="form-control" disabled>
                             <option value="">Seleccione una sede...</option>
                             <option th:each="sed : ${sedes}" th:value="${sed.id}" th:text="${sed.nombre}"></option>
                         </select>

@@ -90,6 +90,7 @@
 
         </nav>
 
+        <!-- Solo puede editar los que son de su sede y obviamente la sede no la puede cambiar -->
     <nav
     sec:authorize="hasAuthority('Coordinador')"
     >
@@ -130,7 +131,7 @@
                     </div>
                     <div class="col-md-6">
                         <label class="form-label">Sede:</label>
-                        <select th:field="*{sede}" class="form-control">
+                        <select th:field="*{sede}" class="form-control" disabled>
                             <option value="">Seleccione una sede...</option>
                             <option th:each="sed : ${sedes}" th:value="${sed.id}" th:text="${sed.nombre}"></option>
                         </select>
