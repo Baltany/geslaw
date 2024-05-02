@@ -64,7 +64,7 @@ public class SecurityConfiguration {
                 .anyRequest().authenticated())
             .exceptionHandling(exceptionHandling -> exceptionHandling
                 .accessDeniedPage("/denegado"))
-            .formLogin(formLogin -> formLogin
+            .formLogin((formLogin)-> formLogin.loginPage("/login")
                 .permitAll())
             .logout(logout -> logout
                 .invalidateHttpSession(true)

@@ -29,8 +29,9 @@
         <div th:fragment="navigation">
             <!--
                 Solo es momentaneo este menú cuando pueda usar el login se borrará
+                th:if="${#authorization.expression('hasAuthority(''Admin'')')}"
             -->
-            <nav sec:authorize="hasAuthority('Admin')" class="navbar navbar-expand-lg navbar-dark">
+            <nav sec:authorize="hasAuthority('Admin')" class="navbar navbar-expand-lg navbar-dark" >
                 <div class="container-fluid">
                     <!--Por si queremos añadir algún tipo de logo-->
                     <!-- <img src="src/main/resources/static/img/faviconRosa.ico" alt="Imagen"> -->
@@ -92,7 +93,7 @@
             </nav>
 
             <!-- Un Coordinador lo ve todo pero unicamente de las sedes que tenga ASIGNADAS -->
-            <nav sec:authorize="hasAuthority('Coordinador')" class="navbar navbar-expand-lg navbar-dark">
+            <nav sec:authorize="hasAuthority('Coordinador')" class="navbar navbar-expand-lg navbar-dark" >
                 <div class="container-fluid">
                     <!--Por si queremos añadir algún tipo de logo-->
                     <!-- <img src="src/main/resources/static/img/faviconRosa.ico" alt="Imagen"> -->
