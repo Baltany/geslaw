@@ -13,10 +13,10 @@
             margin: 0;
             padding: 0;
         }
-        .color-rosa{
+
+        .color-rosa {
             color: #CE295E;
         }
-
 
         .container {
             width: 90%;
@@ -52,7 +52,7 @@
         .anchocontacto {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 20px;
+            margin-bottom: 40px; /* Aumenta el espacio vertical entre cada conjunto */
         }
 
         .campo,
@@ -79,10 +79,9 @@
 
         /* Estilos de iconos */
         .icocontacto {
-            display: inline-block;
             width: 30px;
             height: 30px;
-            margin-right: 10px;
+            margin-right: 20px; /* Aumenta el espacio a la izquierda de las imágenes */
         }
     </style>
 </head>
@@ -90,6 +89,7 @@
 <body>
     <div th:replace="~{fragmentos/general.html :: navigation}"> </div>
     <br>
+    <!-- incidencias.ssii@macrosad.com -->
     <div class="container">
         <section class="contenidoform ancho900">
             <h1 class="titulo_simple">
@@ -101,31 +101,31 @@
                 <div class="anchoformcontacto">
                     <div class="anchocontacto">
                         <div class="icocontacto">
-                            <img src="../static/icocontactousuario.png" alt="Usuario">
+                            <img src="/img/icocontactousuario.svg" alt="Usuario">
                         </div>
                         <input id="nombre" name="nombre" type="text" class="campo" placeholder="Nombre" required>
                     </div>
                     <div class="anchocontacto">
                         <div class="icocontacto">
-                            <img src="../static/icocontactotelefono.png" alt="Teléfono">
+                            <img src="/img/icocontactotelefono.svg" alt="Teléfono">
                         </div>
                         <input id="telefono" name="telefono" type="tel" class="campo" placeholder="Teléfono" required>
                     </div>
                     <div class="anchocontacto">
                         <div class="icocontacto">
-                            <img src="../static/icocontactoasunto.png" alt="Asunto">
+                            <img src="/img/icocontactoasunto.svg" alt="Asunto">
                         </div>
                         <input id="asunto" name="asunto" type="text" class="campo" placeholder="Asunto" required>
                     </div>
                     <div class="anchocontacto">
                         <div class="icocontacto">
-                            <img src="../static/icocontactocorreo.png" alt="Correo">
+                            <img src="/img/icocontactocorreo.svg" alt="Correo">
                         </div>
                         <input id="email" type="email" name="email" class="campo" placeholder="Email" required>
                     </div>
                     <div class="anchocontacto" style="margin-top: 20px;">
                         <div class="icocontacto">
-                            <img src="../static/icocontactomensaje.png" alt="Mensaje">
+                            <img src="/img/icocontactomensaje.svg" alt="Mensaje">
                         </div>
                         <textarea id="mensaje" name="mensaje" class="textarea" placeholder="Mensaje" required></textarea>
                     </div>
