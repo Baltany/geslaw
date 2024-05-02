@@ -110,31 +110,6 @@ public String paginaInicio(Model model, Authentication authentication) {
 
 
 
-    
-
-    //quiero que haga el post
-    // @GetMapping("/delete/{id}")
-    // public String deleteUsuarioForm(
-    //     Model modelo,
-    //     @PathVariable("id") @NonNull Long id
-    // ) {
-    //     Optional<Usuario> oUsuario = repoUsuario.findById(id);
-    //     if (oUsuario.isPresent()) 
-    //         modelo.addAttribute("usuario", oUsuario.get());
-    //     else {
-    //         modelo.addAttribute("mensaje", "El usuario consultado no existe.");
-    //         return "error";
-    //     }
-    //     return "usuarios/delete";
-    // }
-
-    // @DeleteMapping("/usuarios/delete/{id}")
-    // public String deleteUsuario(@PathVariable("id") Long id) {
-    //     repoUsuario.deleteById(id);
-    //     return "redirect:/usuarios";
-    // }
-
-
 
     // Método para manejar la solicitud DELETE para eliminar un usuario por su ID
     @DeleteMapping("/delete/{id}")
@@ -216,24 +191,4 @@ public String updateUsuario(@ModelAttribute("usuario") @Validated Usuario usuari
 
 
     
-
-    // @GetMapping("/edit/{id}")
-    // public String editUsuarioForm(
-    //     Model modelo,
-    //     @PathVariable("id")@NonNull Long id
-    // ) {
-    //     Optional<Usuario> oUsuario = repoUsuario.findById(id);
-    //     if (oUsuario.isPresent()) {
-    //         modelo.addAttribute("usuario", oUsuario.get());
-    //         modelo.addAttribute("tipoUsuario", repoTipoUsuario.findAll());
-    //         modelo.addAttribute("sede", repoSede.findAll());
-    //         modelo.addAttribute("obligadocumplimiento", repoObligadoCumplimiento.findAll());
-    //         modelo.addAttribute("factura", repoFactura.findAll());
-    //         return "usuarios/edit";
-    //     } else {
-    //         modelo.addAttribute("mensaje", "El usuario consultado no existe.");
-    //         return "error";
-    //     }
-    // }
-
 }
