@@ -18,7 +18,7 @@
         }
         .container {
             width: 100%;
-            max-width: 400px;
+            max-width: 500px;
             padding: 30px;
             background-color: white;
             border-radius: 10px;
@@ -41,7 +41,7 @@
         label.form-label {
             color: #CE295E;
             font-weight: bold;
-            display: block;
+            display: flex;
             margin-bottom: 8px;
             text-align: left;
         }
@@ -75,7 +75,12 @@
 </head>
 <body>
     <div class="container">
-        <h2>Inicio de Sesión</h2>
+        <div>
+            <img src="/img/imagen.png">
+            <h2>Inicio de Sesión</h2>
+        </div>
+
+        <br/>
         <form action="/login" method="POST">
             <div class="form-group">
                 <label for="username" class="form-label">Nombre de Usuario:</label>
@@ -89,7 +94,7 @@
                 <input class="form-check-input" type="checkbox" id="rememberMe">
                 <label class="form-check-label" for="rememberMe">Recordar sesión</label>
             </div>
-            <a href="/signup" class="forgot-password">¿Olvidaste tu contraseña?</a>
+            <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
             <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
         </form>
     </div>
