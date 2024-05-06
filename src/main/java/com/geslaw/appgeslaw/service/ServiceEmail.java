@@ -17,7 +17,7 @@ public class ServiceEmail implements RepoEmail{
 
     @Override
     public void sendEmail(String[] enviador, String asunto, String mensaje) {
-        // TODO Auto-generated method stub
+        //TODO Auto-generated method stub
         SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setFrom(email);
         mailMessage.setTo(enviador);

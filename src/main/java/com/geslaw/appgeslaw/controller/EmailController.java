@@ -18,21 +18,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 
 @Configuration
-// @RequestMapping("/enviar-correo")
+@RequestMapping("/enviar-correo")
 public class EmailController {
     
-    @Value("${sprinng.mail.host}")
-    private String email;
 
-    @Bean
     public JavaMailSender getJavaMailSender(){
         JavaMailSender mailSender = new JavaMailSenderImpl();
-        
-        // mailSender.setHost("smtp.gmail.com");
-        // mailSender.setPort(587);
-        // mailSender.setUsername(email);
-        // mailSender.setPassword("<Password>");
-        
 
         Properties props = new Properties();
         props.put("mail.transport.protocol", "smtp");

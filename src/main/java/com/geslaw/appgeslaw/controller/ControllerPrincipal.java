@@ -22,7 +22,7 @@ public class ControllerPrincipal {
         return "index";
     }
 
-    @GetMapping("/ayuda")
+    @GetMapping("/correo")
     public String mostrarAyuda() {
         return "ayuda";
     }
