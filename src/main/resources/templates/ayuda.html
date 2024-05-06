@@ -98,7 +98,7 @@
             </h1>
             <br>
             <!--incidencias.ssii@macrosad.com  quiero que se mande al info al siguiente-->
-            <form autocomplete="off" method="post" action="index.php">
+            <form autocomplete="off" method="post">
                 <div class="anchoformcontacto">
                     <div class="anchocontacto">
                         <div class="icocontacto">
@@ -136,7 +136,7 @@
                     </div>
                     <div id="captcha" align="center" class="g-recaptcha" data-sitekey="your_recaptcha_site_key" style="margin-top: 20px;"></div>
                     <div class="marcoenviar">
-                        <input type="submit" value="Enviar Consulta" class="enviar" 
+                        <input type="submit" value="Enviar Consulta" class="enviar" onClick="enviarCorreo"
 
                         >
                     </div>
@@ -149,10 +149,37 @@
     <script src="https://smtpjs.com/v3/smtp.js"></script>
 
     <script>
-        function mandaMensaje() {
-            // Lógica de envío del mensaje (puedes implementarla según tus necesidades)
-            alert('Mensaje enviado correctamente');
-        }
+        const enviarCorreo = () => {
+            const destinatarios = ["prueba.correo.spring.macrosad@gmail.com"];
+            const asunto = "¡Hola!";
+            const mensaje = "Este es un mensaje de prueba enviado desde mi aplicación.";
+        
+            fetch('/correo', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    destinatarios: destinatarios,
+                    asunto: asunto,
+                    mensaje: mensaje,
+                }),
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('Correo enviado correctamente');
+                } else {
+                    alert('Error al enviar el correo');
+                }
+            })
+            .catch(error => {
+                console.error('Error al enviar la solicitud:', error);
+                alert('Error al enviar el correo');
+            });
+        };
+        
+        // Llama a la función enviarCorreo cuando sea necesario, por ejemplo, al enviar un formulario.
+        
 
 /*
         function enviarCorreo() {
