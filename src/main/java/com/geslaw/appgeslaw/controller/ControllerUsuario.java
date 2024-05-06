@@ -190,7 +190,10 @@ public String updateUsuario(@ModelAttribute("usuario") @Validated Usuario usuari
 
 
 @PostMapping("/edit/{id}")
-public String updateUsuarioPass(@ModelAttribute("usuario") @Validated Usuario usuario, BindingResult result, @PathVariable("id") Long id, Model model) {
+public String updateUsuarioPass(@ModelAttribute("usuario") @Validated Usuario usuario,
+                                BindingResult result,
+                                @PathVariable("id") Long id,
+                                Model model) {
     if (result.hasErrors()) {
         return "usuarios/edit"; // Volver a mostrar el formulario de edición con errores
     }
@@ -198,7 +201,7 @@ public String updateUsuarioPass(@ModelAttribute("usuario") @Validated Usuario us
     Optional<Usuario> oUsuario = repoUsuario.findById(id);
     if (oUsuario.isPresent()) {
         Usuario existingUsuario = oUsuario.get();
-        
+
         // Actualizar campos editables del usuario
         existingUsuario.setUsername(usuario.getUsername());
         existingUsuario.setNombre(usuario.getNombre());
@@ -206,25 +209,29 @@ public String updateUsuarioPass(@ModelAttribute("usuario") @Validated Usuario us
         existingUsuario.setDni(usuario.getDni());
         existingUsuario.setEmail(usuario.getEmail());
 
-        //Seguramente esté mal pero hay que comprobarlo
-        existingUsuario.setPassword(new BCryptPasswordEncoder().encode(usuario.getPassword()));
+        // Verificar si se proporcionó una nueva contraseña
+        if (!usuario.getPassword().isEmpty()) {
+            // Solo actualizar la contraseña si se proporciona una nueva
+            existingUsuario.setPassword(new BCryptPasswordEncoder().encode(usuario.getPassword()));
+        }
 
         // Limpiar la lista de tipos de usuario existente
         existingUsuario.getTipoUsuario().clear();
-        
+
         // Asignar los nuevos tipos de usuario seleccionados al usuario existente
         List<TipoUsuario> tiposSeleccionados = usuario.getTipoUsuario();
         tiposSeleccionados.forEach(tipo -> existingUsuario.getTipoUsuario().add(tipo));
 
         // Guardar los cambios en el usuario existente
         repoUsuario.save(existingUsuario);
-        
+
         return "redirect:/usuarios/";
     } else {
         model.addAttribute("mensaje", "El usuario a actualizar no existe.");
         return "error";
     }
 }
+
 
     
 }
