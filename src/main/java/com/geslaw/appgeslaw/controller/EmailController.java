@@ -1,7 +1,13 @@
 package com.geslaw.appgeslaw.controller;
 
+import java.util.Properties;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,38 +15,34 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-// import javax.mail.MessagingException;
-// import javax.mail.internet.MimeMessage;
 
-@Controller
-@RequestMapping("/enviar-correo")
+
+@Configuration
+// @RequestMapping("/enviar-correo")
 public class EmailController {
-/*
-    @Autowired
-    private javaMailSender javaMailSender;
+    
+    @Value("${sprinng.mail.host}")
+    private String email;
 
-    @PostMapping
-    @ResponseBody
-    public String enviarCorreo(@RequestParam String nombre,
-                               @RequestParam String telefono,
-                               @RequestParam String asunto,
-                               @RequestParam String email,
-                               @RequestParam String mensaje) {
+    @Bean
+    public JavaMailSender getJavaMailSender(){
+        JavaMailSender mailSender = new JavaMailSenderImpl();
+        
+        // mailSender.setHost("smtp.gmail.com");
+        // mailSender.setPort(587);
+        // mailSender.setUsername(email);
+        // mailSender.setPassword("<Password>");
+        
 
-        String destinatario = "incidencias.ssii@macrosad.com";
-        String cuerpoMensaje = "Nombre: " + nombre + "\nTeléfono: " + telefono + "\nEmail: " + email + "\nMensaje: " + mensaje;
+        Properties props = new Properties();
+        props.put("mail.transport.protocol", "smtp");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.debug", "true");
 
-        try {
-            MimeMessage message = javaMailSender.createMimeMessage();
-            MimeMessageHelper helper = new MimeMessageHelper(message, true);
-            helper.setTo(destinatario);
-            helper.setSubject(asunto);
-            helper.setText(cuerpoMensaje);
-            javaMailSender.send(message);
-            return "Correo enviado correctamente";
-        } catch (MessagingException e) {
-            e.printStackTrace();
-            return "Error al enviar el correo";
-        }
-    }*/
+        return mailSender;
+
+    }
+
+
 }
