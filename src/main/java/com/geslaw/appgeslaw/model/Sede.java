@@ -83,7 +83,7 @@ public class Sede {
      * @OneToOne -> Una factura es de una unica sede
      * @JoinColumn -> Se le añade el id a la tabla correspondiente
      */
-    @OneToOne
+    @OneToMany
     @JoinColumn(name = "sede_factura_id")
     private Factura factura;
 

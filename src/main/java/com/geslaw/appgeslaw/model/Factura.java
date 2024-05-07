@@ -48,7 +48,7 @@ public class Factura {
     /*
      * @OneToOne -> Una factura es de una unica sede
      */
-    @OneToOne
+    @ManyToOne
     private Sede sede;
 
     private Boolean estado;
