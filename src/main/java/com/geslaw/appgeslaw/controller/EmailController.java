@@ -24,8 +24,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.geslaw.appgeslaw.domain.EmailDTO;
 import com.geslaw.appgeslaw.service.ServiceEmail;
 
-import jakarta.mail.MessagingException;
-import jakarta.mail.internet.MimeMessage;
 
 
 
@@ -48,26 +46,6 @@ public class EmailController {
         return (ResponseEntity<?>) ResponseEntity.ok(response);
     }
     
-    // @Autowired
-    // private JavaMailSender mailSender;
-
-    // @PostMapping("/enviar")
-    // public String enviarCorreo(@RequestBody String[] destinatarios,@RequestBody String asunto,@RequestBody String mensaje) {
-    //     try {
-    //         SimpleMailMessage mailMessage = new SimpleMailMessage();
-    //         mailMessage.setTo(destinatarios);
-    //         mailMessage.setSubject(asunto);
-    //         mailMessage.setText(mensaje);
-
-    //         mailSender.send(mailMessage);
-
-    //         return "Correo enviado correctamente";
-    //     } catch (Exception e) {
-    //         e.printStackTrace();
-    //         return "Error al enviar el correo";
-    //     }
-    // }
-
 
 
 }

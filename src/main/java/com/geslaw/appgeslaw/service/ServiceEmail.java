@@ -22,8 +22,10 @@ public class ServiceEmail implements RepoEmail{
     public void sendEmail(String[] enviador, String asunto, String mensaje) {
         //TODO Auto-generated method stub
         SimpleMailMessage mailMessage = new SimpleMailMessage();
+        //dominio que manda el correo
         mailMessage.setFrom(email);
-        mailMessage.setTo(enviador);
+        //dominio que va a recibir el correo
+        mailMessage.setTo("prueba.correo.spring.macrosad@gmail.com");
         mailMessage.setSubject(asunto);
         mailMessage.setText(mensaje);
 
