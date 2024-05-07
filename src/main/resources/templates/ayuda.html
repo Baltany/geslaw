@@ -98,7 +98,7 @@
             </h1>
             <br>
             <!--incidencias.ssii@macrosad.com  quiero que se mande al info al siguiente-->
-            <form autocomplete="off" method="post">
+            <form autocomplete="off" method="post" onsubmit="enviarCorreo(event)">
                 <div class="anchoformcontacto">
                     <div class="anchocontacto">
                         <div class="icocontacto">
@@ -149,21 +149,27 @@
     <script src="https://smtpjs.com/v3/smtp.js"></script>
 
     <script>
-        const enviarCorreo = () => {
-            const destinatarios = ["prueba.correo.spring.macrosad@gmail.com"];
-            const asunto = "¡Hola!";
-            const mensaje = "Este es un mensaje de prueba enviado desde mi aplicación.";
+        const enviarCorreo = (event) => {
+            event.preventDefault(); // Evita que se envíe el formulario directamente
         
-            fetch('/correo', {
+            const nombre = document.getElementById('nombre').value;
+            const telefono = document.getElementById('telefono').value;
+            const asunto = document.getElementById('asunto').value;
+            const email = document.getElementById('email').value;
+            const mensaje = document.getElementById('mensaje').value;
+        
+            const correo = {
+                destinatarios: ["prueba.correo.spring.macrosad@gmail.com"], // Define aquí los destinatarios
+                asunto: asunto,
+                mensaje: `Nombre: ${nombre}\nTeléfono: ${telefono}\nEmail: ${email}\nMensaje: ${mensaje}`
+            };
+        
+            fetch('/correo/enviar', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({
-                    destinatarios: destinatarios,
-                    asunto: asunto,
-                    mensaje: mensaje,
-                }),
+                body: JSON.stringify(correo),
             })
             .then(response => {
                 if (response.ok) {
@@ -177,41 +183,6 @@
                 alert('Error al enviar el correo');
             });
         };
-        
-        // Llama a la función enviarCorreo cuando sea necesario, por ejemplo, al enviar un formulario.
-        
-
-/*
-        function enviarCorreo() {
-            var nombre = document.getElementById('nombre').value;
-            var telefono = document.getElementById('telefono').value;
-            var asunto = document.getElementById('asunto').value;
-            var email = document.getElementById('email').value;
-            var mensaje = document.getElementById('mensaje').value;
-            
-            var subject = encodeURIComponent(asunto);
-            var body = encodeURIComponent('Nombre: ' + nombre + '\nTeléfono: ' + telefono + '\nEmail: ' + email + '\nMensaje: ' + mensaje);
-            
-            window.location.href = 'mailto:incidencias.ssii@macrosad.com?subject=' + subject + '&body=' + body;
-            
-            alert('Correo enviado correctamente');
-        }
-
-        function sendEmail() {
-            Email.send({
-                Host: document.getElementById('nombre').value,
-                Username: document.getElementById('email').value,
-                To: 'bmoylop0903@g.educaand.es',
-                From: document.getElementById('email').value,
-                Subject: document.getElementById('asunto').value,
-                Body: document.getElementById('mensaje').value,
-            })
-            .then(function (message) {
-                alert("Correo enviado con éxito");
-            });
-        }
-
-          */
     </script>
 
     <div th:replace="~{fragmentos/general.html :: footer}"></div>
