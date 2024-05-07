@@ -85,7 +85,7 @@ public class Sede {
      */
     @OneToMany
     @JoinColumn(name = "sede_factura_id")
-    private Factura factura;
+    private List<Factura> factura;
 
 
     private Boolean habilitar;
