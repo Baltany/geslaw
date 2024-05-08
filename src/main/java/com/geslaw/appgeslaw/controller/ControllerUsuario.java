@@ -172,12 +172,26 @@ public String editUsuarioForm(Model model, @PathVariable("id") @NonNull Long id)
 @PostMapping("/update/{id}")
 public String updateUsuario(@ModelAttribute("usuario") @Validated Usuario usuario, BindingResult result, @PathVariable("id") Long id, Model model) {
     if (result.hasErrors()) {
-        return "usuarios/edit"; // Volver a mostrar el formulario de edición con errores
+        return "error"; // Volver a mostrar el formulario de edición con errores
     }
 
     Optional<Usuario> oUsuario = repoUsuario.findById(id);
     if (oUsuario.isPresent()) {
         Usuario existingUsuario = oUsuario.get();
+
+        // Verificar si el nombre de usuario ya está en uso por otro usuario
+        Usuario usuarioByUsername = repoUsuario.findByUsername(usuario.getUsername());
+        if (usuarioByUsername != null && !usuarioByUsername.getId().equals(id)) {
+            model.addAttribute("error", "El nombre de usuario ya está en uso por otro usuario.");
+            return "usuarios/edit";
+        }
+        
+        // Verificar si el DNI ya está en uso por otro usuario
+        Usuario usuarioByDni = repoUsuario.findByDni(usuario.getDni());
+        if (usuarioByDni != null && !usuarioByDni.getId().equals(id)) {
+            model.addAttribute("error", "El DNI ya está registrado por otro usuario.");
+            return "usuarios/edit";
+        }
         
         // Actualizar campos editables del usuario
         existingUsuario.setUsername(usuario.getUsername());
@@ -216,6 +230,20 @@ public String updateUsuarioPass(@ModelAttribute("usuario") @Validated Usuario us
     Optional<Usuario> oUsuario = repoUsuario.findById(id);
     if (oUsuario.isPresent()) {
         Usuario existingUsuario = oUsuario.get();
+
+        // Verificar si el nombre de usuario ya está en uso por otro usuario
+        Usuario usuarioByUsername = repoUsuario.findByUsername(usuario.getUsername());
+        if (usuarioByUsername != null && !usuarioByUsername.getId().equals(id)) {
+            model.addAttribute("error", "El nombre de usuario ya está en uso por otro usuario.");
+            return "usuarios/edit";
+        }
+
+        // Verificar si el DNI ya está en uso por otro usuario
+        Usuario usuarioByDni = repoUsuario.findByDni(usuario.getDni());
+        if (usuarioByDni != null && !usuarioByDni.getId().equals(id)) {
+            model.addAttribute("error", "El DNI ya está registrado por otro usuario.");
+            return "usuarios/edit";
+        }
 
         // Actualizar campos editables del usuario
         existingUsuario.setUsername(usuario.getUsername());
