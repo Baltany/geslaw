@@ -96,11 +96,26 @@ public String paginaInicio(Model model, Authentication authentication) {
 
     //Falta validar que si el usuario que se va a añadir ya existe
     @PostMapping("/add")
-    public String addUsuario(@ModelAttribute("usuario") @Validated Usuario usuario, BindingResult result) {
+    public String addUsuario(@ModelAttribute("usuario") @Validated Usuario usuario, BindingResult result,Model modelo) {
         if (result.hasErrors()) {
             // Si hay errores de validación, volver a mostrar el formulario con los mensajes de error
-            return "usuarios/add";
+            return "error";
         }
+
+        //Para verificar que el usuario no existe
+        Usuario usuarioExistente = repoUsuario.findByUsername(usuario.getUsername());
+        if(usuarioExistente != null){
+            modelo.addAttribute("error", "El usuario ya existe prueba con otro");
+            return "error";
+        }
+
+        usuarioExistente = repoUsuario.findByDni(usuario.getDni());
+        if(usuarioExistente != null){
+            modelo.addAttribute("error", "El DNI ya está en uso");
+            return "error";
+        }
+
+
         //Encryptamos la password
         usuario.setPassword(new BCryptPasswordEncoder().encode(usuario.getPassword()));
         repoUsuario.save(usuario);

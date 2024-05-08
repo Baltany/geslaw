@@ -102,4 +102,6 @@ public class Sede {
     @OneToOne
     @JoinColumn(name = "sede_obligado_cumplimiento_id")
     private ObligadoCumplimiento obligadoCumplimiento;
+
+    
 }
