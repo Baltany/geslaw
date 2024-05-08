@@ -183,14 +183,14 @@ public String updateUsuario(@ModelAttribute("usuario") @Validated Usuario usuari
         Usuario usuarioByUsername = repoUsuario.findByUsername(usuario.getUsername());
         if (usuarioByUsername != null && !usuarioByUsername.getId().equals(id)) {
             model.addAttribute("error", "El nombre de usuario ya está en uso por otro usuario.");
-            return "usuarios/edit";
+            return "error";
         }
         
         // Verificar si el DNI ya está en uso por otro usuario
         Usuario usuarioByDni = repoUsuario.findByDni(usuario.getDni());
         if (usuarioByDni != null && !usuarioByDni.getId().equals(id)) {
             model.addAttribute("error", "El DNI ya está registrado por otro usuario.");
-            return "usuarios/edit";
+            return "error";
         }
         
         // Actualizar campos editables del usuario
@@ -235,14 +235,14 @@ public String updateUsuarioPass(@ModelAttribute("usuario") @Validated Usuario us
         Usuario usuarioByUsername = repoUsuario.findByUsername(usuario.getUsername());
         if (usuarioByUsername != null && !usuarioByUsername.getId().equals(id)) {
             model.addAttribute("error", "El nombre de usuario ya está en uso por otro usuario.");
-            return "usuarios/edit";
+            return "error";
         }
 
         // Verificar si el DNI ya está en uso por otro usuario
         Usuario usuarioByDni = repoUsuario.findByDni(usuario.getDni());
         if (usuarioByDni != null && !usuarioByDni.getId().equals(id)) {
             model.addAttribute("error", "El DNI ya está registrado por otro usuario.");
-            return "usuarios/edit";
+            return "error";
         }
 
         // Actualizar campos editables del usuario
