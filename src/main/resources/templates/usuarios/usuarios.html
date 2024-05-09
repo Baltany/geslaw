@@ -45,13 +45,19 @@
             </td>
             <td>
               <!-- Botón de Editar -->
-              <a class="btn btn-primary" th:href="@{/usuarios/edit/{id}(id=${usuario.id})}">Editar</a>
+              <a class="btn btn-primary" th:href="@{/usuarios/edit/{id}(id=${usuario.id})}">
+                <i class="fa-solid fa-pen"></i>
+          <!--Editar-->
+              </a>
               <!-- Botón de Borrar con el ID dinámico del usuario -->
               <button class="btn btn-danger"
           data-toggle="modal"
           data-target="#confirmDeleteModal"
           th:data-usuario-id="${usuario.id}"
-          onclick="$('#confirmDeleteButton').data('usuario-id', $(this).data('usuario-id'))">Borrar</button>
+          onclick="$('#confirmDeleteButton').data('usuario-id', $(this).data('usuario-id'))">
+          <i class="fa-solid fa-trash"></i>
+          <!--Borrar-->
+        </button>
             </td>
           </tr>
         </tbody>
