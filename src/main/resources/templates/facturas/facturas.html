@@ -69,13 +69,16 @@
                     <td th:text="${factura.fichero != null ? factura.fichero : 'No se ha adjuntado ningún archivo'}"></td>
 
                         <td>
-                            <a class="btn btn-primary" th:href="|/facturas/edit/${factura.id}|">Editar</a>
+                            <a class="btn btn-primary" th:href="|/facturas/edit/${factura.id}|">
+                                <i class="fa-solid fa-pen"></i>    <!--Editar-->
+                            </a>
                             <button class="btn btn-danger"
                             data-toggle="modal"
                             data-target="#confirmDeleteModal"
                             th:data-factura-id="${factura.id}"
                             th:if="${#authorization.expression('hasAuthority(''Admin'') or hasAuthority(''Coordinador'')')}">
-                            Borrar
+                            <i class="fa-solid fa-trash"></i>
+                            <!--Borrar-->
                             </button>
                     
                         
@@ -102,13 +105,17 @@
                         <td th:text="${factura.usuario.username}"></td>
                         <td th:text="${factura.fichero != null ? factura.fichero : 'No se ha adjuntado ningún archivo'}"></td>
                         <td>
-                            <a class="btn btn-primary" th:href="|/facturas/edit/${factura.id}|">Editar</a>
+                            <a class="btn btn-primary" th:href="|/facturas/edit/${factura.id}|">
+                                <i class="fa-solid fa-pen"></i>
+                                <!--Editar-->
+                            </a>
                             <button class="btn btn-danger"
                             data-toggle="modal"
                             data-target="#confirmDeleteModal"
                             th:data-factura-id="${factura.id}"
                             th:if="${#authorization.expression('hasAuthority(''Admin'') or hasAuthority(''Coordinador'')')}">
-                            Borrar
+                            <i class="fa-solid fa-trash"></i>
+                            <!--Borrar-->
                             </button>
                         </td>
                         

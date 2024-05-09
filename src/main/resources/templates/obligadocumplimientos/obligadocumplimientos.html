@@ -72,13 +72,17 @@
                             <input type="checkbox" th:checked="${obligadocumplimiento.favorable}" disabled>
                         </td>
                         <td>
-                            <a class="btn btn-primary" th:href="|/obligadocumplimientos/edit/${obligadocumplimiento.id}|">Editar</a>
+                            <a class="btn btn-primary" th:href="|/obligadocumplimientos/edit/${obligadocumplimiento.id}|">
+                                <i class="fa-solid fa-pen"></i>
+                                <!--Editar-->
+                            </a>
                             <button class="btn btn-danger"
                             data-toggle="modal"
                             data-target="#confirmDeleteModal"
                             th:data-obligadocumplimiento-id="${obligadocumplimiento.id}"
                             th:if="${#authorization.expression('hasAuthority(''Admin'') or hasAuthority(''Coordinador'')')}">
-                            Borrar
+                            <i class="fa-solid fa-trash"></i>
+                            <!--Borrar-->
                             </button>
                         </td>
                     </nav>
@@ -104,13 +108,17 @@
                             <input type="checkbox" th:checked="${obligadocumplimiento.favorable}" disabled>
                         </td>
                         <td>
-                            <a class="btn btn-primary" th:href="|/obligadocumplimientos/edit/${obligadocumplimiento.id}|">Editar</a>
+                            <a class="btn btn-primary" th:href="|/obligadocumplimientos/edit/${obligadocumplimiento.id}|">
+                                <i class="fa-solid fa-pen"></i>
+                                <!--Editar-->
+                            </a>
                             <button class="btn btn-danger"
                             data-toggle="modal"
                             data-target="#confirmDeleteModal"
                             th:data-obligadocumplimiento-id="${obligadocumplimiento.id}"
                             th:if="${#authorization.expression('hasAuthority(''Admin'') or hasAuthority(''Coordinador'')')}">
-                            Borrar
+                            <i class="fa-solid fa-trash"></i>
+                            <!--Borrar-->
                             </button>
                         </td>
                     </nav>
